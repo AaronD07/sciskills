@@ -1,0 +1,61 @@
+{
+  "phase": "dev",
+  "models": {
+    "codex": "gpt-6.1-terra",
+    "claude": "claude-sonnet-5-5"
+  },
+  "auth": {
+    "codex": "ChatGPT",
+    "claude": "max",
+    "claude_api_provider": "firstParty",
+    "claude_extra_usage": false
+  },
+  "versions": {
+    "codex": "codex-cli 0.172.0",
+    "claude": "2.1.325 (Claude Code)"
+  },
+  "order_seed": 14320261126,
+  "timeout_seconds": 240,
+  "concurrency": 4,
+  "effort": "low",
+  "jobs": [
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "dev",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "dev",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "dev",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "dev",
+      "repetition": 1,
+      "condition": "baseline"
+    }
+  ],
+  "inputs": {
+    "comparisons.dev.baseline": {
+      "prompt_sha256": "1b46798d111f2546f4b973726213895710f703c9a089c7c954ef34156f6bdaa8",
+      "gold_sha256": "bbaa158e61f9ea48946990eff10648a310e835c02f17807fc8f3183c5a20ae87"
+    },
+    "records.dev.baseline": {
+      "prompt_sha256": "e7aeca523396f82577bd1a4ef5b052604792635a90af4ecf9f7dd9516b2c9dc1",
+      "gold_sha256": "02a8ea1f9c9fc92ad503904d300a376e679c3e08d0fff658c7d5565c50e5e7e7"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+These two workflows are the exact versions used in the first 72-session pilot. The pilot runner loads them when reconstructing the original prompts. Current versions are in the [skill collection](../../skills/).

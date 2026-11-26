@@ -1,0 +1,12 @@
+{"agent": "codex", "checks": [true, true, true], "condition": "baseline", "repetition": 2, "submission_sha256": "9dc6d89bd8f8da1e198044c0b7fa42ece59a9c24a4ec0cea06f31ef099d00b6a"}
+{"agent": "codex", "checks": [false, false, false], "condition": "skill", "repetition": 2, "submission_sha256": "46f7d6092dd1b103713b7df42a0fb3944978031a6b95ce4c210d05c73c03806c"}
+{"agent": "claude", "checks": [false, false, false], "condition": "baseline", "repetition": 1, "submission_sha256": "7456854b673a8aba06bedcd58c1763680ade52883294b3fde1d213d491e3606a"}
+{"agent": "claude", "checks": [false, false, false], "condition": "skill", "repetition": 1, "submission_sha256": "258ae7e0990521a7a79b892b3aa24f98fdf926450200e8f70edd46a64318217b"}
+{"agent": "claude", "checks": [false, false, false], "condition": "baseline", "repetition": 3, "submission_sha256": "784088d2d7eb923a9db401b0c3dd8cb642941df552bd201bb636cc2cdfce5ef3"}
+{"agent": "claude", "checks": [false, false, false], "condition": "skill", "repetition": 3, "submission_sha256": "87414030281706a602cc21155b06e2f60c5805d4086f5799211e8f718aed1852"}
+{"agent": "codex", "checks": [true, true, true], "condition": "skill", "repetition": 1, "submission_sha256": "2efbf77ae5c687f7fc9b708d7c7329758377a445b947bd7534ef9e14e1d05170"}
+{"agent": "codex", "checks": [true, true, true], "condition": "baseline", "repetition": 1, "submission_sha256": "5cd9c3182a6281f932750adbbd4a1cc41725385bf3310901dce7a0d32a596449"}
+{"agent": "codex", "checks": [true, true, true], "condition": "skill", "repetition": 3, "submission_sha256": "69fd4eeba47981f9c552d48ce1a71fe346dc93fef18407b3b6f0a5f2268029c9"}
+{"agent": "codex", "checks": [true, true, true], "condition": "baseline", "repetition": 3, "submission_sha256": "772456e311ef903c67bd2b1711d3a150c8c1f1d61e36ca308d33464f27c6ed95"}
+{"agent": "claude", "checks": [false, false, false], "condition": "skill", "repetition": 2, "submission_sha256": "c3a03f66c068986916f890d970fa5b737ccf936eebdc4f162575c2272850ac91"}
+{"agent": "claude", "checks": [false, false, false], "condition": "baseline", "repetition": 2, "submission_sha256": "fa17a1a6cc21973f0991f1048b95e3aa219a9e878149f95a026d841a30c620a0"}

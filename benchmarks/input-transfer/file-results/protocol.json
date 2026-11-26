@@ -1,0 +1,175 @@
+{
+  "frozen_utc": "2026-11-26T18:17:15.026140+00:00",
+  "models": {
+    "codex": "gpt-6.1-terra",
+    "claude": "claude-sonnet-5-5"
+  },
+  "order": [
+    [
+      "claude",
+      411,
+      3,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      3,
+      "baseline"
+    ],
+    [
+      "claude",
+      108,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      3,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      3,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      411,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      1,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      1,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      2,
+      "skill"
+    ],
+    [
+      "codex",
+      108,
+      1,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      1,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      2,
+      "baseline"
+    ],
+    [
+      "claude",
+      411,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      3,
+      "baseline"
+    ],
+    [
+      "claude",
+      108,
+      3,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      1,
+      "baseline"
+    ],
+    [
+      "claude",
+      411,
+      1,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      3,
+      "baseline"
+    ],
+    [
+      "codex",
+      411,
+      3,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      1,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      1,
+      "baseline"
+    ]
+  ],
+  "request": "Use the workspace files to complete this scientific coding task. Read TASK.md and read SKILL.md if present. Write your Python insertion in solution.py. The surrounding setup already exists and will supply new inputs. Only the contents of solution.py will be graded. You may explain your work in the final message. Stay within this directory, use tools only to read or edit files, and do not run the code.",
+  "materials": {
+    "108/baseline": "94fba68dee9cb11265146427aab201543dab776c861a6ed6c1efca6a6a71136a",
+    "108/skill": "7108c7618db2a575351ef48906848ffac1033441110ea714a43404676ed2787b",
+    "411/baseline": "f8e6f2dfb3729309a3b0f7eca64bcf55f126c687882ed31e1361665a588a11ea",
+    "411/skill": "0b4fd36f0a0931029c5a56d615392b363d562a5686c69092a1b8b65bce63c0a2"
+  },
+  "upstream_sha256": "ecc827ac1a9d295cd0acf8f765b4c80592d0d749d18871e33030c7dd06d5a10c",
+  "seed": 143411108,
+  "concurrency": 4,
+  "timeout_seconds": 180,
+  "auth": {
+    "codex": "ChatGPT",
+    "codex_included_usage_available": true,
+    "claude": "max",
+    "claude_api_provider": "firstParty",
+    "claude_extra_usage": false
+  },
+  "versions": {
+    "codex": "codex-cli 0.172.0",
+    "claude": "2.1.325 (Claude Code)"
+  }
+}

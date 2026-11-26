@@ -1,23 +1,20 @@
 ---
 name: compare-experiments-fairly
-description: Design and audit a comparison with a common baseline, a fixed metric and a record of failed runs.
+description: Reconcile a comparison with its planned units, assigned conditions and failure policy.
 ---
 
 # Compare experiments fairly
 
-Use when comparing tools, models, prompts or analysis methods.
+Use before interpreting differences between two methods, especially when either side retried or lost runs.
 
 ## Workflow
 
-1. Write down the question, primary metric, direction of improvement, stopping rule and failure policy before looking at scores.
-2. Give both conditions the same cases, resources and opportunity to finish. Vary only the factor being tested. Record settings that cannot be held fixed.
-3. Record every planned attempt with its case, condition, repetition, outcome and run identifier. Keep crashes, timeouts and missing runs distinguishable. Report how many completed in each condition.
-4. For paired runs, match by case and repetition. Calculate the within-pair difference and show how many pairs contributed. Report the chosen failure policy alongside any complete-pair comparison.
-
-## Guardrails and completion
-
-Keep the original log. If a conclusion changes when failures are counted differently, say so. Report the metric, denominator and observed difference with enough detail to reproduce them.
+1. Identify the governing protocol, eligibility date, metric, sign and weighting. If a dashboard or earlier draft differs, resolve which rule applies to this analysis.
+2. Build a worksheet from the planned units. Give each unit one row with its group and a column for each condition. Join attempts by identifier. Decide eligibility before computing a score. Record why a replacement supersedes an attempt, or why the cell remains missing.
+3. Mark success separately from the numeric score. A completed zero and an absent result may contribute the same number under the failure policy while counting differently toward completion.
+4. Add each condition’s counts and scores within each group. For the primary estimate apply the protocol’s denominator and group weights. Rebuild the supplementary paired estimate from the intersection of eligible successes.
+5. Cross-check every difference twice: subtract the two condition means, then average the row differences over the same units. Account for every planned row. Return counts as counts and round only final results.
 
 ## Exercise
 
-Use the [comparison task](../../benchmarks/tasks/comparison/) and the [benchmark guide](../../benchmarks/README.md).
+Reconcile the [experiment logs](../../benchmarks/tasks/comparison/TASK.md). Retain the worksheet so another reviewer can trace a change in a reported result.

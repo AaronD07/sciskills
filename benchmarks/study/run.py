@@ -61,7 +61,10 @@ def prompt(task, condition):
         files = BENCH / "tasks" / task
         body = (files / "TASK.md").read_text() + "\nCurrent analysis.py:\n" + (files / "analysis.py").read_text()
     if condition == "skill":
-        body += "\nSKILL.md:\n" + (BENCH.parent / "skills" / TASKS[task] / "SKILL.md").read_text()
+        # Reproduce the measured wording when a live skill has since changed.
+        snapshot = BENCH / "original-skills" / (TASKS[task] + ".md")
+        path = snapshot if snapshot.is_file() else BENCH.parent / "skills" / TASKS[task] / "SKILL.md"
+        body += "\nSKILL.md:\n" + path.read_text()
     return HEADER + "\n\nTASK.md:\n" + body
 
 

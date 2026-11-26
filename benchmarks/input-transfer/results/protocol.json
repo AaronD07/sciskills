@@ -1,0 +1,175 @@
+{
+  "frozen_utc": "2026-11-26T18:13:14.745024+00:00",
+  "order": [
+    [
+      "claude",
+      411,
+      3,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      3,
+      "baseline"
+    ],
+    [
+      "claude",
+      108,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      3,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      3,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      411,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      1,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      1,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      2,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      2,
+      "skill"
+    ],
+    [
+      "codex",
+      108,
+      1,
+      "baseline"
+    ],
+    [
+      "codex",
+      108,
+      1,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      2,
+      "baseline"
+    ],
+    [
+      "claude",
+      411,
+      2,
+      "skill"
+    ],
+    [
+      "claude",
+      108,
+      3,
+      "baseline"
+    ],
+    [
+      "claude",
+      108,
+      3,
+      "skill"
+    ],
+    [
+      "claude",
+      411,
+      1,
+      "baseline"
+    ],
+    [
+      "claude",
+      411,
+      1,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      3,
+      "baseline"
+    ],
+    [
+      "codex",
+      411,
+      3,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      1,
+      "skill"
+    ],
+    [
+      "codex",
+      411,
+      1,
+      "baseline"
+    ]
+  ],
+  "seed": 143411108,
+  "timeout_seconds": 180,
+  "concurrency": 4,
+  "models": {
+    "codex": "gpt-6.1-terra",
+    "claude": "claude-sonnet-5-5"
+  },
+  "upstream_sha256": "ecc827ac1a9d295cd0acf8f765b4c80592d0d749d18871e33030c7dd06d5a10c",
+  "evaluator_revision": "cddd24520f374c6cdf3497adf058467394f3cf0b",
+  "prompts": {
+    "108/baseline": "985fad1c1b96fc2171c16c11a6b2debe0793597d0b2a9137d17e9416a72cdf6c",
+    "108/skill": "0ba37acc698080c9a413293ca380b96e255b2ad29819076f8916c0af942690b2",
+    "411/baseline": "24ee314a8d6b5454bb8c95ba12a7997e7e70fc2f15919ffc63b42a11712d8e22",
+    "411/skill": "cccec6c8262b933bc7132d3e6969d62aac5494d1edd79e9969199822d29aab98"
+  },
+  "auth": {
+    "codex": "ChatGPT",
+    "codex_included_usage_available": true,
+    "claude": "max",
+    "claude_api_provider": "firstParty",
+    "claude_extra_usage": false
+  },
+  "versions": {
+    "codex": "codex-cli 0.172.0",
+    "claude": "2.1.325 (Claude Code)"
+  }
+}

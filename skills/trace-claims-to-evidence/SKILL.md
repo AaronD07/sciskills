@@ -1,23 +1,20 @@
 ---
 name: trace-claims-to-evidence
-description: Verify quantitative claims in a finished report against the source records and calculations.
+description: Reconstruct a quantitative claim using the records available at the relevant date.
 ---
 
 # Trace claims to evidence
 
-Use after writing results, a figure caption or a financial research note.
+Use when checking a results section, a revised dataset or a research note.
 
 ## Workflow
 
-1. Mark each claim that would change the conclusion if wrong. Identify its subject, metric, period, units and comparison.
-2. Open the underlying evidence. Record the file or document version and a precise location such as a table row, page or run ID. For an as-of question, check when the source first became available.
-3. Recalculate the number from those records. Check scale, rounding, denominator and sign. For changes in rates, distinguish relative changes from percentage points.
-4. Read the sentence again. Verify that the source establishes its direction, scope and strength. If it supports only part of the sentence, narrow the claim and retain a pointer to the evidence.
-
-## Guardrails and completion
-
-Flag conflicting or missing evidence explicitly. Finish with the corrected text, a source location for each material claim, and the calculation for derived numbers.
+1. Write down the population, time period, unit, denominator and source cutoff for each claim. A measurement date and the date its result became available can differ.
+2. Build a ledger with one row per entity and period. Select the applicable version as of that period’s cutoff. Keep its source identifier and disposition. A withdrawal can invalidate an earlier value. If the question asks for matched populations, reconcile membership before totaling either period.
+3. For each rate, retain its numerator and denominator. Pool counts or average group rates according to the stated estimand. Recompute from those counts before rounding.
+4. Check the type of change. For rates expressed as fractions, the percentage-point change is 100 × (new − old). The relative change is 100 × (new / old − 1). Verify that multiplying the old rate by one plus the fractional relative change reconstructs the new rate. Flag an undefined ratio if the old rate is zero.
+5. Compare the final sentence to the supported population, period and strength of evidence. Preserve supported wording, correct unsupported figures and cite the selected record.
 
 ## Exercise
 
-Use the [claims task](../../benchmarks/tasks/claims/) and the [benchmark guide](../../benchmarks/README.md).
+Audit the [survey claims](../../benchmarks/tasks/claims/TASK.md) and trace each revision to its source.

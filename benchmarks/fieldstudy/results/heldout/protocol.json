@@ -1,0 +1,579 @@
+{
+  "phase": "heldout",
+  "models": {
+    "codex": "gpt-6.1-terra",
+    "claude": "claude-sonnet-5-5"
+  },
+  "auth": {
+    "codex": "ChatGPT",
+    "codex_included_usage_available": true,
+    "claude": "max",
+    "claude_api_provider": "firstParty",
+    "claude_extra_usage": false
+  },
+  "versions": {
+    "codex": "codex-cli 0.172.0",
+    "claude": "2.1.325 (Claude Code)"
+  },
+  "order_seed": 14320261126,
+  "scorer_sha256": "d68c66d9e3c0ddbdfc2275ade6ba66f358141f19df358470f29cc668c886316d",
+  "timeout_seconds": 240,
+  "concurrency": 4,
+  "effort": "low",
+  "jobs": [
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "a",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "b",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "a",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "c",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "comparisons",
+      "split": "b",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "a",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "records",
+      "split": "c",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "family": "comparisons",
+      "split": "c",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "family": "records",
+      "split": "b",
+      "repetition": 2,
+      "condition": "skill"
+    }
+  ],
+  "inputs": {
+    "comparisons.b.baseline": {
+      "prompt_sha256": "f70b93b58603d68b3dee2c7a8bccb3379c5727af61d1bed698e2fce9bf70c50c",
+      "gold_sha256": "a9c48d312b49175ef80b848d3c3d01bf5b6fbe261478fc61a79bfb9f00d97a66"
+    },
+    "comparisons.b.skill": {
+      "prompt_sha256": "d6be4a6bcc731d460caaf69a0f4fa01f5fe01ee5e9ed3e9a6d87514b9903be17",
+      "gold_sha256": "a9c48d312b49175ef80b848d3c3d01bf5b6fbe261478fc61a79bfb9f00d97a66"
+    },
+    "records.a.baseline": {
+      "prompt_sha256": "7247ea4b2f6d491e2eb68c406026aac817240863b248630422e1d8fc39a2fd57",
+      "gold_sha256": "cc6c65743e6e0c28b85883820a82dbf74f79925528d811f3703d79c1e17ddafb"
+    },
+    "records.a.skill": {
+      "prompt_sha256": "ce9030997f3ba38666cff4289a9f020067a47a9dbe9f73bbe8e9bcff2da927d8",
+      "gold_sha256": "cc6c65743e6e0c28b85883820a82dbf74f79925528d811f3703d79c1e17ddafb"
+    },
+    "comparisons.a.skill": {
+      "prompt_sha256": "e81f654fc678169e547c51349d76c5f2fa83d3328877c7cdb1db6015af8aade5",
+      "gold_sha256": "e91e47717301290b9e539f934d5fc23aa00c3848919b89caf9831e57b198a502"
+    },
+    "comparisons.a.baseline": {
+      "prompt_sha256": "6cb29d2184a45c3d09ea29297a51df10c19b25a505224d499b65c34cfeaa0435",
+      "gold_sha256": "e91e47717301290b9e539f934d5fc23aa00c3848919b89caf9831e57b198a502"
+    },
+    "records.b.baseline": {
+      "prompt_sha256": "6a620094b0522c1c557ed5e609b9e42e4cbe7ff8e4be3fd45174fef0339203c6",
+      "gold_sha256": "f788e48713dd6d8a9a77e97f8cd2b47e8ac59671398cab309894d0441d5ae316"
+    },
+    "records.b.skill": {
+      "prompt_sha256": "fafe58ac771daa0263082b5143a0c1d6e1c7dbeff132281a6b2adf03ca331069",
+      "gold_sha256": "f788e48713dd6d8a9a77e97f8cd2b47e8ac59671398cab309894d0441d5ae316"
+    },
+    "comparisons.c.baseline": {
+      "prompt_sha256": "f61b697156b5e09c37e218b8cdceca77a5434b8bf0fd72ba13d856affddb3664",
+      "gold_sha256": "f5ae111b0bb1de85c6efa9b82e2003b85dcfbd3a41931d16652631e7ddfba8ad"
+    },
+    "comparisons.c.skill": {
+      "prompt_sha256": "0a6ddaad49d1395ca084def98359e08bd066a6b051962f6e4d3a30d5d1725980",
+      "gold_sha256": "f5ae111b0bb1de85c6efa9b82e2003b85dcfbd3a41931d16652631e7ddfba8ad"
+    },
+    "records.c.baseline": {
+      "prompt_sha256": "15dc9c672c46ac8f09cfcc3fcc3ccdc92443e5c0d50a39a4e1b6bee7ef0d260f",
+      "gold_sha256": "d252690b95c5bcf15e7ba0c0a8a4c5096721fe0f6ef6f76da8803a1cf1346cd0"
+    },
+    "records.c.skill": {
+      "prompt_sha256": "0f22aeb1ecc5dd82dff8e8bc905d0b805c8fd6e7a9a85532f2a8e3db67245e32",
+      "gold_sha256": "d252690b95c5bcf15e7ba0c0a8a4c5096721fe0f6ef6f76da8803a1cf1346cd0"
+    }
+  }
+}
