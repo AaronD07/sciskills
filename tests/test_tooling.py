@@ -45,7 +45,7 @@ def evaluate(train, test):
 class BenchmarkTests(unittest.TestCase):
     def test_all_planted_bugs_fail_and_reference_repairs_pass(self):
         with tempfile.TemporaryDirectory() as temp:
-            for case in benchmark.CASES:
+            for case in REPAIRS:
                 with self.subTest(case=case):
                     broken = benchmark.score(case, ROOT / 'benchmarks/tasks' / case / 'analysis.py')
                     self.assertNotIn('error', broken)

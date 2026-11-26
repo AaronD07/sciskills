@@ -1,6 +1,18 @@
 # Small controlled benchmark
 
-Three synthetic repair tasks: decay analysis, assay summary and held-out prediction. Each has a written scientific contract and deliberately faulty code. These are teaching fixtures, not real observed AI failures. The evaluator supplies eight independent checks per task, including boundary and invalid-input behavior. Numeric tolerances are 1e-10 relative and 1e-12 absolute for these small float64 calculations.
+The native suite contains seven short Python repair tasks with 56 checks. Each task gives the participant a scientific contract and a faulty implementation. The mistakes were planted for teaching and evaluation. The scorer uses relative tolerance 1e-10 and absolute tolerance 1e-12 for numbers, and exact agreement for text and dictionary keys.
+
+| Case | What the repair must preserve | Skill to try |
+| --- | --- | --- |
+| `kinetics` | Time units and the decay equation | Known answers first |
+| `assay` | Real zeros and missing measurements | Check the numbers |
+| `prediction` | Train and test separation | Adversarial review |
+| `contract` | Requested cohort and endpoint, including unavailable data | Preserve the research question |
+| `subjects` | Independent participant count and standard error of paired changes | Identify the independent unit |
+| `comparison` | Planned trial denominator and matched complete pairs | Compare experiments fairly |
+| `claims` | Current source, denominator and wording in a survey results paragraph | Trace claims to evidence |
+
+The [external benchmark](external/README.md) evaluates two DS-1000 completions with their published graders. Report external full passes separately from native check totals.
 
 ## Run a paired trial
 
@@ -24,18 +36,18 @@ python3 benchmarks/benchmark.py score --case assay --submission /tmp/assay-basel
 python3 benchmarks/benchmark.py score --case assay --submission /tmp/assay-skill-01/analysis.py --condition skill --skill check-the-numbers --agent 'tool/version' --model 'exact-model-id' --trial 1 --elapsed-seconds 120
 ```
 
-Replace the example elapsed times and identifiers with actual measurements. Save each JSON line with the corresponding prompt/transcript and code. The scorer records an output-code hash and scoring runtime. Exit 0 means every check passed; exit 1 includes partial correctness or execution failure. Do not rerun an agent against revealed answers and count it as an independent trial.
+Replace the example elapsed times and identifiers with actual measurements. Save each JSON line with the corresponding prompt/transcript and code. The scorer records an output-code hash and the elapsed time supplied by the trial operator. Exit 0 means every check passed; exit 1 includes partial correctness or execution failure. Do not rerun an agent against revealed answers and count it as an independent trial.
 
-Suggested pairings: kinetics / known-answers-first or paper-to-code-consistency; assay / check-the-numbers; prediction / adversarial-review. Evaluate one named skill per condition. Environment reconstruction and bounded memory stress need separate experiments; these tasks do not measure them.
+Evaluate one named skill per treatment condition. The kinetics task also supports the paper-to-code consistency skill. Environment reconstruction and memory stress require separate experiments.
 
 ## Interpreting results
 
 Report fully correct submissions / total trials as the primary outcome, with per-check scores and elapsed time as secondary outcomes. Compare within each task and tool before pooling. Include failed or timed-out trials. Keep bug detection in written reviews separate from actually repaired code; manually score review claims against concrete evidence. Record limitations and negative results.
 
-The grader launches submitted Python in a separate process with a five-second default timeout. It is **not a security sandbox or memory cap**: only execute trusted local submissions. An infinite allocation can still exhaust memory. The preparation command refuses existing destinations and copies only the task, faulty code and optional skill. Evaluator checks are hidden from that workspace, not immune to deliberate access.
+The grader launches submitted Python in a separate process with a five-second default timeout. It imports the source into the worker and passes fresh inputs to each check. Use an isolated environment with resource limits when grading generated Python. A subprocess inherits the operating system permissions of its user. The preparation command creates a fresh workspace containing the task, starter code, and optional skill.
 
 ## Verified status
 
-`python3 -m unittest discover -s tests -v` checks that every planted implementation fails, reference repairs pass all 24 checks, participant preparation excludes answers, and crashing or hanging submissions fail. This validates the harness only. No controlled agent comparisons or user study have been completed in this repository.
+`python3 -m unittest discover -s tests -v` checks that every starter fails at least one check, that reference repairs pass all 56 native checks, and that participant preparation excludes evaluator answers. Regression tests also cover imports that crash, hanging submissions, stale bytecode, and candidate functions that modify their inputs. These checks measure the behavior of the scorer. Paired trials measure how agents perform.
 
 For a failure gallery, retain actual trial excerpts, expected versus observed behavior and the regression check, with permission and sensitive content removed. Do not label synthetic tasks as real agent failures.

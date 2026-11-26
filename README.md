@@ -2,7 +2,7 @@
 
 Reusable agent instructions for more reliable scientific software, developed for the Caltech CS 143 special project.
 
-Scientists can use AI to build research tools quickly; plausible output can still hide incorrect assumptions, lost data or irreproducible environments. SciSkills pairs focused review workflows with runnable exercises and a small controlled evaluation harness.
+SciSkills gives a coding assistant specific checks to run when a scientific result depends on how the code handles data. Each skill includes an exercise. The benchmark tests whether the assistant can apply the same checks to a repair.
 
 ## Use a skill
 
@@ -16,33 +16,27 @@ Ask your coding agent to follow the relevant `SKILL.md` while working in your re
 | [Adversarial review](skills/adversarial-review/SKILL.md) | Counterexamples and data leakage | Held-out prediction |
 | [OOM testing](skills/oom-testing/SKILL.md) | Memory estimates and bounded stress tests | Worked matrix sizing in the skill |
 | [Paper to code consistency](skills/paper-to-code-consistency/SKILL.md) | Equations, conventions and implementation | Decay protocol mapping |
+| [Preserve the research question](skills/preserve-the-research-question/SKILL.md) | Dataset, cohort and endpoint | [Missing field data](benchmarks/tasks/contract/TASK.md) |
+| [Identify the independent unit](skills/identify-the-independent-unit/SKILL.md) | Pairing, repeated measurements and uncertainty | [Paired subjects](benchmarks/tasks/subjects/TASK.md) |
+| [Compare experiments fairly](skills/compare-experiments-fairly/SKILL.md) | Planned comparisons, failed runs and denominators | [Experiment logs](benchmarks/tasks/comparison/TASK.md) |
+| [Trace claims to evidence](skills/trace-claims-to-evidence/SKILL.md) | Source version, arithmetic and interpretation | [Edit a results paragraph](benchmarks/tasks/claims/TASK.md) |
 
-Read the [benchmark guide](benchmarks/README.md) before running measured trials; keep evaluator answers out of the agent's workspace. These instructions support review, not a guarantee of correctness or security.
+For example, if one participant has six follow-up measurements and another has one, averaging every row gives the first participant more weight. Ask the assistant to follow **Identify the independent unit**, calculate each participant’s change, and report how many participants have paired measurements. The [research notes](docs/research-notes.md) explain the evidence behind each new workflow.
 
 ## Run locally
 
-Python 3.10+; all shipped code uses the standard library, so no third-party dependency lockfile is needed. For projects with dependencies, follow the environment skill and generate a real lockfile.
+The native tasks and checker use Python 3.10+ and the standard library.
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 -m unittest discover -s examples/pin-the-environment -p 'test_*.py' -v
-python3 scripts/check_repo.py .
+python3 scripts/check_repo.py . --format text
 ```
 
-The checker reports evidence of README files, tests, dependency locks, runtime metadata and explicit seed calls. It does not run tests or grade scientific correctness. Empty categories may be appropriate for a particular project.
+The [checker](docs/checker.md) reports evidence, locations, and suggested fixes. Run it on a research repository before handing the analysis to another scientist.
 
-## What is complete
+## Evaluate a skill
 
-- Six actionable skills, with exercises or worked examples.
-- Three synthetic repair tasks and a scorer with 24 independent checks.
-- Regression tests for the evaluator and a read-only repository checker.
+The [native benchmark](benchmarks/README.md) has seven repair tasks with eight scored checks apiece. The [DS-1000 adapter](benchmarks/external/README.md) adds two published statistical programming problems with their original graders and a separate pinned environment. Keep evaluator files outside the participant workspace. The scoring tools execute the submitted Python.
 
-The harness has been checked against planted bugs and reference repairs. **Effectiveness with real agents has not yet been measured.** Cross-tool comparisons, a gallery of observed failures, a user study and a separate website remain future work. The README is the current project entry point.
-
-## Finish the class project
-
-1. Run and save repeated baseline/skill trials following the [protocol](benchmarks/README.md). Keep transcripts and actual results; do not turn harness self-tests into effectiveness claims.
-2. Present correctness and time per task and tool, including failures. If feasible, run a small consented user pilot and describe its sample size and limitations.
-3. Update the final slides/report with observed results, examples and limitations. Correct the proposal's OOM description to memory testing. Verify the review-paper citation and learning-study statistic against their original sources before reusing them; neither is evidence for SciSkills itself.
-
-See [contribution guidance](docs/CONTRIBUTING.md). Keep additions small: a skill needs an actionable workflow, an exercise and a way to check its result.
+Read the [contribution guide](docs/CONTRIBUTING.md) when adding a skill or exercise.
