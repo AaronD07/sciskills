@@ -25,7 +25,7 @@ from score import sandbox_grade
 
 IDS = (108, 411)
 MODELS = {"codex": "gpt-6.1-terra", "claude": "claude-sonnet-5-5"}
-SKILL = BENCH.parent / "skills/test-fresh-inputs/SKILL.md"
+SKILL = HERE / "measured-skill.md"  # Preserve the treatment used in both published studies.
 SEED = 143411108
 LIMIT = 180
 HEADER = (

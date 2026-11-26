@@ -57,7 +57,7 @@ The pilot found no change in full-pass counts. The native tasks were already sat
 
 ## Where the agents struggled
 
-Seven of twelve passing two-sample analyses in the original pilot failed when the evaluator supplied fresh summary statistics. The follow-up coding study tested two different public problems. On the file-edit replication, Sonnet twice replaced the caller’s image and window bounds with the example values, once in each condition. The fresh-input instructions produced no net change in full passes. [Fresh-data replay](benchmarks/fieldstudy/transfer352.jsonl) · [Code-transfer study](benchmarks/input-transfer/README.md)
+Seven of twelve passing two-sample analyses in the original pilot failed when the evaluator supplied fresh summary statistics. The follow-up coding study tested two different public problems. On the file-edit replication, Sonnet twice replaced the caller’s image and window bounds with the example values, once in each condition. The fresh-input instructions produced no net change in full passes. A later static preflight flagged all nine previously identified examples of input overwriting in 36 archived submissions. The other 27 drew no flag. This was a retrospective detector check. [Diagnostic and usage](benchmarks/input-transfer/diagnostic.md) [Fresh-data replay](benchmarks/fieldstudy/transfer352.jsonl) · [Code-transfer study](benchmarks/input-transfer/README.md)
 
 In the record audit, Terra and Sonnet returned every field correctly with or without the worksheet. Luna made errors selecting eligible records and calculating changes. Its mean field accuracy was 13.43% at baseline and 9.95% with the worksheet. [Record-audit study](benchmarks/fieldstudy/README.md)
 

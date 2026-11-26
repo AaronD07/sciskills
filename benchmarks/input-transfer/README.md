@@ -1,6 +1,6 @@
 # Do assistants use fresh inputs?
 
-In the previous study, seven of twelve passing DS-1000 problem 352 submissions copied the example values. For this follow-up, we selected two different problems whose official graders supply multiple inputs and gave the assistants explicit insertion instructions. We froze the questions and the general-purpose [fresh-input skill](../../skills/test-fresh-inputs/SKILL.md) before the first measured run. The [design](design.md) records our rationale and decision criterion.
+In the previous study, seven of twelve passing DS-1000 problem 352 submissions copied the example values. For this follow-up, we selected two different problems whose official graders supply multiple inputs and gave the assistants explicit insertion instructions. We froze the questions and the [measured fresh-input skill](measured-skill.md) before the first measured run. The [design](design.md) records our rationale and decision criterion.
 
 | Agent | 108 baseline | 108 with skill | 411 baseline | 411 with skill |
 | --- | ---: | ---: | ---: | ---: |
@@ -54,3 +54,5 @@ python3 benchmarks/input-transfer/diagnose.py \
   --external-python /tmp/sciskills-ds1000-env/bin/python \
   --out benchmarks/input-transfer/file-results
 ```
+
+The [post hoc checker diagnostic](diagnostic.md) reviews a separately implemented source check against the archived input-overwrite failures.
