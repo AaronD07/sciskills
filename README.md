@@ -39,4 +39,18 @@ The [checker](docs/checker.md) reports evidence, locations, and suggested fixes.
 
 The [native benchmark](benchmarks/README.md) has seven repair tasks with eight scored checks apiece. The [DS-1000 adapter](benchmarks/external/README.md) adds two published statistical programming problems with their original graders and a separate pinned environment. Keep evaluator files outside the participant workspace. The scoring tools execute the submitted Python.
 
+## What happened in the pilot
+
+Codex CLI and Claude Code each completed 36 fresh, tool-free sessions. Each agent attempted the same six tasks three times with the assigned skill and three times without it. The scorer recorded **30 of 36 full passes with a skill and 30 of 36 at baseline**. Each agent scored 15 of 18 in each condition.
+
+| Task group | Baseline | With skill |
+| --- | ---: | ---: |
+| Four SciSkills repair tasks | 24/24 | 24/24 |
+| DS-1000 166, group statistics | 0/6 | 0/6 |
+| DS-1000 352, two-sample test | 6/6 | 6/6 |
+
+On problem 166, both agents wrote code that rebuilt the example table. The grouping calculation then used those example rows even when the grader supplied different data. The shared request for complete Python source may have encouraged that choice. On problem 352, seven passing submissions also copied the example inputs. Its single test case could not distinguish those programs from ones that work on fresh values.
+
+The pilot found no change in full-pass counts. The native tasks were already saturated at baseline, and the external results were sensitive to how the task and grader supplied inputs. [Study protocol and analysis](benchmarks/study/README.md) · [Trial-level scores](benchmarks/study/results/trials.jsonl)
+
 Read the [contribution guide](docs/CONTRIBUTING.md) when adding a skill or exercise.
