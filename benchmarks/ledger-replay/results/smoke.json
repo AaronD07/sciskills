@@ -1,0 +1,78 @@
+[
+  {
+    "agent": "codex",
+    "split": "smoke",
+    "repetition": 1,
+    "condition": "baseline",
+    "model": "gpt-6-luna",
+    "started_utc": "2026-11-26T18:22:46.819741+00:00",
+    "files": {
+      "TASK.md": "e2ef746509d8453dc1e806cd02360e842c6fc937bd87d75cae5f5546b8188ed0",
+      "counts.csv": "845e4c22c808baccd9b647a9232847c8b0da1e1d00e1d72c511bca26cb192371"
+    },
+    "status": "submitted",
+    "elapsed_seconds": 12.42,
+    "answer": "{\"sum\":59}\n",
+    "answer_sha256": "76b74eb5f0591a1159fb1d237ac7760a50784279e259e5cf4906ccecc64b6d02",
+    "calls": [
+      {
+        "code_sha256": "b2558be1556f546d453c1588741a7f1a4443efd0f846de0984df250015b08d6e",
+        "exit_status": 0,
+        "helper_functions": []
+      },
+      {
+        "code_sha256": "43c531be207dbf4afd403db7f15b3e83c4930ddde3798eb1d30463425235e739",
+        "exit_status": 0,
+        "helper_functions": []
+      },
+      {
+        "code_sha256": "d2df93b4925ee92fd8bade6a237ad96fa5a68c7facaa8e92b287d9c276d855c7",
+        "exit_status": 0,
+        "helper_functions": []
+      }
+    ],
+    "full_pass": true,
+    "checks": {
+      "sum": true
+    },
+    "exact_keys": true
+  },
+  {
+    "agent": "claude",
+    "split": "smoke",
+    "repetition": 1,
+    "condition": "baseline",
+    "model": "claude-sonnet-5-5",
+    "started_utc": "2026-11-26T18:22:46.820129+00:00",
+    "files": {
+      "TASK.md": "e2ef746509d8453dc1e806cd02360e842c6fc937bd87d75cae5f5546b8188ed0",
+      "counts.csv": "845e4c22c808baccd9b647a9232847c8b0da1e1d00e1d72c511bca26cb192371"
+    },
+    "status": "submitted",
+    "elapsed_seconds": 4.4,
+    "answer": "{\"sum\": 59}",
+    "answer_sha256": "e8fc08b55b07e0953f52671971aa153ca9fdddbc2d0e9bdbfd67258badfb73a4",
+    "calls": [
+      {
+        "code_sha256": "a68704f3e2c363b7fd8c9880b0159ed0f4ab27155faef5e5b402593fd6ea4f6b",
+        "exit_status": 0,
+        "helper_functions": []
+      },
+      {
+        "code_sha256": "9d3188f31e399014356384b6efc9c190ef0bbb170374ac83fbc29360c57361c7",
+        "exit_status": 0,
+        "helper_functions": []
+      },
+      {
+        "code_sha256": "c749fb59ea3f6ca0d662554a8fa87fa7da852a2e8044f025112c5d302c35742c",
+        "exit_status": 0,
+        "helper_functions": []
+      }
+    ],
+    "full_pass": true,
+    "checks": {
+      "sum": true
+    },
+    "exact_keys": true
+  }
+]

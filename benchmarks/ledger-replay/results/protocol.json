@@ -1,0 +1,303 @@
+{
+  "schedule": [
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "d",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "e",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 1,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "f",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "e",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 3,
+      "condition": "baseline"
+    },
+    {
+      "agent": "codex",
+      "split": "d",
+      "repetition": 3,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 2,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 2,
+      "condition": "skill"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 1,
+      "condition": "baseline"
+    },
+    {
+      "agent": "claude",
+      "split": "f",
+      "repetition": 1,
+      "condition": "skill"
+    }
+  ],
+  "models": {
+    "codex": "gpt-6-luna",
+    "claude": "claude-sonnet-5-5"
+  },
+  "seed": 14320261127,
+  "effort": "low",
+  "timeout_seconds": 240,
+  "concurrency": 4,
+  "inputs": {
+    "d.baseline": {
+      "files": {
+        "TASK.md": "f48cb6c6bc0d7c8b86a9551a797274385470c2c7bdea6a7089a0743f52f03c79",
+        "certificates.csv": "fbeb0c0818a745d9e6c837cdfed6ff5d54454ee8ada697c0d86a037548388a42",
+        "schedule.csv": "519c03fd89b94404e7eb21befb594322a58fa14acf5b7f08f5084e141d617c8a",
+        "stations.csv": "efe6213f5a49b1b1a2c90ae2390a856c757b088ef642d1239d395c6f767c5a55"
+      },
+      "gold_sha256": "dc388e1a8b4c50913bb9be7b9f31a41839dfe8010afc6a627d21ccbe5f9882a9"
+    },
+    "d.skill": {
+      "files": {
+        "SKILL.md": "7a1c0dda8ea8262a5178014ff1c43ad79e2f6ec42e1869a41fa25600a062f0ab",
+        "TASK.md": "f48cb6c6bc0d7c8b86a9551a797274385470c2c7bdea6a7089a0743f52f03c79",
+        "asof.py": "1e66c0af3dfdfbe1ce70c4ddc6789a31922972c01bc9413dba13bffd639ee5cc",
+        "certificates.csv": "fbeb0c0818a745d9e6c837cdfed6ff5d54454ee8ada697c0d86a037548388a42",
+        "schedule.csv": "519c03fd89b94404e7eb21befb594322a58fa14acf5b7f08f5084e141d617c8a",
+        "stations.csv": "efe6213f5a49b1b1a2c90ae2390a856c757b088ef642d1239d395c6f767c5a55"
+      },
+      "gold_sha256": "dc388e1a8b4c50913bb9be7b9f31a41839dfe8010afc6a627d21ccbe5f9882a9"
+    },
+    "e.baseline": {
+      "files": {
+        "TASK.md": "23eeeada3bc637898926ba9908c56af2b112180b2330796073be7bf8416b623c",
+        "certificates.csv": "c02f83379055e73f6c0842afc83e332ac914169d19670c246205ce26b95e6b66",
+        "schedule.csv": "ece8c9c96a75def54e89bf3cafac1febcc272c5aaa9e5e49c1d2de16862e85fb",
+        "stations.csv": "561132ce5eeacb04222ffcceaf2f2a29efaf5986b5b9f1942695e0e5d0e1c3f3"
+      },
+      "gold_sha256": "6f5dfe200f4520cea96a9d181ddff5b5d0c6bf3fcad0edf08cafb2fe9134d242"
+    },
+    "e.skill": {
+      "files": {
+        "SKILL.md": "7a1c0dda8ea8262a5178014ff1c43ad79e2f6ec42e1869a41fa25600a062f0ab",
+        "TASK.md": "23eeeada3bc637898926ba9908c56af2b112180b2330796073be7bf8416b623c",
+        "asof.py": "1e66c0af3dfdfbe1ce70c4ddc6789a31922972c01bc9413dba13bffd639ee5cc",
+        "certificates.csv": "c02f83379055e73f6c0842afc83e332ac914169d19670c246205ce26b95e6b66",
+        "schedule.csv": "ece8c9c96a75def54e89bf3cafac1febcc272c5aaa9e5e49c1d2de16862e85fb",
+        "stations.csv": "561132ce5eeacb04222ffcceaf2f2a29efaf5986b5b9f1942695e0e5d0e1c3f3"
+      },
+      "gold_sha256": "6f5dfe200f4520cea96a9d181ddff5b5d0c6bf3fcad0edf08cafb2fe9134d242"
+    },
+    "f.baseline": {
+      "files": {
+        "TASK.md": "20b2a9fff49bfe774ca0527551d97ad5d0c8d1c33c924c2c360aa2df72be683b",
+        "certificates.csv": "d4b067dbbff3433ddca134379772ea4d7bb49b64b2d4dff3fc86eac9059ee6ce",
+        "schedule.csv": "0a2bd1327b2c411eef4a8d4f49587967a299974dce6e9a3d4b08f1293b94187a",
+        "stations.csv": "ae962aea77f1e79b6712e213d94f3dea5ea3031c08eac2b255b1bd80999a5c9c"
+      },
+      "gold_sha256": "f302d9b217b323d4dbf0843731117c9a96febb40362c17e48e3890d85e9a7d4e"
+    },
+    "f.skill": {
+      "files": {
+        "SKILL.md": "7a1c0dda8ea8262a5178014ff1c43ad79e2f6ec42e1869a41fa25600a062f0ab",
+        "TASK.md": "20b2a9fff49bfe774ca0527551d97ad5d0c8d1c33c924c2c360aa2df72be683b",
+        "asof.py": "1e66c0af3dfdfbe1ce70c4ddc6789a31922972c01bc9413dba13bffd639ee5cc",
+        "certificates.csv": "d4b067dbbff3433ddca134379772ea4d7bb49b64b2d4dff3fc86eac9059ee6ce",
+        "schedule.csv": "0a2bd1327b2c411eef4a8d4f49587967a299974dce6e9a3d4b08f1293b94187a",
+        "stations.csv": "ae962aea77f1e79b6712e213d94f3dea5ea3031c08eac2b255b1bd80999a5c9c"
+      },
+      "gold_sha256": "f302d9b217b323d4dbf0843731117c9a96febb40362c17e48e3890d85e9a7d4e"
+    }
+  },
+  "wrapper": "Use the local ledger Python tool to solve TASK.md in its current directory. Read the task and the supplied data files through Python. If SKILL.md is present, read it and apply it. The tool preserves files between calls. Write the single requested object as valid JSON to answer.json in that directory. You can inspect or import local Python files and use runpy to run a script in-process. Use only this tool. Finish once you have written your answer.",
+  "tool_sha256": "5940a530477d199ea64ce25788bf3463398ad9fd817ec6a171166712fc4a5b78",
+  "auth": {
+    "codex": "ChatGPT",
+    "codex_included_usage_available": true,
+    "claude": "max",
+    "claude_api_provider": "firstParty",
+    "claude_extra_usage": false
+  },
+  "versions": {
+    "codex": "codex-cli 0.172.0",
+    "claude": "2.1.325 (Claude Code)"
+  }
+}
