@@ -1,0 +1,57 @@
+{
+  "Chwirut1.csv": {
+    "original_sha256": "d9a055dfe5af71a8754c00f073ef00f8fed2e3fd1c6fd20cea8fd62d7cc3ed84",
+    "sha256": "77f5bab2ad8dfb0e63c44b34a355ab04e9b550b26907fac7dfc4e4307592eec5",
+    "url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut1.dat"
+  },
+  "Chwirut2.csv": {
+    "original_sha256": "c37e5522a34f9a57e18d7d10f8736202eabc0c33b8e7ad0010e618db04b57411",
+    "sha256": "9d083bba68ac88765e673f38bae9640ef6b2be37c23565491bd6fe6fca19f773",
+    "url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Chwirut2.dat"
+  },
+  "Indometh.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Indometh.html",
+    "sha256": "aecce7eaa7fd2057ea5bf5a02943463ad5036354dd87a0808376ce502aaf0049",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/Indometh.csv"
+  },
+  "InsectSprays.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/InsectSprays.html",
+    "sha256": "d2957ac85b1cb22230d244e0cd06f41280cd7e918a0032c8c0d7578b9f53bfe8",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/InsectSprays.csv"
+  },
+  "Misra1a.csv": {
+    "original_sha256": "9d3194d537d9a6bbf92eb819504070923a1885d0191f40b6b3aaeedd130b98e2",
+    "sha256": "a12252b012aadcd3c57da745a564fe326efe5c5568a950f0123d607460f564fd",
+    "url": "https://www.itl.nist.gov/div898/strd/nls/data/LINKS/DATA/Misra1a.dat"
+  },
+  "Orange.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html",
+    "sha256": "ae9e475d82fffb74e9d1585644489e2d666b440828ca18b58b9476874c94fd38",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/Orange.csv"
+  },
+  "Puromycin.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Puromycin.html",
+    "sha256": "389be46927d2217b13d48b5b9ec56374007a87ea607c8e6f004c17683c427c70",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/Puromycin.csv"
+  },
+  "ToothGrowth.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/ToothGrowth.html",
+    "sha256": "b35e084a98731429169eb9b216c9b904e8b9ea127707b741bb8fc146354c26fe",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/ToothGrowth.csv"
+  },
+  "chickwts.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/chickwts.html",
+    "sha256": "f723987867327408ac455c37041ad4fb0bab2c7f3f0f18ef2e9e6f49992b8016",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/chickwts.csv"
+  },
+  "rock.csv": {
+    "manual": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/rock.html",
+    "sha256": "6dfbd52bc247177469e716fdc8395e43f0f776f5c08f88ad275d3993f25da2fd",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/rock.csv"
+  },
+  "sleepstudy.csv": {
+    "manual": "https://lme4.github.io/lme4/reference/sleepstudy.html",
+    "sha256": "20922ddc87d538bf2344f73d49000eeb2d7e14934b6191a3e071fefc329942c4",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/lme4/sleepstudy.csv"
+  }
+}

@@ -25,6 +25,10 @@ Ask your coding agent to follow the relevant `SKILL.md` while working in your re
 | [Review a numerical result](skills/review-a-numerical-result/SKILL.md) | Independently reconstruct a saved result | [Assay summary](benchmarks/tasks/assay/) |
 | [Review an analysis program](skills/review-an-analysis-program/SKILL.md) | Verify a saved program through its caller's interface | [Seeded simulation](examples/pin-the-environment/) |
 | [Review a protocol decision](skills/review-a-protocol-decision/SKILL.md) | Trace included and excluded records to a governing rule | [Research contract](benchmarks/tasks/contract/) |
+| [Audit a scientific claim](skills/audit-a-scientific-claim/SKILL.md) | Derive the expected evidence for a domain-specific decision | [Integrity review study](benchmarks/integrity_review/) |
+| [Verify experimental coverage](skills/verify-experimental-coverage/SKILL.md) | Reconcile protocol obligations and actual results | [Coverage cases](benchmarks/integrity_review/coverage_data/) |
+| [Verify measurement provenance](skills/verify-measurement-provenance/SKILL.md) | Determine which observations and decisions a source supports | [Measurement cases](benchmarks/integrity_review/measurement_data/) |
+| [Test the deployment claim](skills/test-the-deployment-claim/SKILL.md) | Validate a predictive release on the intended units or future visits | [Deployment cases](benchmarks/integrity_review/deployment_data/) |
 
 For example, if one participant has six follow-up measurements and another has one, averaging every row gives the first participant more weight. Ask the assistant to follow **Identify the independent unit**, calculate each participant’s change, and report how many participants have paired measurements. The [research notes](docs/research-notes.md) explain the evidence behind each new workflow.
 

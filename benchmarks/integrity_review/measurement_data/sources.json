@@ -1,0 +1,49 @@
+{
+  "Indometh": {
+    "rows": 66,
+    "sha256": "aecce7eaa7fd2057ea5bf5a02943463ad5036354dd87a0808376ce502aaf0049",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/Indometh.csv"
+  },
+  "InsectSprays": {
+    "rows": 72,
+    "sha256": "d2957ac85b1cb22230d244e0cd06f41280cd7e918a0032c8c0d7578b9f53bfe8",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/InsectSprays.csv"
+  },
+  "air": {
+    "daily_sha256": "86a25f0c4cbc41540838a0030730ce7c88731bbe0739004df1b1b8f1e4be7a3e",
+    "derived_sha256": "86a25f0c4cbc41540838a0030730ce7c88731bbe0739004df1b1b8f1e4be7a3e",
+    "file_in_zip": "AirQualityUCI.csv",
+    "sha256": "13277ae5d8581e80b7be09d47c7d3d06fe9b8e957078f2cf6e859f955e62f996",
+    "url": "https://archive.ics.uci.edu/static/public/360/air+quality.zip"
+  },
+  "cabbages": {
+    "rows": 60,
+    "sha256": "3e2c6ba9d96b11ea25c22e7a114e17399549953a986c02db723cab26aabc0e81",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/MASS/cabbages.csv"
+  },
+  "cars": {
+    "rows": 50,
+    "sha256": "08e75516e5fd1377db316a3ed790545c942dcf905c69f49d0c6f16873a4a6242",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/cars.csv"
+  },
+  "npk": {
+    "rows": 24,
+    "sha256": "3c4868538ce56fc2da8e46ad255db57419b5789df2b0599d54d0cb213d1fef81",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/npk.csv"
+  },
+  "pressure": {
+    "rows": 19,
+    "sha256": "5ef371dc3f05836aab2f46025c5cc7574a460afbc6d31d875d73194ac1f157b5",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/pressure.csv"
+  },
+  "rock": {
+    "rows": 48,
+    "sha256": "6dfbd52bc247177469e716fdc8395e43f0f776f5c08f88ad275d3993f25da2fd",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/rock.csv"
+  },
+  "trees": {
+    "rows": 31,
+    "sha256": "7547a8a919872cf39d2e77db7a2945e1abe258e0c40e3f2482586103fa2f7948",
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/trees.csv"
+  }
+}

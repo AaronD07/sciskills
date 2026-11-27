@@ -24,3 +24,17 @@ python3 benchmarks/integrity_review/experiment.py run holdout coverage --results
 ```
 
 The archive includes packet digests, client versions, randomized arms, frozen treatment text, inherited-draft and input hashes, changed artifacts, Python-call evidence, case-level checks, and time spent. Replaying verifies all scheduled identities, reconstitutes the review forks, and regrades the stored answers. The analysis computes the main comparison over matched source/model twins and resamples whole sources.
+
+## Inspect the study
+
+The [development gate and selected mistakes](development.md) identify which families entered holdout. The [coverage](coverage_data/README.md), [measurement](measurement_data/README.md) and [deployment](deployment_data/README.md) notes describe the real observations, the constructed conditions, and the independent checks. To verify source hashes and all reference decisions:
+
+```sh
+python3 benchmarks/integrity_review/coverage_data/check.py
+python3 benchmarks/integrity_review/measurement_data/validate.py
+python3 benchmarks/integrity_review/deployment_data/verify.py
+```
+
+The last command additionally uses NumPy for an independent implementation. The participant task implementations and the scored replay use the standard library. In the deployment family, reviewers select a registered candidate or reference recipe and submit exact fit/test memberships. The grader executes the selected recipe on reserved observations. These tasks measure validation and release decisions for supplied models.
+
+The supplementary development diagnostic uses both twins from each source/model combination with a verified original error. Each receives all three review arms. It measures repair of known development mistakes and preservation of their correct counterparts. Run `python3 benchmarks/integrity_review/development_review.py replay deployment` to verify its 12 reviews.
