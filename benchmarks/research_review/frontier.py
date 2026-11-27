@@ -16,6 +16,7 @@ import tempfile
 import time
 import tomllib
 from urllib.parse import urlsplit
+from uuid import uuid4
 
 HERE = Path(__file__).resolve().parent
 MANIFEST = json.loads((HERE / "frontier_manifest.json").read_text())
@@ -31,6 +32,7 @@ STATE = Path(
         str(HERE.parents[1] / "benchmark-runs/research-review/frontier-controls"),
     )
 )
+PROVISION_TIMEOUT_SEC = 900
 SOURCE_URL = "https://github.com/harbor-framework/terminal-bench-science.git"
 SIDECARS = {
     "inverse-lithography": "fabricator",
@@ -168,7 +170,24 @@ def build(task, role):
     return command("docker", "image", "inspect", "-f", "{{.Id}}", tag).stdout.strip()
 
 
-def _start_sidecar(task, main, service, image_id):
+def _auxiliary_container(context, *options):
+    """Keep an identity for cleanup if Docker never returns the cold container ID."""
+    name = "sciskills-" + uuid4().hex
+    try:
+        return command(
+            *_docker(context),
+            "run",
+            "--name",
+            name,
+            *options,
+            timeout=PROVISION_TIMEOUT_SEC,
+        )
+    except BaseException:
+        stop(name, context=context)
+        raise
+
+
+def _start_sidecar(task, main, service, image_id, *, context):
     # The upstream service reaches only the isolated main container's loopback.
     # Mount, PID and filesystem namespaces stay separate.
     options = []
@@ -192,9 +211,8 @@ def _start_sidecar(task, main, service, image_id):
             "no-new-privileges:true",
         ]
         service_command = ["python", "/srv/server.py"]
-    command(
-        "docker",
-        "run",
+    _auxiliary_container(
+        context,
         "-d",
         "--init",
         "--network",
@@ -216,7 +234,9 @@ def _start_sidecar(task, main, service, image_id):
         f"urllib.request.urlopen('http://{service}:8080/health', timeout=2).read()"
     )
     for _ in range(40):
-        if not _root_exec(main, "python3", "-c", check, check=False).returncode:
+        if not _root_exec(
+            main, "python3", "-c", check, context=context, check=False
+        ).returncode:
             return
         time.sleep(1)
     raise RuntimeError(f"Upstream sidecar {service} did not become healthy")
@@ -317,39 +337,47 @@ def start(
         or (control.get(role + "_image") if control.get("ready") else None)
         or image(task, role)
     )
-    run = command(
-        *_docker(context),
-        "run",
-        "-d",
-        "--platform",
-        platform(task),
-        "--label",
-        "sciskills.study=research-review",
-        "--label",
-        "sciskills.task=" + task["id"],
-        "--network",
-        "none",
-        *hosts,
-        "--cpus",
-        str(cfg.get("cpus", 1)),
-        "--memory",
-        f"{int(cfg['memory_mb'])}m",
-        "--entrypoint",
-        "/bin/sh",
-        img,
-        "-c",
-        "exec sleep infinity",
-    )
-    main = run.stdout.strip()
-    if service:
-        try:
+    context = context or _participant_context()
+    docker = _docker(context)
+    name = f"sciskills-{uuid4().hex}"
+    main = name
+    try:
+        # A large image may need several minutes to unpack before the study starts.
+        run = command(
+            *docker,
+            "run",
+            "-d",
+            "--name",
+            name,
+            "--platform",
+            platform(task),
+            "--label",
+            "sciskills.study=research-review",
+            "--label",
+            "sciskills.task=" + task["id"],
+            "--network",
+            "none",
+            *hosts,
+            "--cpus",
+            str(cfg.get("cpus", 1)),
+            "--memory",
+            f"{int(cfg['memory_mb'])}m",
+            "--entrypoint",
+            "/bin/sh",
+            img,
+            "-c",
+            "exec sleep infinity",
+            timeout=PROVISION_TIMEOUT_SEC,
+        )
+        main = run.stdout.strip()
+        if service:
             service_image = (
                 sidecar_image or control.get("sidecar_image") or image(task, service)
             )
-            _start_sidecar(task, main, service, service_image)
-        except BaseException:
-            stop(main)
-            raise
+            _start_sidecar(task, main, service, service_image, context=context)
+    except BaseException:
+        stop(main, context=context)
+        raise
     return main
 
 
@@ -382,6 +410,7 @@ def temporary_container(
     image_id=None,
     sidecar_image=None,
 ):
+    context = context or _participant_context()
     container = start(
         task,
         snapshot_id,
@@ -715,12 +744,11 @@ def live_control(task, record):
 
 def available_memory_mib(task):
     """Read the participant engine's system-wide reclaimable memory before admission."""
-    _require_local(_participant_context())
+    context = _participant_context()
     receipt = _read_control(task)
     img = receipt.get("environment_image") or image(task, "environment")
-    probe = command(
-        "docker",
-        "run",
+    probe = _auxiliary_container(
+        context,
         "--rm",
         "--network",
         "none",

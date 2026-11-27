@@ -101,7 +101,37 @@
     {
       "task": "spin-glass-groundstate",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:4a579f221af888450bc7b50b9e2365f1bcb732a60d7244534d01df51801619b7",
+      "tests_image": "sha256:f9626f7992fb238386f021eaaf1ba9e4a506df2e014b9f3b7f54d22f5bb3c433",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795801403,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 3,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 3,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "passed": 4
+        }
+      }
     },
     {
       "task": "masked-spherical-remap",
@@ -349,7 +379,35 @@
     {
       "task": "rv-astrometry-fitting",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:8cb8ae1e9e65721d9abb395908d72cb9bf7c9911146a560b000b4949a62c893d",
+      "tests_image": "sha256:d251dcb4c5c5b77b6943baf373aa6597057c3c4cea89789dbc4a796964a864a0",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795805499,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 2
+        },
+        "pytest_outcomes": {
+          "failed": 2
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 2
+        },
+        "pytest_outcomes": {
+          "passed": 2
+        }
+      }
     },
     {
       "task": "hbv-calibration-1",
@@ -461,7 +519,25 @@
     {
       "task": "certified-sparse-regression",
       "phase": "holdout",
-      "status": "pending"
+      "status": "unqualified_resource_relocation",
+      "environment_image": "sha256:e8c8f8092f0690ba18677f522d7d35f7423dee8b9c51d81861555defaf3feaa0",
+      "tests_image": "sha256:eff46945dba3889cdbfa37f3c8945c615b5f08341b3ea842880612f11244bdfd",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795820991,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4
+        },
+        "pytest_outcomes": {
+          "failed": 4
+        }
+      }
     },
     {
       "task": "linked-cell-suppression",

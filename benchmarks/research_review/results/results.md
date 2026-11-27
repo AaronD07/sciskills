@@ -90,36 +90,43 @@ Each comparison uses the same task, model and frozen first draft. A malformed su
 
 ## Frontier dev
 
-Upstream empty and reference submission control counts are 10 ready, 0 failed and 2 without a receipt.
+Upstream empty and reference submission control counts are 12 ready, 0 failed and 0 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
 | Task | Participant | Verifier | Reference controls | Recorded holdout use |
 |---|---|---|---|---|
+| `amr-poisson-optimize` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `amr-poisson-optimize` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `inelastic-constitutive-discovery` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
+| `inverse-lithography` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `inverse-lithography` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `masked-spherical-remap` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `mendota-ice-phenology` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `noisy-blackbox-optimization` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
+| `rv-astrometry-fitting` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `sparse-network-assimilation` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
+| `spin-glass-groundstate` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `symbolic-regression` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `tess-transit-vetting` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `traffic-flux-inversion` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| primary | terra | draft | 2/7 | 0 | 4 | 0 | 0 | 1 | 0 | 0 |
-| primary | sonnet | draft | 0/4 | 0 | 6 | 0 | 0 | 2 | 0 | 0 |
+| primary | terra | draft | 2/10 | 0 | 2 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 0/4 | 0 | 8 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
 
 ### Observed discrepancies
 
+* terra, `amr-poisson-optimize` — upstream reward 0 (1 failed, 15 passed).
 * terra, `masked-spherical-remap` — upstream reward 0 (1 failed, 21 passed).
 * terra, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
+* terra, `rv-astrometry-fitting` — upstream reward 0 (1 failed, 1 passed).
 * terra, `sparse-network-assimilation` — upstream reward 0 (3 failed, 4 passed).
+* terra, `spin-glass-groundstate` — upstream reward 0 (1 failed, 3 passed).
 * terra, `tess-transit-vetting` — upstream reward 0 (4 failed, 1 passed).
 * terra, `traffic-flux-inversion` — upstream reward 0 (4 failed, 3 passed).
 * sonnet, `masked-spherical-remap` — upstream reward 0 (4 failed, 18 passed).
@@ -129,14 +136,17 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 6 ready, 1 failed and 9 without a receipt.
+Upstream empty and reference submission control counts are 7 ready, 2 failed and 7 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
 | Task | Participant | Verifier | Reference controls | Recorded holdout use |
 |---|---|---|---|---|
+| `certified-sparse-regression` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
+| `finite-free-stam` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `neo-orbit-determination` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
+| `ode-law-discovery` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `ode-law-discovery` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `rolling-shutter-oma` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `stacking-disorder-diffraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
