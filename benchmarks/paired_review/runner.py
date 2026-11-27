@@ -207,7 +207,7 @@ def _calls(path):
     return calls
 
 
-def run_session(model, files, stage, scratch):
+def run_session(model, files, stage, scratch, *, client_helper=None, timeout=TIMEOUT):
     """Run one fresh model; raw provider transcripts remain in the caller's private directory."""
     if model not in MODELS or stage not in PROMPTS or "TASK.md" not in files:
         raise ValueError("Unknown model, stage, or missing task")
@@ -230,7 +230,7 @@ def run_session(model, files, stage, scratch):
         cmd = [
             sys.executable,
             "-I",
-            str(HERE / "runner.py"),
+            str(client_helper or HERE / "runner.py"),
             "client",
             model,
             str(work),
@@ -247,7 +247,7 @@ def run_session(model, files, stage, scratch):
                 start_new_session=True,
             ) as proc:
                 try:
-                    proc.communicate(PROMPTS[stage].encode(), timeout=TIMEOUT)
+                    proc.communicate(PROMPTS[stage].encode(), timeout=timeout)
                     status = "submitted" if proc.returncode == 0 else "cli_error"
                 except subprocess.TimeoutExpired:
                     os.killpg(proc.pid, signal.SIGKILL)

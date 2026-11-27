@@ -48,6 +48,10 @@ The [checker](docs/checker.md) reports evidence, locations, and suggested fixes.
 
 The [native benchmark](benchmarks/README.md) has seven repair tasks with eight scored checks apiece. The [DS-1000 adapter](benchmarks/external/README.md) adds two published statistical programming problems with their original graders and a separate pinned environment. Keep evaluator files outside the participant workspace. The scoring tools execute the submitted Python.
 
+## Do skills fix mistakes on published hard benchmarks?
+
+We tested the same drafts with ordinary and skill-assisted review on original LiveCodeBench, DABstep, P-Bench and FrontierScience tasks. Three suites qualified for fresh holdouts. Ordinary, general and specialist reviews repaired 3, 2 and 3 of six wrong drafts on the first review. On an independent repeat the counts were 1, 3 and 1. All six wrong holdout drafts came from Luna. [Results and concrete mistakes](benchmarks/external_review/RESULTS.md) · [Protocol and sources](benchmarks/external_review/README.md)
+
 ## Which scientific sign-offs did a skill fix?
 
 The [integrity review study](benchmarks/integrity_review/README.md) tested experimental coverage, measurement provenance and deployment validity. Only deployment qualified for a holdout. The specialist verified that every fitting and assessment record in a theophylline study matched the registered split and restored a valid release that ordinary review had withdrawn. Ordinary review found a different repair that the specialist missed. Both finished with 16 of 18 study/model pairs correct. General review finished with 15.

@@ -1,0 +1,25 @@
+Research Question:
+Does gamma interferon treatment reduce the risk of serious infections among patients with chronic granulomatous disease in this placebo-controlled randomized trial?
+
+Hypothesis:
+H0: Gamma interferon treatment does not reduce the risk of serious infections compared with placebo.
+H1: Gamma interferon treatment reduces the risk of serious infections compared with placebo.
+
+STUDY DESIGN:
+- Type: Placebo-controlled randomized clinical trial
+- Unit of observation: Infection-risk interval recorded for a CGD patient
+- Cohort: 203 observations from 128 patients with chronic granulomatous disease
+- Comparison: Gamma interferon (`treat = rIFN-g`) versus placebo
+
+VARIABLE GLOSSARY:
+- status: Indicator for a serious infection event during the interval [OUTCOME]
+- treat: Treatment assignment, gamma interferon (`rIFN-g`) versus placebo [TREATMENT]
+- tstart: Interval start time for follow-up
+- tstop: Interval end time for follow-up
+- id: Patient identifier
+- enum: Event-order index for repeated intervals within patient
+- sex: Patient sex
+- age: Patient age
+- inherit: Inheritance pattern, X-linked versus autosomal
+- steroids: Steroid use indicator
+- propylac: Prophylactic antibacterial use indicator

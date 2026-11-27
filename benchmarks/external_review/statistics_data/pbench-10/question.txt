@@ -1,0 +1,23 @@
+Research Question:
+Among patients with primary biliary cirrhosis in the Mayo Clinic randomized trial, how is time to death or transplant related to baseline clinical characteristics, and does survival differ between the placebo and D-penicillamine groups?
+
+Hypothesis:
+H0: Survival does not differ between patients assigned to placebo and patients assigned to D-penicillamine.
+H1: Survival differs between patients assigned to placebo and patients assigned to D-penicillamine.
+
+STUDY DESIGN:
+- Type: Randomized clinical trial
+- Unit of observation: Patient
+- Source cohort: Mayo Clinic primary biliary cirrhosis trial
+- Sample: 418 patients with primary biliary cirrhosis
+
+VARIABLE GLOSSARY:
+- fu.days: Follow-up time in days [OUTCOME]
+- status: Event indicator for death or transplant [OUTCOME]
+- drug: Randomized treatment assignment (D-penicillamine vs placebo) [TARGET]
+- age: Age at baseline
+- sex: Sex
+- bili: Serum bilirubin at baseline
+- albumin: Albumin at baseline
+- protime: Prothrombin time at baseline
+- stage: Histologic stage I-IV at baseline

@@ -1,0 +1,123 @@
+{
+  "pbench-01": {
+    "strict_eligible": false,
+    "decision_eligible": false,
+    "reference": {
+      "p_value": 0.014,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "stated controls with HC1": 0.010808281900774106,
+      "also branch and income indicators": 0.07817428615745309
+    }
+  },
+  "pbench-02": {
+    "strict_eligible": false,
+    "decision_eligible": false,
+    "reference": {
+      "p_value": 0.112,
+      "decision": "fail_to_reject"
+    },
+    "specification_pvalues": {
+      "village clustered, arm indicators": 0.008783179668618364,
+      "also age in months": 0.008816323900864904
+    }
+  },
+  "pbench-03": {
+    "strict_eligible": true,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.029,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "respondent clustered, race by treatment": 0.04926398882856441,
+      "also race-specific demographic controls": 0.03231970585695825
+    }
+  },
+  "pbench-04": {
+    "strict_eligible": false,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.0025,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "tvdlm ~ age": 4.1571057780792886e-45,
+      "tvdlm ~ age + C(sex) + Q(\"cad.dur\") + choleste": 1.893965643862738e-25
+    }
+  },
+  "pbench-05": {
+    "strict_eligible": true,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.0004,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "recurrent-event Cox, patient clustered": 0.00033150838162531815,
+      "time to first infection, Cox": 0.0010837950476115517
+    }
+  },
+  "pbench-06": {
+    "strict_eligible": false,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.00015584786263015402,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "village clustered, incentive assignment": 5.952692483880411e-06,
+      "also subdistrict indicators": 0.0003083249404504537,
+      "separate assignments, subdistrict indicators": 0.00029959361848543015
+    }
+  },
+  "pbench-07": {
+    "strict_eligible": false,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 2.126051119955774e-15,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "difference by assignment, HC1": 1.8644127571276027e-08,
+      "also ward indicators, road and village size": 2.126051119956051e-15
+    }
+  },
+  "pbench-08": {
+    "strict_eligible": true,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.7929,
+      "decision": "fail_to_reject"
+    },
+    "specification_pvalues": {
+      "couple clustered, account effects": 0.7354560428366469,
+      "also cash-prize interactions": 0.8398443262627177
+    }
+  },
+  "pbench-09": {
+    "strict_eligible": true,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.005,
+      "decision": "reject"
+    },
+    "specification_pvalues": {
+      "low ~ smoke + age + lwt + C(race)": 0.005522896131115999,
+      "low ~ smoke + age + lwt + C(race) + ptl + ht + ui + ftv": 0.019567344089066938
+    }
+  },
+  "pbench-10": {
+    "strict_eligible": true,
+    "decision_eligible": true,
+    "reference": {
+      "p_value": 0.4988,
+      "decision": "fail_to_reject"
+    },
+    "specification_pvalues": {
+      "randomized-only Cox": 0.7495185857259703,
+      "also named baseline characteristics": 0.8274695990131342
+    }
+  }
+}

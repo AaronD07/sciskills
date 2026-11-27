@@ -1,0 +1,62 @@
+{
+  "dev": [
+    {
+      "source_id": "f4681d73-b08d-450c-89d3-85b9d1250419",
+      "family": "born-rigid-acceleration",
+      "measurement": "For the numerical submission use L = 2.5 m, a = 0.37 c²/L, and v = 0.72 c. Report the laboratory length in metres to five significant figures.",
+      "value": 1.8752989046030994,
+      "absolute_tolerance": 5e-05
+    },
+    {
+      "source_id": "f88cc0c0-2ca6-4cb0-bd1e-a37ddcf11294",
+      "family": "figure-eight-orbital-energy",
+      "measurement": "Report the energy in joules with the precision requested above.",
+      "value": -8.6e+39,
+      "absolute_tolerance": 5e+37
+    },
+    {
+      "source_id": "8a983c4c-070e-45b1-b2ce-300c7a68feb6",
+      "family": "sliding-catenary",
+      "measurement": "For the numerical submission use L = 12 m and evaluate the dimensionless function f at y = 2.4 m. Report five significant figures.",
+      "value": 1.5105910726822025,
+      "absolute_tolerance": 5e-05
+    }
+  ],
+  "holdout": [
+    {
+      "source_id": "4195adea-9fa5-4f25-91ef-ebd6c57cfb88",
+      "family": "molecular-effusion",
+      "measurement": "For the numerical submission use T₀ = 300 K and N/N₀ = 0.23. Use ideal diatomic nitrogen with active translation and rotation and frozen vibrational modes. Report the temperature in kelvins to five significant figures.",
+      "value": 223.59743741635603,
+      "absolute_tolerance": 0.005
+    },
+    {
+      "source_id": "69bd11e8-5f96-45dc-8123-b9d800101430",
+      "family": "domain-wall-energy",
+      "measurement": "For the numerical submission use dimensionless model units with ρ = 1.7, κ = 0.65 and M₀ = 1.3. Report the ground-state energy in these units to five significant figures.",
+      "value": 2.177383535857251,
+      "absolute_tolerance": 5e-05
+    },
+    {
+      "source_id": "19962a30-eaf9-4b7e-86c7-17c02cdb01bd",
+      "family": "ellipsoid-surface-charge",
+      "measurement": "For the numerical submission use semiaxes a = 3 cm, b = 6 cm and c = 9 cm and total charge Q = 11 nC. Report the surface charge density at (2 cm, 2 cm, 6 cm) in nC/cm² to five significant figures.",
+      "value": 0.022444927871933962,
+      "absolute_tolerance": 5e-07
+    },
+    {
+      "source_id": "aeaa8d2c-fcb9-423f-b1c0-ac9c122999e6",
+      "family": "plasma-intensity",
+      "measurement": "Report the dimensionless ratio with the precision requested above.",
+      "value": 0.2,
+      "absolute_tolerance": 0.05
+    },
+    {
+      "source_id": "6646019d-bda1-4b1c-83ac-7953e853effd",
+      "family": "oscillator-dispersion",
+      "measurement": "For the numerical submission use ℏ = 1.054571817 × 10⁻³⁴ J s, m = 9.1093837 × 10⁻³¹ kg, ω₀ = 2.5 × 10¹⁶ rad/s, e = 1.602176634 × 10⁻¹⁹ C and ε₀ = 8.8541878128 × 10⁻¹² F/m. Report the numerical value of C in units of 10⁻⁷⁹ J m⁶ to five significant figures.",
+      "value": 2.1645744863417633,
+      "absolute_tolerance": 5e-05
+    }
+  ]
+}

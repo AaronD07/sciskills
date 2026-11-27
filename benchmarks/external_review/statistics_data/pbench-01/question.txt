@@ -1,0 +1,28 @@
+Research Question:
+Among borrowers in the South African consumer-credit field experiment, does receiving a longer suggested loan maturity lead to choosing a longer actual maturity and, in turn, taking a larger loan?
+
+Hypothesis:
+H0: Longer loan maturity does not increase loan size among borrowers in the study sample.
+H1: Longer loan maturity increases loan size among borrowers in the study sample.
+
+STUDY DESIGN:
+- Type: Randomized field experiment embedded in consumer credit marketing
+- Unit of observation: Individual borrower
+- Source cohort: Former clients targeted with loan mailers in South Africa
+- Assignment context: Mailers varied the example maturity shown and the interest rate offer
+- Key analytic restriction: Focus on later-wave low- or medium-risk borrowers who took up a loan, were shown one maturity example, and were in the rate-reduction subsample
+
+VARIABLE GLOSSARY:
+- lnloansize: Log of the loan size taken up [OUTCOME]
+- term: Loan maturity in months [TREATMENT] (endogenous)
+- termshown6: Indicator that the mailer displayed a 6-month example maturity (instrument)
+- termshown12: Indicator that the mailer displayed a 12-month example maturity (instrument)
+- offer4: Offered interest rate control
+- final4: Contract interest rate control
+- yearlong: Indicator control for year-long offers
+- low: Low-rate offer indicator control
+- waved2: Experiment wave indicator control
+- lnlastamount: Log of the borrower's previous loan amount (control)
+- loansize: Loan size in levels
+- branchuse: Branch identifier/control
+- sales_grossincomecat2: Income-category control

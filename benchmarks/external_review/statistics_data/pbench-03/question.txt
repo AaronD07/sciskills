@@ -1,0 +1,26 @@
+Research Question:
+Does the Promise 1 treatment effect on city-council vote-switching differ from its effect on mayoral vote-switching?
+
+Hypothesis:
+H0: The Promise 1 coefficient is equal in the city-council and mayoral vote-switching equations.
+H1: The Promise 1 coefficient differs between the city-council and mayoral vote-switching equations.
+
+STUDY DESIGN:
+- Randomized field experiment conducted among individual voters in Sorsogon City, Philippines, during the 2013 elections.
+- Unit of observation: Individual voter.
+- Study arms include a control condition and two promise treatments.
+- The task compares vote-switching responses across city council, mayor, and vice-mayor races.
+
+VARIABLE GLOSSARY:
+- cc_switched: City-council vote-switching indicator (binary; missing when not measured) [OUTCOME]
+- m_switched: Mayoral vote-switching indicator (binary; missing when not measured) [OUTCOME]
+- vm_switched: Vice-mayoral vote-switching indicator (binary; missing when not measured)
+- pt2: Promise 1 treatment indicator [TREATMENT]
+- pt3: Promise 2 treatment indicator [TREATMENT]
+- respondent_id: Voter identifier; a voter can contribute an observation to each race's equation
+- marital_stat: Marital status (categorical)
+- male, age, catholic, hh_voting_mems: Demographic controls
+- employ_stat1-employ_stat6: Employment-status indicators
+- elementary, some_highschool, highschool, some_college, vocational, college_up: Education indicators
+- adultmigrant, childmigrant, bornhere: Migration-history indicators
+- promise_treatment: Raw treatment-assignment code

@@ -1,0 +1,25 @@
+Research Question:
+Do immunisation camps with incentives affect complete immunisation rates among children in neighbouring, non-targeted households in rural Rajasthan, relative to control villages?
+
+Hypothesis:
+H0: The camp-plus-incentives coefficient is zero for children in neighbouring, non-targeted households.
+H1: The camp-plus-incentives coefficient is nonzero for children in neighbouring, non-targeted households.
+
+STUDY DESIGN:
+- Type: Cluster-randomized trial
+- Randomization level: Village
+- Unit of observation: Child
+- Source cohort: Spillover cohort from 134 villages in rural Udaipur district, Rajasthan, India
+- Study arms: Control villages, camp-only villages, and camp-plus-incentive villages
+- Key restriction: Focus on children in spillover households in treatment villages and children in control villages
+
+VARIABLE GLOSSARY:
+- fully_immunized: Completely immunised child indicator (binary: 0/1) [OUTCOME]
+- TreatNonIncentive: Village assigned to camp-only intervention (binary: 0/1) [TREATMENT]
+- TreatIncentive: Village assigned to camp-plus-incentive intervention (binary: 0/1) [TREATMENT] [TARGET]
+- spillover: Child is from a neighbouring, non-targeted household in a treatment village (binary: 0/1) [SAMPLE FILTER]
+- NonTreat: Village assigned to control group (binary: 0/1)
+- num_vaccines: Total immunisations received (count)
+- any_immunized: Child received at least one immunisation (binary: 0/1)
+- agemon: Child age in months
+- locid: Village identifier

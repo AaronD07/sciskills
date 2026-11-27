@@ -1,0 +1,20 @@
+Research Question:
+Is maternal smoking during pregnancy associated with a higher likelihood of low birth weight among women in this birthweight dataset, accounting for key maternal characteristics?
+
+Hypothesis:
+H0: Maternal smoking during pregnancy is not associated with a higher likelihood of low birth weight
+H1: Maternal smoking during pregnancy is associated with a higher likelihood of low birth weight
+
+STUDY DESIGN:
+- Type: Observational cross-sectional birthweight study
+- Unit of observation: Woman/pregnancy
+- Sample: 189 women
+- Source: Medical / Biostatistics benchmark birthweight dataset
+
+VARIABLE GLOSSARY:
+- low: Low birth weight indicator (binary: 0/1) [OUTCOME]
+- smoke: Maternal smoking during pregnancy (binary: 0/1) [EXPOSURE] [TARGET]
+- age: Maternal age (years)
+- lwt: Maternal weight
+- race: Maternal race category
+- bwt: Birth weight

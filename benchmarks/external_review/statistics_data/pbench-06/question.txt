@@ -1,0 +1,25 @@
+Research Question:
+Does seasonal migration increase household savings among rural Bangladeshi households in the 2008 follow-up?
+
+Hypothesis:
+H0: Seasonal migration does not increase household savings.
+H1: Seasonal migration increases household savings.
+
+STUDY DESIGN:
+- Type: Randomized encouragement study of seasonal migration
+- Unit of observation: Household
+- Source cohort: Rural households in Rangpur, Bangladesh
+- Time frame: 2008 follow-up round
+- Study arms: Households assigned to cash, credit, or information encouragement conditions or to control
+- Key restriction: The analytic sample excludes households with total savings above 20,000 Taka
+
+VARIABLE GLOSSARY:
+- tot_save: Total household savings in Taka [OUTCOME]
+- migrant_new: Indicator that any household member migrated [EXPOSURE]
+- cash: Assigned to cash encouragement condition [TREATMENT]
+- credit: Assigned to credit encouragement condition [TREATMENT]
+- info: Assigned to information encouragement condition [TREATMENT]
+- incentivized: Indicator for receiving a migration encouragement assignment [TARGET]
+- upazila: Sub-district identifier
+- village: Village identifier
+- hhid: Household identifier

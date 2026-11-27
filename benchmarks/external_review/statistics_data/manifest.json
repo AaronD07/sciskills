@@ -1,0 +1,122 @@
+[
+  {
+    "id": "pbench-01",
+    "split": "dev",
+    "task_id": "iv_2sls/dfeep__paper_179__task_7",
+    "source_id": "dfeep__paper_179",
+    "dataset_sha256": "8f52130da2d7e0694cf8fd0212589e74a44eabc2eda99ed9c36661a88bf1f136",
+    "question_sha256": "03e56dcb91221959144363b8d039c786401187937dc5de9850e0acab10558ecb",
+    "answer": {
+      "p_value": 0.014,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-02",
+    "split": "dev",
+    "task_id": "ols_coefficient_test/dfeep__paper_192__task_7",
+    "source_id": "dfeep__paper_192",
+    "dataset_sha256": "d8c8a563681b85165456ce5e1b476133a1698e1399804d0dcd086613555a7e04",
+    "question_sha256": "25728c99f44f7327375c7c072153de51db9d35c74dafa87a05d139a498f4f9e6",
+    "answer": {
+      "p_value": 0.112,
+      "decision": "fail_to_reject"
+    }
+  },
+  {
+    "id": "pbench-03",
+    "split": "dev",
+    "task_id": "f_test/dfeep__paper_127__task_6",
+    "source_id": "dfeep__paper_127",
+    "dataset_sha256": "0bdf2628038988d71951a3ed26686ccbb4d34671254bfcf34db3e73e0d3f147f",
+    "question_sha256": "aa7a30eabc197ab6f5e66fdd53897c9d4f7c6092553777bc9d08d0d5272c78b5",
+    "answer": {
+      "p_value": 0.029,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-04",
+    "split": "dev",
+    "task_id": "logistic_regression/hbiostat__acath__task_2",
+    "source_id": "hbiostat__acath",
+    "dataset_sha256": "fb4a0acf706056e6c97c27ec8e683381e7141d77737649828d2f9e9902d54688",
+    "question_sha256": "875a9b0baa8aff97ed53c0125afa2d3bdaa24d7dbe34eb284b794ab9a5c03e56",
+    "answer": {
+      "p_value": 0.0025,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-05",
+    "split": "dev",
+    "task_id": "cox_regression/medical_bio__cgd_trial__task_1",
+    "source_id": "medical_bio__cgd_trial",
+    "dataset_sha256": "c1535ef344352661fe715a7e00c813555bc2f5422ff67d6c1a91368ad1914645",
+    "question_sha256": "983dfe44e7cd9cdb0fecaa48cd8d2c0b539524ed0f0bf4acbf06700c6c4a6da6",
+    "answer": {
+      "p_value": 0.0004,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-06",
+    "split": "holdout",
+    "task_id": "iv_2sls/dfeep__paper_18__task_7",
+    "source_id": "dfeep__paper_18",
+    "dataset_sha256": "f6e7e31ff4b7afdbd29bc86ef1818b04ccb2e8ddd28df6f0ee2295431e15815d",
+    "question_sha256": "6d8af763cd1d0195fe354c82e0dce63586cee16986ccf39b5abb0c49f8f551a5",
+    "answer": {
+      "p_value": 0.00015584786263015402,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-07",
+    "split": "holdout",
+    "task_id": "ols_coefficient_test/dfeep__paper_118__task_3",
+    "source_id": "dfeep__paper_118",
+    "dataset_sha256": "b6660d963f635379d84fdfb0c7fe96255fa5ec4d7c16c9b819f0e37cdc446499",
+    "question_sha256": "66a4463f24640121c127be17ae0ebf25cc37a29f74181935d82b70305ccf222e",
+    "answer": {
+      "p_value": 2.126051119955774e-15,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-08",
+    "split": "holdout",
+    "task_id": "f_test/dfeep__paper_27__task_2",
+    "source_id": "dfeep__paper_27",
+    "dataset_sha256": "d2d1be9c62e130c5a3f2b43eaf5ee19716b3ede2aa131375917116e7fcbdf955",
+    "question_sha256": "e839a6e6c8c03b3474581bb7d5f87a5c2cfcf35a944c101696971ad403f1a16b",
+    "answer": {
+      "p_value": 0.7929,
+      "decision": "fail_to_reject"
+    }
+  },
+  {
+    "id": "pbench-09",
+    "split": "holdout",
+    "task_id": "logistic_regression/medical_bio__birthweight__task_2",
+    "source_id": "medical_bio__birthweight",
+    "dataset_sha256": "50102db24a1fc05d351f83b341d71fa6b5847493bbb1a709811f9910a38f62ca",
+    "question_sha256": "7f0cbaadd17c81585c6e64c805d3cef4f7b4d4d5207dd5463cb6d93cd533bc7e",
+    "answer": {
+      "p_value": 0.005,
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "pbench-10",
+    "split": "holdout",
+    "task_id": "cox_regression/hbiostat__pbc__task_1",
+    "source_id": "hbiostat__pbc",
+    "dataset_sha256": "48aa739dcad14e52732f74d02be89f909002e4b199f09e07078618e2f052291f",
+    "question_sha256": "80926ba3d926b6d45b8228f7375baf998e56522a6281394cdf5aadace8585265",
+    "answer": {
+      "p_value": 0.4988,
+      "decision": "fail_to_reject"
+    }
+  }
+]

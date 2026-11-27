@@ -1,0 +1,22 @@
+Research Question:
+Did the GoBifo community-driven development program improve economic welfare among villages in post-conflict Sierra Leone, as measured by the economic welfare index at endline?
+
+Hypothesis:
+H0: The GoBifo program has no association with the economic welfare index at endline.
+H1: The GoBifo program is associated with a change in the economic welfare index at endline.
+
+STUDY DESIGN:
+- Type: Randomized community-level study
+- Unit of observation: Village
+- Setting: Post-conflict Sierra Leone communities in the GoBifo study
+- Comparison: GoBifo treatment villages vs. control villages
+- Timing: Endline cross-section
+- Grouping structure: Villages are organized within wards
+
+VARIABLE GLOSSARY:
+- zscore_3: Economic welfare index for Hypothesis 3 (continuous) [OUTCOME]
+- t: Indicator that the village was assigned to GoBifo (binary: 0/1) [TREATMENT]
+- id_vill: Village identifier
+- tothhs: Total households in the village
+- road: Road access indicator
+- ward_1 to ward_20: Ward indicators

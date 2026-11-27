@@ -1,0 +1,20 @@
+Research Question:
+Is patient age associated with three-vessel or left main coronary disease among patients undergoing cardiac catheterization?
+
+Hypothesis:
+H0: Patient age is not associated with the presence of three-vessel or left main coronary disease.
+H1: Patient age is associated with the presence of three-vessel or left main coronary disease.
+
+STUDY DESIGN:
+- Type: Observational cross-sectional cardiac catheterization study
+- Unit of observation: Patient
+- Source: Vanderbilt University Department of Biostatistics cardiac catheterization diagnostic data
+- Sample: 3,504 cardiac catheterization patients
+
+VARIABLE GLOSSARY:
+- tvdlm: Three-vessel or left main coronary disease (binary: 0/1) [OUTCOME]
+- age: Patient age
+- sex: Patient sex
+- cad.dur: Duration of coronary artery disease
+- choleste: Cholesterol measure
+- sigdz: Significant coronary disease indicator (binary: 0/1)

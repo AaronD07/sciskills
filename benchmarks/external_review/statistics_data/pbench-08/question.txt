@@ -1,0 +1,23 @@
+Research Question:
+Among wives' individual accounts in the Kenya study, does the total effect of receiving a free ATM card on the standardized savings outcome differ from zero?
+
+Hypothesis:
+H0: The total ATM effect for wives' individual accounts is zero (freeatm + atm_wife = 0).
+H1: The total ATM effect for wives' individual accounts is nonzero (freeatm + atm_wife != 0).
+
+STUDY DESIGN:
+- Type: Randomized controlled trial
+- Setting: Married couples in Kenya
+- Unit of observation: Account
+- Sample: Opened accounts only
+- Comparison: Free ATM card assignment, with effects allowed to vary by account type
+
+VARIABLE GLOSSARY:
+- avg_eff: Standardized mean effect across 10 savings outcomes (continuous) [OUTCOME]
+- freeatm: Assigned to receive a free ATM card (binary: 0/1) [TREATMENT]
+- atm_hub: Derived indicator capturing the free-ATM effect for husbands' individual accounts
+- atm_wife: Derived indicator capturing the free-ATM effect for wives' individual accounts
+- joint: Joint account indicator (binary: 0/1) [TARGET]
+- ind_h: Husband's individual account indicator (binary: 0/1) [TARGET]
+- ind_w: Wife's individual account indicator (binary: 0/1) [TARGET]
+- open: Account opened indicator (binary: 0/1)
