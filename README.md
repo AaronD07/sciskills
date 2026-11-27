@@ -58,7 +58,7 @@ The [integrity review study](benchmarks/integrity_review/README.md) tested exper
 
 ## Reviewing frontier and everyday research
 
-A researcher can use the skills to review a numerical method that will be run on unfamiliar data. They can also use them for everyday decisions where a unit, a missing calibration or a change to the wrong record would alter the result. We test the first use on published scientific computing tasks and the second on paired research handoffs. Every reviewer starts with the same model's original work. [Study design and reproduction](benchmarks/research_review/README.md)
+A researcher can use the skills to review a numerical method that will be run on unfamiliar data. They can also use them for everyday decisions where a unit, a missing calibration or a change to the wrong record would alter the result. We test the first use on published scientific computing tasks and the second on paired research handoffs. All 40 everyday first drafts passed. Ordinary, general and specialist review each finished at 39/40 after withdrawing the same +0.48% cash-flow result. [What changed under review](benchmarks/research_review/RESULTS.md) · [Study design and reproduction](benchmarks/research_review/README.md)
 
 ## Does a skill improve a second review?
 
