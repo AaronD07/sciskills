@@ -20,3 +20,9 @@ The eligibility rules, revision ledgers, allocation tables, analytical target po
 | Science holdout | [warpbreaks](https://github.com/vincentarelbundock/Rdatasets/blob/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/warpbreaks.csv) | [R manual](https://github.com/wch/r-source/blob/53c67f80fd1c020154f4006e2bb76e74fa2feb60/src/library/datasets/man/warpbreaks.Rd) | 54 | `82c0482e94a5652b733f38c8fe6fbd18a062d761c4d71137fda63501a934a73f` |
 
 The filename CO2.csv in this Rdatasets revision holds the monthly atmospheric series documented in R as lowercase co2.
+
+## Independent validation
+
+From the repository root run `python3 benchmarks/paired_review/science_data/validate.py`. The independent checker re-reads the agent-visible observations and auxiliary tables. It recomputes each numerical report and eligibility decision with separate code. It also checks all five input/output pairs for each analytical program, including row permutation, missing observations, changed measurements and an empty input. It verifies that the permuted output agrees with the original and that at least one subset or altered input changes the expected output for every program.
+
+The check passed for all 36 scientific tasks and all 60 program input/output pairs using NumPy 2.4.1, pandas 2.3.3 and SciPy 1.17.0. These packages are only needed for this independent cross-check. Generating packets and calculating the benchmark references use Python's standard library.

@@ -44,6 +44,10 @@ The [checker](docs/checker.md) reports evidence, locations, and suggested fixes.
 
 The [native benchmark](benchmarks/README.md) has seven repair tasks with eight scored checks apiece. The [DS-1000 adapter](benchmarks/external/README.md) adds two published statistical programming problems with their original graders and a separate pinned environment. Keep evaluator files outside the participant workspace. The scoring tools execute the submitted Python.
 
+## Does a skill improve a second review?
+
+We gave ordinary and skill-assisted reviewers the same first draft on 24 scientific tasks and eight financial investigations. Luna's program-review skill corrected a reversed comparison on real exposure data. Another skill changed a correct response fraction from 0.32 to 0.23. On the 71 science pairs that completed under the tool rules, both reviewers passed 69. The study found no meaningful overall gain. [Results, task packets and replay](benchmarks/paired_review/README.md)
+
 ## What happened in the pilot
 
 Codex CLI and Claude Code each completed 36 fresh, tool-free sessions. Each agent attempted the same six tasks three times with the assigned skill and three times without it. The scorer recorded **30 of 36 full passes with a skill and 30 of 36 at baseline**. Each agent scored 15 of 18 in each condition.
