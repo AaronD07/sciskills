@@ -6,7 +6,7 @@ import json
 import math
 from pathlib import Path
 
-from . import everyday, study
+from . import everyday, frontier, study
 
 ARMS = ("draft", *study.ARMS)
 CHECKS = (
@@ -140,9 +140,12 @@ def public_row(raw, draft, case):
             if k in ("passed", "failed", "skipped", "pending", "other")
             and type(n) is int
         }
+        pytest_outcomes = score.get("pytest_outcomes") or frontier._pytest_counts(
+            score.get("verifier_tail", "")
+        )
         summary["pytest_outcomes"] = {
             k: n
-            for k, n in score.get("pytest_outcomes", {}).items()
+            for k, n in pytest_outcomes.items()
             if k
             in ("passed", "failed", "skipped", "error", "errors", "xfailed", "xpassed")
             and type(n) is int

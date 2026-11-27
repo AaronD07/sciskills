@@ -2,6 +2,7 @@
 
 from contextlib import contextmanager
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -14,6 +15,24 @@ OUTPUT_LIMIT = 32_000
 def validate_container(container):
     if not re.fullmatch(r"[0-9a-f]{64}", container):
         raise ValueError("Expected a full immutable Docker container ID")
+    context = os.environ.get("DOCKER_CONTEXT")
+    if context:
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", context):
+            raise ValueError("Invalid Docker context name")
+        endpoint = subprocess.check_output(
+            [
+                "docker",
+                "context",
+                "inspect",
+                context,
+                "--format",
+                "{{.Endpoints.docker.Host}}",
+            ],
+            timeout=15,
+            text=True,
+        ).strip()
+        if not endpoint.startswith("unix:///"):
+            raise ValueError("Research containers require a local Docker socket")
     info = json.loads(
         subprocess.check_output(["docker", "inspect", container], timeout=15)
     )[0]

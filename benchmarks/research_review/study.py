@@ -5,9 +5,11 @@ from concurrent.futures import ThreadPoolExecutor
 import fcntl
 import importlib
 import json
+import os
 from pathlib import Path
 import random
 import sys
+import time
 import uuid
 
 HERE = Path(__file__).resolve().parent
@@ -106,6 +108,7 @@ def gate(out, track):
     audit = read(out / track / "development-audit.json")
     subjects = {c["id"]: c for c in cases(track, "dev")}
     for model in PRIMARY:
+        substantive = 0
         patterns = []
         for task_id, c in subjects.items():
             row = read(row_path(out, track, "dev", c, model, "draft"))
@@ -118,12 +121,13 @@ def gate(out, track):
             if (
                 not row["score"]["correct"]
                 and reason.get("class") in FAMILIES
-                and reason.get("pattern")
-                and reason["pattern"] not in FAMILIES
                 and reason.get("evidence")
             ):
-                patterns.append(reason["pattern"])
-        if len(patterns) < 5 or len(set(patterns)) == len(patterns):
+                substantive += 1
+                pattern = reason.get("pattern")
+                if pattern and pattern not in FAMILIES:
+                    patterns.append(pattern)
+        if substantive < 5 or len(set(patterns)) == len(patterns):
             return False
     return True
 
@@ -174,6 +178,52 @@ def draft_identity(row):
     )
 
 
+def start_frontier(out, backend, case, image):
+    # Keep simultaneous participants from starting in a VM under memory pressure.
+    # Admission happens before the client clock starts.
+    floor = int(os.environ.get("SCISKILLS_LAUNCH_RESERVE_MIB", "2650"))
+    while True:
+        with (out / "frontier" / "admission.lock").open("a+") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            lock.seek(0)
+            last_start = float(lock.read() or 0)
+            if floor <= 0 or (
+                time.time() >= last_start + 15
+                and backend.available_memory_mib(case) >= floor
+            ):
+                container = backend.start(case, image)
+                lock.seek(0)
+                lock.truncate()
+                lock.write(str(time.time()))
+                return container
+        time.sleep(15)
+
+
+def participant_engine(previous=None):
+    docker = module("frontier")
+    context = docker._participant_context()
+    engine = docker._engine_id(context)
+    if previous:
+        if previous.get("participant_context") not in (None, context) or previous.get(
+            "participant_engine"
+        ) not in (None, engine):
+            raise ValueError(
+                "The original participant Docker context and engine are required"
+            )
+        if previous.get("image"):
+            docker.command(
+                "docker",
+                "--context",
+                context,
+                "image",
+                "inspect",
+                "-f",
+                "{{.Id}}",
+                previous["image"],
+            )
+    return context, engine
+
+
 def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
     client = module("client")
     backend = module(track)
@@ -194,9 +244,16 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             files["SKILL.md"] = skills["specialist"][c["id"]]
     container = None
     image = None
+    participant_context = participant_engine_id = None
     try:
         if track != "everyday":
-            container = backend.start(c, prior["image"] if prior else None)
+            participant_context, participant_engine_id = participant_engine(prior)
+            base_image = prior["image"] if prior else None
+            container = (
+                start_frontier(out, backend, c, base_image)
+                if track == "frontier"
+                else backend.start(c, base_image)
+            )
         session = client.run_session(
             model,
             files,
@@ -234,6 +291,8 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             "score": score,
             "session": session,
             "image": image,
+            "participant_context": participant_context,
+            "participant_engine": participant_engine_id,
             "parent": draft_identity(prior) if prior else None,
             "parent_scheme": "participant-v1" if prior else None,
         }
@@ -255,6 +314,7 @@ def run_one(args):
                     existing.get("image")
                     and (existing["score"] or {}).get("correct") is None
                 ):
+                    participant_engine(existing)
                     existing["score"] = module(track).grade(c, existing["image"])
                     save(path, existing)
                 return

@@ -110,3 +110,61 @@ class SessionEvidenceTests(unittest.TestCase):
         self.assertNotIn(key, prompt)
         self.assertTrue(all(path in prompt for path in paths.values()))
         self.assertLess(len(prompt), 1000)
+
+
+class DockerContextTests(unittest.TestCase):
+    def test_clis_scope_explicit_context_to_scientific_tool(self):
+        from unittest.mock import patch
+        import os
+        import tomllib
+
+        for context in (None, "alternate"):
+            for model in ("terra", "sonnet"):
+                for tool in ("shell", "python"):
+                    with (
+                        self.subTest(model=model, context=context, tool=tool),
+                        patch.dict(os.environ, clear=False),
+                        patch.object(os, "execve") as launch,
+                    ):
+                        os.environ.pop("DOCKER_CONTEXT", None)
+                        os.environ["DOCKER_HOST"] = "unforwarded"
+                        if context:
+                            os.environ["DOCKER_CONTEXT"] = context
+                        client._launch(model, tool, "workspace", "receipts", "1")
+                        _, cmd, cli_env = launch.call_args.args
+                        self.assertNotIn("DOCKER_HOST", cli_env)
+                        self.assertNotIn("DOCKER_CONTEXT", cli_env)
+                        if model == "terra":
+                            values = [
+                                x.removeprefix("mcp_servers.ledger.")
+                                for x in cmd
+                                if x.startswith("mcp_servers.ledger.")
+                            ]
+                            server = tomllib.loads("\n".join(values))
+                        else:
+                            server = json.loads(cmd[cmd.index("--mcp-config") + 1])[
+                                "mcpServers"
+                            ]["ledger"]
+                        expected = (
+                            {"DOCKER_CONTEXT": "alternate"}
+                            if context and tool == "shell"
+                            else {}
+                        )
+                        self.assertEqual(server.get("env", {}), expected)
+
+    def test_explicit_context_rejects_remote_docker_before_container_inspection(self):
+        import os
+        from unittest.mock import patch
+        from benchmarks.research_review import container_tool
+
+        with (
+            patch.dict(os.environ, {"DOCKER_CONTEXT": "remote"}),
+            patch.object(
+                container_tool.subprocess,
+                "check_output",
+                return_value="tcp://example.invalid:2376",
+            ) as inspect,
+        ):
+            with self.assertRaisesRegex(ValueError, "local Docker socket"):
+                container_tool.validate_container("a" * 64)
+            self.assertEqual(inspect.call_count, 1)

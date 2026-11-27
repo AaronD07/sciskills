@@ -42,6 +42,13 @@ class FrontierGate(unittest.TestCase):
         self.audit["sonnet"]["task-0"]["pattern"] = "different mechanism"
         self.assertFalse(self.qualifies())
 
+    def test_verified_failure_counts_even_when_its_cause_is_unknown(self):
+        for model in study.PRIMARY:
+            self.audit[model]["task-4"]["pattern"] = None
+        self.assertTrue(self.qualifies())
+        self.audit["terra"]["task-4"]["evidence"] = None
+        self.assertFalse(self.qualifies())
+
     def test_review_identity_tracks_work_instead_of_its_grade(self):
         row = {
             "track": "frontier",

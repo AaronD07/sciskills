@@ -54,6 +54,9 @@ def _launch(model, tool, workspace, receipts, seconds):
         else ["-I", str(LEDGER / "python_tool.py"), workspace, receipts]
     )
     config = {"command": sys.executable, "args": mcp_args}
+    context = os.environ.get("DOCKER_CONTEXT") if tool == "shell" else None
+    if context:
+        config["env"] = {"DOCKER_CONTEXT": context}
     cmd = study.cli(agent, config)
     env = study.clean_env()
     if agent == "claude":
@@ -61,6 +64,11 @@ def _launch(model, tool, workspace, receipts, seconds):
         cmd[cmd.index("--allowedTools") + 1] = f"mcp__ledger__{tool}"
         env["MCP_TOOL_TIMEOUT"] = str((int(seconds) + 20) * 1000)
     else:
+        if context:
+            cmd[-1:-1] = [
+                "-c",
+                "mcp_servers.ledger.env.DOCKER_CONTEXT=" + json.dumps(context),
+            ]
         if tool == "shell":
             # The client directory is disposable. The authorized research workspace
             # lives inside Docker; a read-only system instruction conflicts with its writes.
@@ -294,11 +302,14 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
             str(receipts),
             str(int(timeout)),
         ]
+        helper_env = runner._environment()
+        if container and os.environ.get("DOCKER_CONTEXT"):
+            helper_env["DOCKER_CONTEXT"] = os.environ["DOCKER_CONTEXT"]
         with stdout.open("wb") as out, stderr.open("wb") as err:
             with subprocess.Popen(
                 cmd,
                 cwd=cli_dir,
-                env=runner._environment(),
+                env=helper_env,
                 stdin=subprocess.PIPE,
                 stdout=out,
                 stderr=err,

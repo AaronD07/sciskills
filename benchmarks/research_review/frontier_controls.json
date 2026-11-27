@@ -5,7 +5,30 @@
     {
       "task": "sparse-network-assimilation",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:11303feab07c181266f23aca1a1cff78a287ffe3519ac8706826ad64389edfd3",
+      "tests_image": "sha256:6a625190be07c35b685c6c20f70d73815b22c7e0f6e45ec5ac225f3410712e76",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795795887,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 1,
+          "skipped": 6
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 7
+        }
+      }
     },
     {
       "task": "traffic-flux-inversion",
@@ -13,6 +36,10 @@
       "status": "verified",
       "environment_image": "sha256:9267b3f61838f79b719f1100cc50abb4644c0b143fb07ea421f80c387a994956",
       "tests_image": "sha256:dae4aa8d3429be5d1756e4e2a0b8442dee2d5fceb246aa83aa2fd9c96cad7403",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
       "timestamp": 1795793784,
       "platform": "linux/amd64",
       "negative": {
@@ -42,6 +69,10 @@
       "status": "verified",
       "environment_image": "sha256:4b5818e26aff8e71031659a0af4a44f264396e3f56ae5c9d3891572ef28d3244",
       "tests_image": "sha256:748afec0054dd783897f8d277088a3bbac4c6dd9295575b24511ae9613389110",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
       "timestamp": 1795793642,
       "platform": "linux/amd64",
       "negative": {
@@ -78,6 +109,10 @@
       "status": "verified",
       "environment_image": "sha256:9577a48ab678afbc21d0365e3fef07d66c0562a5228836f05fe66b7a1558563b",
       "tests_image": "sha256:b5e4edf4ec2ec167a9309e32d8b206e5b9f24d6d6b9baa4f8b720caca5838750",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
       "timestamp": 1795793562,
       "platform": "linux/arm64",
       "negative": {
@@ -109,6 +144,10 @@
       "status": "verified",
       "environment_image": "sha256:e7c8d31f1325fa9de846519e8d001e15845f2368492eb44095a5485d4757b6a1",
       "tests_image": "sha256:a33c21150134e1f27a4dcdab00e5ce5103a787c1fc9e44e0bbb9ac65cc2458cf",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
       "timestamp": 1795793562,
       "platform": "linux/arm64",
       "negative": {
@@ -137,7 +176,38 @@
     {
       "task": "amr-poisson-optimize",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:bc9523dfba107f40222bbfc0ff368e4af18021cbadca5dacb1aeff8ba02a612f",
+      "tests_image": "sha256:1daffe45dfb0e3a8c88a99cf2f83e04fd108c73e47b0bba7b1027da9838a39c1",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795797636,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 9,
+          "passed": 7
+        },
+        "pytest_outcomes": {
+          "errors": 7,
+          "failed": 2,
+          "passed": 7
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 16
+        },
+        "pytest_outcomes": {
+          "passed": 16
+        }
+      }
     },
     {
       "task": "mendota-ice-phenology",
@@ -145,6 +215,10 @@
       "status": "verified",
       "environment_image": "sha256:197105281a87690bcdc3ecbd9a8a38a86c648cca38f1b61507adfa19bb2773e7",
       "tests_image": "sha256:350b17ad21dc8cd49c2158b7dd800941eb263797bc33aff269d4796c22f68300",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
       "timestamp": 1795793562,
       "platform": "linux/amd64",
       "negative": {
@@ -171,12 +245,70 @@
     {
       "task": "inelastic-constitutive-discovery",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:202dd69b1b9f5535393d39b30529de0c8948a08c5e6ccc161b9e13faf114cdfc",
+      "tests_image": "sha256:f83c6c7094b4b53832eea8c461a9d569684bc571f7a5477d3cdf11912b9716b4",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795795891,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4
+        },
+        "pytest_outcomes": {
+          "failed": 4
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "passed": 4
+        }
+      }
     },
     {
       "task": "inverse-lithography",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:f8e815c47ce1bbbfb956ac5fac95d0483ec3a782c391ebd0dcc68621e38c0de7",
+      "tests_image": "sha256:c905ec859509fe430ab41536a21bf4349e684db1e9f60c0d557528d2b15750f1",
+      "sidecar_image": "sha256:51fe1c91b257499ffdebe938facefa75f7bbe3b27efb47f358754d32727e1aeb",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795795830,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4
+        },
+        "pytest_outcomes": {
+          "errors": 3,
+          "failed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "passed": 4
+        }
+      }
     },
     {
       "task": "noisy-blackbox-optimization",
@@ -201,12 +333,68 @@
     {
       "task": "supraglacial-lake-classification",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:26e7b6f0c1ab7b0004e566ef1f50289d0d377bbf45e4f6f89e2a5d5697917c86",
+      "tests_image": "sha256:8faca0861ad7e4fc8219d829a17663a759c224a604fafa040aabc2a53ab3b0d9",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795797284,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 6
+        },
+        "pytest_outcomes": {
+          "errors": 6
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 6
+        },
+        "pytest_outcomes": {
+          "passed": 6
+        }
+      }
     },
     {
       "task": "rolling-shutter-oma",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:ccd78b7507edb260dbfb4c32eef06005cf06c6d99412aec78b45c83b8488d83a",
+      "tests_image": "sha256:1dd47e681c52f8a6d37d92350cc7a32b412f8cea7e013987291ada53a0eca2ef",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795797122,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 20
+        },
+        "pytest_outcomes": {
+          "errors": 50
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 20
+        },
+        "pytest_outcomes": {
+          "passed": 50
+        }
+      }
     },
     {
       "task": "ode-law-discovery",
@@ -236,12 +424,62 @@
     {
       "task": "neo-orbit-determination",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:cb2d001de1dada5ebb157bed27b6eb1086b7d22db8e12045b46070c27de34311",
+      "tests_image": "sha256:42240f35fad4f6872e59e26223ed100f1c543c1c6c477ebeff823313778547e0",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795794295,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        }
+      }
     },
     {
       "task": "nanoindentation-property-extraction",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:fa3b44792b1eef7208b7e1eca33cd0b85ec3a2358c5958472f0664a137817df8",
+      "tests_image": "sha256:d1f27fae7de2c7e4455de19c364a4dd70d771d9f255e4c36ba9e43149b148a2a",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795794356,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 3
+        },
+        "pytest_outcomes": {
+          "failed": 3
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 3
+        },
+        "pytest_outcomes": {
+          "passed": 3
+        }
+      }
     },
     {
       "task": "si-fracture-fbc",
@@ -251,7 +489,37 @@
     {
       "task": "stacking-disorder-diffraction",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:19e62d846d2565e214a98b3d48c9e94019727e9e0170a7730c234a543cd8c0d2",
+      "tests_image": "sha256:d0ea9ca1fe2a3b180aa8c5dfe60ca083ac38f6c58c08206b1561ef116124209d",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795797379,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 4,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 5
+        },
+        "pytest_outcomes": {
+          "passed": 5
+        }
+      }
     },
     {
       "task": "xrd-multiphase-qpa",
