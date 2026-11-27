@@ -110,7 +110,7 @@ def main():
         archive.write_text("".join(packed(r) + "\n" for r in rows))
         write_atomic(out / "archive.json", {"sha256": checksum(archive)})
     proto = json.loads(manifest.read_text())
-    rows = [json.loads(l) for l in archive.read_text().splitlines()]
+    rows = [json.loads(line) for line in archive.read_text().splitlines()]
     if (
         json.loads((out / "archive.json").read_text())["sha256"] != checksum(archive)
         or ids != [r["id"] for r in rows]

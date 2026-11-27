@@ -48,6 +48,10 @@ The [checker](docs/checker.md) reports evidence, locations, and suggested fixes.
 
 The [native benchmark](benchmarks/README.md) has seven repair tasks with eight scored checks apiece. The [DS-1000 adapter](benchmarks/external/README.md) adds two published statistical programming problems with their original graders and a separate pinned environment. Keep evaluator files outside the participant workspace. The scoring tools execute the submitted Python.
 
+## Which scientific sign-offs did a skill fix?
+
+The [integrity review study](benchmarks/integrity_review/README.md) tested experimental coverage, measurement provenance and deployment validity. Only deployment qualified for a holdout. The specialist verified that every fitting and assessment record in a theophylline study matched the registered split and restored a valid release that ordinary review had withdrawn. Ordinary review found a different repair that the specialist missed. Both finished with 16 of 18 study/model pairs correct. General review finished with 15.
+
 ## Does a skill improve a second review?
 
 We gave ordinary and skill-assisted reviewers the same first draft on 24 scientific tasks and eight financial investigations. Luna's program-review skill corrected a reversed comparison on real exposure data. Another skill changed a correct response fraction from 0.32 to 0.23. On the 71 science pairs that completed under the tool rules, both reviewers passed 69. The study found no meaningful overall gain. [Results, task packets and replay](benchmarks/paired_review/README.md)

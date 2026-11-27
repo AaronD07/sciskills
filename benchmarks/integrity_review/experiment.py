@@ -254,6 +254,18 @@ def replay(root, mode, phase):
     cases = load_cases(mode, phase)
     out = result_dir(root, mode, phase)
     proto = json.loads((out / "protocol.json").read_text())
+    if proto["phase"] != phase or proto["mode"] != mode:
+        raise ValueError("Wrong study phase or mode")
+    if phase == "holdout":
+        dev = replay(root, mode, "dev")
+        expected_gate = {
+            "sources": qualifying_sources(dev),
+            "development_archive": checksum(
+                result_dir(root, mode, "dev") / "sessions.jsonl"
+            ),
+        }
+        if len(expected_gate["sources"]) < 2 or proto["gate"] != expected_gate:
+            raise ValueError("Holdout and development gate are not linked")
     jobs = schedule(cases, phase)
     archive = out / "sessions.jsonl"
     if (

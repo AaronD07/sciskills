@@ -1,7 +1,6 @@
 """Predictive release audits on repeated observations from nine separate studies."""
 import csv
 from collections import defaultdict
-from functools import lru_cache
 import hashlib
 import importlib.util
 import io
