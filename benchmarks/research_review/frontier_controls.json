@@ -1,0 +1,272 @@
+{
+  "version": "v0.1.0",
+  "commit": "f81afac4f11048e77a15dfc8fb1dbfb897fea0ce",
+  "tasks": [
+    {
+      "task": "sparse-network-assimilation",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "traffic-flux-inversion",
+      "phase": "dev",
+      "status": "verified",
+      "environment_image": "sha256:9267b3f61838f79b719f1100cc50abb4644c0b143fb07ea421f80c387a994956",
+      "tests_image": "sha256:dae4aa8d3429be5d1756e4e2a0b8442dee2d5fceb246aa83aa2fd9c96cad7403",
+      "timestamp": 1795793784,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 7
+        },
+        "pytest_outcomes": {
+          "failed": 163
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 7
+        },
+        "pytest_outcomes": {
+          "passed": 163
+        }
+      }
+    },
+    {
+      "task": "symbolic-regression",
+      "phase": "dev",
+      "status": "verified",
+      "environment_image": "sha256:4b5818e26aff8e71031659a0af4a44f264396e3f56ae5c9d3891572ef28d3244",
+      "tests_image": "sha256:748afec0054dd783897f8d277088a3bbac4c6dd9295575b24511ae9613389110",
+      "timestamp": 1795793642,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 1,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 1,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 2
+        },
+        "pytest_outcomes": {
+          "passed": 2
+        }
+      }
+    },
+    {
+      "task": "spin-glass-groundstate",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "masked-spherical-remap",
+      "phase": "dev",
+      "status": "verified",
+      "environment_image": "sha256:9577a48ab678afbc21d0365e3fef07d66c0562a5228836f05fe66b7a1558563b",
+      "tests_image": "sha256:b5e4edf4ec2ec167a9309e32d8b206e5b9f24d6d6b9baa4f8b720caca5838750",
+      "timestamp": 1795793562,
+      "platform": "linux/arm64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 21,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 21,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 22
+        },
+        "pytest_outcomes": {
+          "passed": 22
+        }
+      }
+    },
+    {
+      "task": "tess-transit-vetting",
+      "phase": "dev",
+      "status": "verified",
+      "environment_image": "sha256:e7c8d31f1325fa9de846519e8d001e15845f2368492eb44095a5485d4757b6a1",
+      "tests_image": "sha256:a33c21150134e1f27a4dcdab00e5ce5103a787c1fc9e44e0bbb9ac65cc2458cf",
+      "timestamp": 1795793562,
+      "platform": "linux/arm64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 4,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 5
+        },
+        "pytest_outcomes": {
+          "passed": 5
+        }
+      }
+    },
+    {
+      "task": "amr-poisson-optimize",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "mendota-ice-phenology",
+      "phase": "dev",
+      "status": "verified",
+      "environment_image": "sha256:197105281a87690bcdc3ecbd9a8a38a86c648cca38f1b61507adfa19bb2773e7",
+      "tests_image": "sha256:350b17ad21dc8cd49c2158b7dd800941eb263797bc33aff269d4796c22f68300",
+      "timestamp": 1795793562,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 4
+        },
+        "pytest_outcomes": {
+          "errors": 40
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "passed": 40
+        }
+      }
+    },
+    {
+      "task": "inelastic-constitutive-discovery",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "inverse-lithography",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "noisy-blackbox-optimization",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "rv-astrometry-fitting",
+      "phase": "dev",
+      "status": "pending"
+    },
+    {
+      "task": "hbv-calibration-1",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "hysteretic-aquifer-control",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "supraglacial-lake-classification",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "rolling-shutter-oma",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "ode-law-discovery",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "finite-free-stam",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "certified-sparse-regression",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "linked-cell-suppression",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "small-area-equivalence",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "neo-orbit-determination",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "nanoindentation-property-extraction",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "si-fracture-fbc",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "stacking-disorder-diffraction",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "xrd-multiphase-qpa",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "frustrated-heisenberg-nqs",
+      "phase": "holdout",
+      "status": "pending"
+    },
+    {
+      "task": "inverse-waveguide-shape",
+      "phase": "holdout",
+      "status": "pending"
+    }
+  ]
+}

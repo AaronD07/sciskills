@@ -1,0 +1,483 @@
+{
+  "dataset": "OpenMOSS-Team/SWE-bench-Science",
+  "commit": "997408298e8e4d09978b1120b95c4540d1a71bcb",
+  "catalog_sha256": "95945158a085a6c19f9d507d2c526923cce0716733cffe45d117c798fb1428b1",
+  "tasks": [
+    {
+      "id": "swe-017",
+      "domain": "gamma-ray-astronomy-dark-matter",
+      "family": "gamma-ray-astronomy-dark-matter",
+      "repository": "https://github.com/gammapy/gammapy",
+      "base_commit": "",
+      "path": "tasks/task_017",
+      "files": {
+        "task.toml": "8b02580a2eadafc355f04933ec04dc64ded4b8f87090e40a5b1a586c4938f088",
+        "instruction.md": "52ac3ed45e3f50dad0ddf48ec45a3b58a35c2d45ec8838536788645ef5de5da9",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-017:v0.1.2@sha256:95f109be6784572b7903f03e0f6617498b3b14f9578c7c2f703313ce90d9451d",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-017:v0.1.2@sha256:082a831bd6af86c7a13fd06feddd97a9886990571583a42a9f9ec829c2f05873",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-024",
+      "domain": "probabilistic-scientific-computing",
+      "family": "probabilistic-scientific-computing",
+      "repository": "https://github.com/pymc-devs/pymc",
+      "base_commit": "9ee5d84b5048aea0690bba2629ece684656ad186",
+      "path": "tasks/task_024",
+      "files": {
+        "task.toml": "962f286110b772db8f196f64c68ac6efa3986b3a7d41a35c4d7bc25f5e8febab",
+        "instruction.md": "c7c0dcc713eaeae13044ae2807b8712a3e943ec06601beac38d2fdef5b584441",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-024:v0.1.2@sha256:fa3205b0c40173485fcea16ee0e02798664986dcba87708b5ff1ee4c4092b194",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-024:v0.1.2@sha256:9d9cfe8d89db5c5597bc9ef83f7eef9e4497ef7b26f2bef8e93be9644293e80a",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-030",
+      "domain": "crystallography-file-format-semantics",
+      "family": "crystallography-file-format-semantics",
+      "repository": "https://github.com/materialsproject/pymatgen",
+      "base_commit": "585bb673c4aa222669c4b0d72ffeec3dbf092630",
+      "path": "tasks/task_030",
+      "files": {
+        "task.toml": "45da7692233abbd4faeec25349b00c0337ddb1dc5a11e42ac6b0a01527236e90",
+        "instruction.md": "332cfe2c07ee35ebdc3b183498f3a1aa56ce8de1a2f87a9bfc79518b05511ed4",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-030:v0.1.1@sha256:0b58b97e18857fc5e3b937628024ab3bc13ba59952651b287ed6bd19c1ca11fa",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-030:v0.1.1@sha256:a7a1ebc4f0d09c76072fd97d407d581348c92def2eb9cf4414cbca7a2d2175de",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-034",
+      "domain": "stochastic-numerical-analysis",
+      "family": "stochastic-numerical-analysis",
+      "repository": "https://github.com/patrick-kidger/diffrax",
+      "base_commit": "56d78e1acbdc9c1493caef17a34777931430f3bf",
+      "path": "tasks/task_034",
+      "files": {
+        "task.toml": "b13fb0f69103429847f43949fe2567b769510364a6891c1addec04310bd56f97",
+        "instruction.md": "cfd1ba4a40d8dfe5049d9c0617f1a5fc6be835b30cf1f5343ae75527317d1a6b",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-034:v0.1.1@sha256:fa45aacfb4bbf402fbd7597ca767d61065cf767a35e9c457f708bb024e46a29f",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-034:v0.1.1@sha256:05bcfc247e7ddf648bb2c176a6a51e0044fe3e262fb1520291c13384074fdaa7",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-036",
+      "domain": "computational-oceanography-and-spherical-geometry",
+      "family": "computational-oceanography-and-spherical-geometry",
+      "repository": "https://github.com/Parcels-code/Parcels",
+      "base_commit": "439ea290f9a75c3cbd66d79333fed475f92aeb00",
+      "path": "tasks/task_036",
+      "files": {
+        "task.toml": "f04bd4f7dddf5ee5b50a0c44dddda6fd4764972ede1fd0d68fa808a32f771113",
+        "instruction.md": "7712cb24a9a44ddcc03a01c2ace95c631050043e567c9879dc89c90a162438eb",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-036:v0.1.1@sha256:bde81a3c141fddd89bb39021eb1ac122021f63e81c99aadef61a1c1e86ac82e4",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-036:v0.1.1@sha256:97009f66b48e65e82d8e706d3e07eadded40d4918020554f7a9886708786dd69",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-039",
+      "domain": "earth-surface-dynamics-and-river-sediment-transport",
+      "family": "earth-surface-dynamics-and-river-sediment-transport",
+      "repository": "https://github.com/landlab/landlab",
+      "base_commit": "546bc11054cff5e12808c7122b3e8b38f1ef555f",
+      "path": "tasks/task_039",
+      "files": {
+        "task.toml": "b6c98ee48d419096fb0c9e35c7523822b316522574d1bfd128567516df304f43",
+        "instruction.md": "1848af000e1c40dbdd92deebdf5987bec25c996e43f4af3fc60e5c5d38880c15",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-039:v0.1.1@sha256:8e1428ce9adff057ad094b79fa0a1b7e863d8a0a9925247cf509c0b88b830f15",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-039:v0.1.1@sha256:1533cb3577d15acdc7fd3b1f755f8c4ec80fbb528b7bcb6bcf918c6559f20e4a",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-041",
+      "domain": "space-physics-coordinate-systems",
+      "family": "space-physics-coordinate-systems",
+      "repository": "https://github.com/sunpy/sunpy",
+      "base_commit": "470d13491dd2c2a9440b3c657af33373ca8d47c1",
+      "path": "tasks/task_041",
+      "files": {
+        "task.toml": "628c695a46a60d4d36150b30eedde4bc540b9cc2cc2332bb77ce04290115c629",
+        "instruction.md": "a6921bad6c78f39e1655a0c6735d3d4d4364bf16d264f05a07a082e78ceab48f",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-041:v0.1.1@sha256:37b558bb6c922ebc1e934902b60d7d8d4779e0b0bb261c94a7374079ab64b23d",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-041:v0.1.1@sha256:89c3b061bcb5d19a2b28722e4c8a1a5c2435e8641d4cdc2f2ffbd565bc48ff10",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-046",
+      "domain": "astrophysical-xray-spectral-timing",
+      "family": "astrophysical-xray-spectral-timing",
+      "repository": "https://github.com/StingraySoftware/stingray",
+      "base_commit": "79b8f9bb9d122bd0176bb37f48f0fd4926eb9afb",
+      "path": "tasks/task_046",
+      "files": {
+        "task.toml": "0597ac6755423a230508b4a9d17c14b0a8d4e26be13fb2e80cbb182087540f7e",
+        "instruction.md": "8eee78fcda71e1b8d3def27edcc140ef24c7adfa59fee37478250038ed37de2c",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-046:v0.1.1@sha256:e179c8eaa110b52d1360013fc07e493f6d68cac951848c0ddb296910482f85c1",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-046:v0.1.1@sha256:25d3e2f3e860c3712da3b56d584c4cf8abd297551527e87d8547323f9aa1c9a1",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-049",
+      "domain": "finite-difference-stochastic-partial-differential-equations",
+      "family": "finite-difference-stochastic-partial-differential-equations",
+      "repository": "https://github.com/zwicker-group/py-pde",
+      "base_commit": "a9f8256c1b4b48ac73f3df35b3e570993501b333",
+      "path": "tasks/task_049",
+      "files": {
+        "task.toml": "e19aa7d6271d635b244733f43e7bcdc7cc3aca144859b371fc4d54d9a97bd342",
+        "instruction.md": "1f51c1b46a5b26933bde90d9222e64b966cbbda42eb795f322f6314282caf2ea",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-049:v0.1.1@sha256:08749a092307b212a07d9f05b2edb2d74478b32f3d6d4e59bee97f22fe1fa3c1",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-049:v0.1.1@sha256:ba7d3a2168c254fda002f5263c1e7d965577633f0473184e212743416a1d77fb",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-055",
+      "domain": "astronomical-spectroscopy",
+      "family": "astronomical-spectroscopy",
+      "repository": "https://github.com/astropy/specutils",
+      "base_commit": "0613ba1ba86fd7ae79e9d89c8ffd24004a891aee",
+      "path": "tasks/task_055",
+      "files": {
+        "task.toml": "ba1381f6df95208295a9d6556aa73a49319f35a249e704c18b6950684762baa7",
+        "instruction.md": "1b0ae44349c003570840b169300e469490545b0e4f10acd2da88409446d18f39",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-055:v0.1.2@sha256:7db35fa8d5c56476e3d594bbc421b8f24afdf6978366495d0faa0462a3f1f0f4",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-055:v0.1.2@sha256:93596c6ca11f7ee7e015a4cb0fcb08f92346756f3bc945b5732e387fd6fd2ed0",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-107",
+      "domain": "computer-algebra",
+      "family": "computer-algebra",
+      "repository": "https://github.com/sympy/sympy",
+      "base_commit": "afe8935530a61ae5bd7a90400fa60c0d2c8c18a4",
+      "path": "tasks/task_107",
+      "files": {
+        "task.toml": "146bafcff167b91f1f6724f12272bb9fb0c629bdb78591e6dfb964bb08ed9c39",
+        "instruction.md": "d26151c72d1026ae058f02a910df3960e6b605f0ab870f711e953dd3f359b6de",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-107:v0.1.2@sha256:8137ff8cedbda6d8b15e865ed79f05132e2d42f1f27a24223ab1235bbcac05cc",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-107:v0.1.2@sha256:7db7880a15a0ce7332709262897b2eeadf9a19145d9f3eae6cb190c4a16b497b",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-113",
+      "domain": "renewable-energy-modelling",
+      "family": "renewable-energy-modelling",
+      "repository": "https://github.com/pvlib/pvlib-python",
+      "base_commit": "339e6aae28a11f39a2e18bbf110fc368e18b1e72",
+      "path": "tasks/task_113",
+      "files": {
+        "task.toml": "963e0358fbb472062aaa2e83b8ed66df10b636f9676dd3a01ed64aabe0caab8f",
+        "instruction.md": "b4f0aa68dc57f3ab8f08d9b1b8db5d5ea260d1498232c9de70961ca723ca4455",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-113:v0.1.2@sha256:e74b2174c7fd61cf5aa054ea8cb051337bdb68c5dad18758f2c882cbc755f02d",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-113:v0.1.2@sha256:b19cd02c4ee297fd4fb807c65808ee80685c8ebf8e268cc005cc96fd44683958",
+      "phase": "dev",
+      "secondary": false
+    },
+    {
+      "id": "swe-033",
+      "domain": "periodic-electronic-structure",
+      "family": "periodic-electronic-structure",
+      "repository": "https://github.com/pyscf/pyscf",
+      "base_commit": "802cd37e9dc6abb52f30d84bb422b6ee15493fc9",
+      "path": "tasks/task_033",
+      "files": {
+        "task.toml": "678e5cf1011bd1af709e32836d8b47762c3a186c010ce489114db1364f2a1cb7",
+        "instruction.md": "cff50ccd70a8007579cc3c85262a24f9b7472819b8343d2277409c9e9f59c6a3",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-033:v0.1.1@sha256:197e982f57b296e787d46cf34996907450e455aee4d3fab0602f6dc24bff6143",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-033:v0.1.1@sha256:6dc7b560ea513f6160f7c57f10d097acc966df297e37e71f466e132810369295",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-038",
+      "domain": "computational-crystallography-and-materials-symmetry",
+      "family": "computational-crystallography-and-materials-symmetry",
+      "repository": "https://github.com/spglib/spglib",
+      "base_commit": "",
+      "path": "tasks/task_038",
+      "files": {
+        "task.toml": "fdbe138acd65688a8b840c852f4d4a1c5c45f636349ea1df5afdfa7b08251116",
+        "instruction.md": "e82ccdbe178b3aded436b510aaaed7bb33851fcc6c8b52822b872623466584b5",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-c-task-038:v0.1.1@sha256:7a3e4ccf5364e434c5a3d4710e2016df66ef5db3cf063d0249574c59143dd793",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-c-task-038:v0.1.1@sha256:4bb7c29ed433773c37de68bad0e425e75710b6709e0beec1b63f0f3691539643",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-040",
+      "domain": "computational-electromagnetics-and-geophysical-forward-modeling",
+      "family": "computational-electromagnetics-and-geophysical-forward-modeling",
+      "repository": "https://github.com/simpeg/simpeg",
+      "base_commit": "3cc6605c54b0f6062c1a139ece2ecf69cddc829",
+      "path": "tasks/task_040",
+      "files": {
+        "task.toml": "05c81836d6cf828c4280ba32798390847690405ec1fa993a8eaccc5eef93ce7e",
+        "instruction.md": "455eafe06107cab9a877d8937f963406cae2a096fca7887d034dcc4e910cd6f8",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-040:v0.1.1@sha256:b08140e893ca136c31d83c2afc20b073a950a985dfeaf77c3443674dea1fb245",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-040:v0.1.1@sha256:65832254b48e4b1777a7d1d07680a2a870de87c697b47ff8d0c27a516f95ad46",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-043",
+      "domain": "porous-media-image-analysis",
+      "family": "porous-media-image-analysis",
+      "repository": "https://github.com/PMEAL/porespy",
+      "base_commit": "f2360a52bc77ec917aa07ce0cf6128dc7687ea64",
+      "path": "tasks/task_043",
+      "files": {
+        "task.toml": "d3587eb47f5fa67ee30c6e46be051c2f0def7201e0ad107d9f7d4daa36d93957",
+        "instruction.md": "e83b4d4560eb15af8a01557d6c8c1e69e365af14d2aebb8f89d004234e739389",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-043:v0.1.1@sha256:1207c3ad5330252d5696310459258a043adf59491b41fb27ddc0e0d6fd659e8e",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-043:v0.1.1@sha256:84e2a692b8b83060583de8fca377a153136ba35bd01e40d4ff4e61fe116e2472",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-044",
+      "domain": "electrochemical-battery-modeling",
+      "family": "electrochemical-battery-modeling",
+      "repository": "https://github.com/pybamm-team/PyBaMM",
+      "base_commit": "a42d7a92dd9a2c63240c8ccb6f240e5c3c42de46",
+      "path": "tasks/task_044",
+      "files": {
+        "task.toml": "0208068f05a70550a30ac778acbb0e1060cb9a010f89ea05a1569bb5f859bf10",
+        "instruction.md": "54a057c8faeee8a7a89da8709e075b4b78aa90d19a9436f2869878be700c62a0",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-044:v0.1.1@sha256:83a59d87af5edf2d56822d5bbe902c10a9afdc7afbb11f70903b0de99719335a",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-044:v0.1.1@sha256:71ce7ba80a7fa8e30f073a714ed124130925d8fc6945760d3b28e176bdba2973",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-045",
+      "domain": "computational-oceanography-finite-volume-grids",
+      "family": "computational-oceanography-finite-volume-grids",
+      "repository": "https://github.com/xgcm/xgcm",
+      "base_commit": "3831b46accbff35f06e4ed3831600d71d5d8da18",
+      "path": "tasks/task_045",
+      "files": {
+        "task.toml": "9d31f17e2a59bf442b7f464f6a6fbf5b4db7aa0169dc7d5ca4cdf1cd76c1bc7d",
+        "instruction.md": "a2ea11e358a1f3d9068806b40ffecb7d1846768fce47034d7b3c78264e6469ac",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-045:v0.1.1@sha256:7c1a6d7c324fb06b666139cc162487e81c848774f8392ff857ea3130c8bdf145",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-045:v0.1.1@sha256:8f1017124bd8c6ff303864a9f681042f38a68c6026620b1ddc187bfba8555525",
+      "phase": "holdout",
+      "secondary": true
+    },
+    {
+      "id": "swe-048",
+      "domain": "computational-thermodynamics-calphad",
+      "family": "computational-thermodynamics-calphad",
+      "repository": "https://github.com/pycalphad/pycalphad",
+      "base_commit": "50389503f126ea6f9e40947c215bd857bcfbd9de",
+      "path": "tasks/task_048",
+      "files": {
+        "task.toml": "8eee9bed914f3854e7f44a43d3622ecc87692e3c8a73331fe1159838dbde6c61",
+        "instruction.md": "fb02efee4e9fb5ce28132497180e2e80c6a3d6c86fa92ca887dadd11727e204f",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-048:v0.1.2@sha256:fab37369e21d3898735fa2ad2729aafe0a99a6f2a6852b9430d31cc81620d5db",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-048:v0.1.2@sha256:2f9f66bb675f3e67c8ece3caa9a5ddf155534dbf656e0fd1d5f4d2c58c886500",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-050",
+      "domain": "quantum-information-many-body-tensor-networks",
+      "family": "quantum-information-many-body-tensor-networks",
+      "repository": "https://github.com/jcmgray/quimb",
+      "base_commit": "79594e405ac72da908cdd7a1058911afc256c483",
+      "path": "tasks/task_050",
+      "files": {
+        "task.toml": "370df9e28f144c5d86960ff245e0b702d1fc48a7aeb8822155243d2320d48059",
+        "instruction.md": "a34c6792953b73c45558af734b96ecb9dd33e6f1fd662de0e6275eed61c46240",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-050:v0.1.1@sha256:09a81d661864341accf7eeadb063ca71c117e25cb86f5e2dc822964374cb8a78",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-050:v0.1.1@sha256:329b4cefbac68b9fff040c801b61c9edc46971f6378547731630f50d353d6a48",
+      "phase": "holdout",
+      "secondary": true
+    },
+    {
+      "id": "swe-051",
+      "domain": "planetary-geodesy-and-geomagnetism",
+      "family": "planetary-geodesy-and-geomagnetism",
+      "repository": "https://github.com/SHTOOLS/SHTOOLS",
+      "base_commit": "7f7d91474509acb597071eb789661b1f0cc304ca",
+      "path": "tasks/task_051",
+      "files": {
+        "task.toml": "31aafed7a0efe79b20ac16cb8fbdfbc492eaf2d4a604893f5b7270ea97c8bee3",
+        "instruction.md": "2ecf2132cac5184c4b77d60c140ea39ea4ad0994d87c4e338cb335a53f3db713",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-fortran-task-051:v0.1.2@sha256:914f6a785eeb3753ebdf16fc5ed577533a88977cddcfb92d9565d3d8d35541da",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-fortran-task-051:v0.1.2@sha256:9c3ffb87798fcce875b2c1583c48823f46063d0ccc18ed062e4caf9e35fa8e3c",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-052",
+      "domain": "computational-materials-finite-volume-pde",
+      "family": "computational-materials-finite-volume-pde",
+      "repository": "https://github.com/usnistgov/fipy",
+      "base_commit": "11e5c6ae26207a60e223d46473ac364b352ac982",
+      "path": "tasks/task_052",
+      "files": {
+        "task.toml": "a6d1f9d1ceeaf148f729209ecc1013f23a874f29002a4029ff72b730cf5b345f",
+        "instruction.md": "9d6918bb474d15d6cd355a88c337e988f9334da54cf9c5501ab5bd7ac09604fd",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-052:v0.1.2@sha256:8d385095dc3e9639196363cab64290ecc7ae1e2f0b19dab352c411275f7525fd",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-052:v0.1.2@sha256:935154738d5dfcd390f938b928169bc13d490188c93ff34894c8e68556a53779",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-056",
+      "domain": "astrodynamics-and-orbital-mechanics",
+      "family": "astrodynamics-and-orbital-mechanics",
+      "repository": "https://github.com/poliastro/poliastro",
+      "base_commit": "0583b33091b07229abe2027bccdc596ba3c5033b0",
+      "path": "tasks/task_056",
+      "files": {
+        "task.toml": "2830b1227570442921a7a6aa06db3237c20dc7f1875751b90de35445632ab463",
+        "instruction.md": "99272bc2a3a8f9c53c4b09e2962f53ef889af503e9c97aee3d118107d6425f42",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-056:v0.1.1@sha256:b30ad2201f576741d29e175928f89a3326113b4aac13fdf0732c5db64ba7333d",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-056:v0.1.1@sha256:a98a8c6a3139056d26e98222b863448e79379a0c988e9812ea69a76e39a65072",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-061",
+      "domain": "astronomical-image-processing",
+      "family": "astronomical-image-processing",
+      "repository": "https://github.com/astropy/reproject",
+      "base_commit": "62a0d3f037024d4dcf67857fb83d392f2e099ec0",
+      "path": "tasks/task_061",
+      "files": {
+        "task.toml": "b7d43c85debe3d406a16369331a9451c0ae2033d04913504fef619f1ec459e7f",
+        "instruction.md": "47d5a7c2bdf07bee42fb1c8a25f2a7883294cababe8d341ec02355764cf0d6c6",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-c-task-061:v0.1.2@sha256:4b575107c0cad4432dc7d9e865578541fb666cc43ca7092d737da324060300ec",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-c-task-061:v0.1.2@sha256:02243af35f5670de51ef31798ef554e420143a921b0265aad174230a99f8470c",
+      "phase": "holdout",
+      "secondary": true
+    },
+    {
+      "id": "swe-065",
+      "domain": "astrophysical hydrodynamics and particle-based field visualization",
+      "family": "astrophysical hydrodynamics and particle-based field visualization",
+      "repository": "https://github.com/yt-project/yt",
+      "base_commit": "c86781b8cbdeea8002c7846d37dc1250045146e6",
+      "path": "tasks/task_065",
+      "files": {
+        "task.toml": "3428dfc0febea0d9a149cb02a3fb4bab56b808b28062d82855d11052a9ecb4cf",
+        "instruction.md": "ff49f0e1763ece9a9183d47e8cb5fe437ca1af7dcadd9fdeff8a3c75e806cca7",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-065:v0.1.2@sha256:aff7cd592ada3f00e9faedec5ce98c6612c571eeaee3cf4e4f0da5f8eda0c654",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-065:v0.1.2@sha256:a115c7e2c807ecff0281bbda71a6825aafac76c159fae889db9f5a1b20cc3aab",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-067",
+      "domain": "climate-fire-weather",
+      "family": "climate-fire-weather",
+      "repository": "https://github.com/Ouranosinc/xclim",
+      "base_commit": "d1e654cf59a5d5761f5586bca1102a1590ae6e32",
+      "path": "tasks/task_067",
+      "files": {
+        "task.toml": "f61ae096470117f6470260906290235f8198e2b7236ae71120dd1e6cfc0a98f6",
+        "instruction.md": "7e371f9c1cf89b0d04ea01a5d027029f3041a76d1b36e630242d0c6f61e676c2",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-067:v0.1.2@sha256:8c0228a29232ad332928650c1ad0d0d4490bc00b8286b66ac97155e51f02459d",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-067:v0.1.2@sha256:d4b000d7a859cc21663a08f381649f408a27e8376d792d17a7c0c97a458387e0",
+      "phase": "holdout",
+      "secondary": false
+    },
+    {
+      "id": "swe-108",
+      "domain": "computational-mathematics-special-functions",
+      "family": "computational-mathematics-special-functions",
+      "repository": "https://github.com/mpmath/mpmath",
+      "base_commit": "5e683847c782a4c38ec71b8a88e6b1fbd903548f",
+      "path": "tasks/task_108",
+      "files": {
+        "task.toml": "d6e3a068c00dc055e347cb30d07633af3bb23a5d3d2e28ea4958f9b86d2dca3b",
+        "instruction.md": "b9a4de5d9b514218235a56d9c3ff1fc8d56f8965c0d5aa51a618c30f38e1adef",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-108:v0.1.2@sha256:d6858743b88b3b21d0ea0744bfec22af6b75e0da76f80cf17ad0a3d18e28d2b3",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-108:v0.1.2@sha256:e0805a195f550797b5e39a3f9ce26866c331513cf89d30e1cb96a9a5960dacc8",
+      "phase": "holdout",
+      "secondary": true
+    },
+    {
+      "id": "swe-114",
+      "domain": "power-system-energy-storage",
+      "family": "power-system-energy-storage",
+      "repository": "https://github.com/PyPSA/PyPSA",
+      "base_commit": "895bc26c721abbb826d7f8caf51587a66c69f15d",
+      "path": "tasks/task_114",
+      "files": {
+        "task.toml": "9dfc913adfdb322c53114c193312e4fb8f6ecf92d98e518e826f1b56a69b3e43",
+        "instruction.md": "641e4fdf7e3824e07f9e6a49ee924f764850011a9e94e163ea3f567db492d937",
+        "pre_artifacts.sh": "f58b703c6c6dbcf352aaf76e673e12d9020777bfe5ce308f75ba4935afe0744b"
+      },
+      "environment": "docker.io/kevinxulearning/swe-bench-science-environment-python-task-114:v0.1.2@sha256:68c032f628b1aad6432f5bc030537d016dc697778ac57ebfd54595df6b23ab3c",
+      "verifier": "docker.io/kevinxulearning/swe-bench-science-verifier-python-task-114:v0.1.2@sha256:0cfbc99c9056587cebcd3647a2edbfe8550c65d58ba2fbabc8b4e0a242bd24c7",
+      "phase": "holdout",
+      "secondary": false
+    }
+  ]
+}

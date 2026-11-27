@@ -1,0 +1,230 @@
+{
+  "version": "v0.1.0",
+  "commit": "f81afac4f11048e77a15dfc8fb1dbfb897fea0ce",
+  "tasks": [
+    {
+      "id": "sparse-network-assimilation",
+      "phase": "dev",
+      "path": "tasks/earth-sciences/atmospheric-sciences/sparse-network-assimilation",
+      "git_tree": "4793cc603eeb10ba9a4d51a3299de96b1acced85",
+      "harbor_digest": "sha256:52ba7089dc32952df08c478af76b732fa82468c125431388adbf9798d869826f",
+      "secondary": false
+    },
+    {
+      "id": "traffic-flux-inversion",
+      "phase": "dev",
+      "path": "tasks/mathematical-sciences/applied-mathematics/traffic-flux-inversion",
+      "git_tree": "695a9ab24c7fec22822cf1e00ac10d3564d0a8c6",
+      "harbor_digest": "sha256:9003d54b9842f1b976b27dfe992a564252f6fe30f3aa44c5385db6cca1885ce0",
+      "secondary": false
+    },
+    {
+      "id": "symbolic-regression",
+      "phase": "dev",
+      "path": "tasks/mathematical-sciences/statistics/symbolic-regression",
+      "git_tree": "ff14dbde07ad1a1ca4e391f3b498179156c9c1f9",
+      "harbor_digest": "sha256:eef0140e2832db2c03f9062913da924caa4edff519bd995571540c1eb38de235",
+      "secondary": false
+    },
+    {
+      "id": "spin-glass-groundstate",
+      "phase": "dev",
+      "path": "tasks/physical-sciences/physics/spin-glass-groundstate",
+      "git_tree": "45232bb9264c598397cb451e46f4a9c64d37b234",
+      "harbor_digest": "sha256:96373c8f043745cfe27f9eabdd17f28095a8b5297d48433d835650e868e78e72",
+      "secondary": false
+    },
+    {
+      "id": "masked-spherical-remap",
+      "phase": "dev",
+      "path": "tasks/earth-sciences/ocean-sciences/masked-spherical-remap",
+      "git_tree": "588a015c5305197b80364c46cda0aee64ce56d32",
+      "harbor_digest": "sha256:5cf09acc7262754001f2da0d7b8f16bf3d363c14915c9b5e92b707115f4a0944",
+      "secondary": false
+    },
+    {
+      "id": "tess-transit-vetting",
+      "phase": "dev",
+      "path": "tasks/physical-sciences/astronomy/tess-transit-vetting",
+      "git_tree": "9161c8db28c5728485bce612f0a922af9c9dbe77",
+      "harbor_digest": "sha256:431eaa15ddb3c872e38db23b6d0605d6ab05cea04ab4a81f5d92db767da50f70",
+      "secondary": false
+    },
+    {
+      "id": "amr-poisson-optimize",
+      "phase": "dev",
+      "path": "tasks/mathematical-sciences/applied-mathematics/amr-poisson-optimize",
+      "git_tree": "e5b94f19ea72ad0b271c4a409505a0772fe7f6f9",
+      "harbor_digest": "sha256:fd1639a9333784522961ee9efc18bb2b6f0e7f0830e3d131780b036d2848c2e1",
+      "secondary": false
+    },
+    {
+      "id": "mendota-ice-phenology",
+      "phase": "dev",
+      "path": "tasks/earth-sciences/geosciences/mendota-ice-phenology",
+      "git_tree": "7a113c276f9365d2b89c7255edc489017a3709a1",
+      "harbor_digest": "sha256:4cbc2fee1983383051c4769b03d8d3282349d1f2f7861f275c9594dea9db0501",
+      "secondary": false
+    },
+    {
+      "id": "inelastic-constitutive-discovery",
+      "phase": "dev",
+      "path": "tasks/engineering-sciences/mechanical-engineering/inelastic-constitutive-discovery",
+      "git_tree": "63fe026d1c90f238f265c6ed2e3d58aeaea67a08",
+      "harbor_digest": "sha256:15d263523a164a8eba4247f5fc213771e6683e889a5e14da9645874d417cd55f",
+      "secondary": false
+    },
+    {
+      "id": "inverse-lithography",
+      "phase": "dev",
+      "path": "tasks/physical-sciences/physics/inverse-lithography",
+      "git_tree": "e508c8ec972dad13e7f99a420be2e080701194fe",
+      "harbor_digest": "sha256:8c4da4b5b3a00283335e83dda92584aaf9293ff773bc43f2bf95eb0e2c0f8530",
+      "secondary": false
+    },
+    {
+      "id": "noisy-blackbox-optimization",
+      "phase": "dev",
+      "path": "tasks/mathematical-sciences/operations-research/noisy-blackbox-optimization",
+      "git_tree": "ae6751035d1f6e2021290d45104c692c5ac80205",
+      "harbor_digest": "sha256:ac2182cfa5ce9b2fbe6bc6d1b1c0a25b77b0da2187e457fe104aa212c9d1e954",
+      "secondary": false
+    },
+    {
+      "id": "rv-astrometry-fitting",
+      "phase": "dev",
+      "path": "tasks/physical-sciences/astronomy/rv-astrometry-fitting",
+      "git_tree": "ff66bf4126c50949f5181e53a05a95816685a56e",
+      "harbor_digest": "sha256:8e086e1f7245067eaa9a67c259c1519204fa058d8664983066cd582ef258a1ea",
+      "secondary": false
+    },
+    {
+      "id": "hbv-calibration-1",
+      "phase": "holdout",
+      "path": "tasks/earth-sciences/geosciences/hbv-calibration-1",
+      "git_tree": "3598b1dc283f594e217c07302eb92a3f6142c274",
+      "harbor_digest": "sha256:2682710a3229c546c18fb4f0132410c2d8a8813618be05560266ff6c2e1b9eb7",
+      "secondary": true
+    },
+    {
+      "id": "hysteretic-aquifer-control",
+      "phase": "holdout",
+      "path": "tasks/earth-sciences/environmental-sciences/hysteretic-aquifer-control",
+      "git_tree": "4d01ce4057dc945eae2e6fbfca5ed7ad46316c84",
+      "harbor_digest": "sha256:681df0c3b2ada03a933ac4d2e11f07983676f87a9f26b61e416987904b880289",
+      "secondary": false
+    },
+    {
+      "id": "supraglacial-lake-classification",
+      "phase": "holdout",
+      "path": "tasks/earth-sciences/geosciences/supraglacial-lake-classification",
+      "git_tree": "c519990e4bc7c9400711f8412e438ac1d3e40c9a",
+      "harbor_digest": "sha256:4a57227f84340ff6e245c3f2efeb8dfb6fb44a89713223d8742433dd569f9e3a",
+      "secondary": false
+    },
+    {
+      "id": "rolling-shutter-oma",
+      "phase": "holdout",
+      "path": "tasks/engineering-sciences/civil-engineering/rolling-shutter-oma",
+      "git_tree": "98aab50451dfaa1c56de3a039579a160dbf94ea3",
+      "harbor_digest": "sha256:f98baab61e0c96ee4772af688f89c255e0e9b477021225b715b8a5a6c7d01fac",
+      "secondary": false
+    },
+    {
+      "id": "ode-law-discovery",
+      "phase": "holdout",
+      "path": "tasks/mathematical-sciences/applied-mathematics/ode-law-discovery",
+      "git_tree": "48e5e0f3e2bfd0f83e5802a9c63ca681eec6cfd2",
+      "harbor_digest": "sha256:767d16a0a6226f391208b1b4bb126a6f957e5d0c8156342b5c9410a755142d65",
+      "secondary": true
+    },
+    {
+      "id": "finite-free-stam",
+      "phase": "holdout",
+      "path": "tasks/mathematical-sciences/formal-mathematics/finite-free-stam",
+      "git_tree": "9e5f95fb9722286bc1178aad91916e2a35a6f570",
+      "harbor_digest": "sha256:27880ab19d400debb58ba3f2959e294450f69ad92ee69c5724b78168c18bdc2f",
+      "secondary": false
+    },
+    {
+      "id": "certified-sparse-regression",
+      "phase": "holdout",
+      "path": "tasks/mathematical-sciences/operations-research/certified-sparse-regression",
+      "git_tree": "f5913429274882558bcfba9ec46070968d10ca80",
+      "harbor_digest": "sha256:719c1b13dfb99a043ea21c9eec60d83daefdb2781b642b7dea93616d99665886",
+      "secondary": false
+    },
+    {
+      "id": "linked-cell-suppression",
+      "phase": "holdout",
+      "path": "tasks/mathematical-sciences/operations-research/linked-cell-suppression",
+      "git_tree": "39600594343a3b4b8946f5fa2372d899c836fd4f",
+      "harbor_digest": "sha256:34d92f30b75011c93d55caced3a4a58c6f68a7bebdbb601b36cb6561ef4069c0",
+      "secondary": false
+    },
+    {
+      "id": "small-area-equivalence",
+      "phase": "holdout",
+      "path": "tasks/mathematical-sciences/statistics/small-area-equivalence",
+      "git_tree": "bb534e0a81d01bffdbd7896f94529cc3b7502744",
+      "harbor_digest": "sha256:fdbf952fcc0b32a512a59f03c347b97ef6dea6694095dc7c191c37593f5a7d9e",
+      "secondary": false
+    },
+    {
+      "id": "neo-orbit-determination",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/astronomy/neo-orbit-determination",
+      "git_tree": "10cdbed8c83a83fef57e4d4ecaf3268da055d268",
+      "harbor_digest": "sha256:b0038fd39395b57f2036b2c0271f37b508e1250fc97d12c899590b61e997cada",
+      "secondary": true
+    },
+    {
+      "id": "nanoindentation-property-extraction",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/materials-science/nanoindentation-property-extraction",
+      "git_tree": "cd386f7877d7143926b0de89aa9fa39b486db535",
+      "harbor_digest": "sha256:43ece969b97a5c858183b722574150c411022927756f1b25e4bf72d8b8287989",
+      "secondary": false
+    },
+    {
+      "id": "si-fracture-fbc",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/materials-science/si-fracture-fbc",
+      "git_tree": "8380dbd585c32b5e75c340ab3af92f4e234e900e",
+      "harbor_digest": "sha256:f6a0922de395d4495d566a45fbf7211d7378fcd1b9d011441d96e06917f70bcb",
+      "secondary": false
+    },
+    {
+      "id": "stacking-disorder-diffraction",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/materials-science/stacking-disorder-diffraction",
+      "git_tree": "8da82e012a341d03a62388c8fa95c39a7659ffbb",
+      "harbor_digest": "sha256:43e38f956a3b74f0e51885a5202bf7cb81c3409b5d84406b296884b9a0199265",
+      "secondary": true
+    },
+    {
+      "id": "xrd-multiphase-qpa",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/materials-science/xrd-multiphase-qpa",
+      "git_tree": "1b854fd86166b174f32055923ddf1563405f63e8",
+      "harbor_digest": "sha256:61e0ae760254b065856db374b6bbe071834801902043c7b984cf61298e0565dc",
+      "secondary": false
+    },
+    {
+      "id": "frustrated-heisenberg-nqs",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/physics/frustrated-heisenberg-nqs",
+      "git_tree": "3225682bb1aec7001dc59bba181744eebbcc6edb",
+      "harbor_digest": "sha256:c3ebfdfec825351a185dfc7cd54d3e0fbee022db447a7926b4695c7214a61a49",
+      "secondary": false
+    },
+    {
+      "id": "inverse-waveguide-shape",
+      "phase": "holdout",
+      "path": "tasks/physical-sciences/physics/inverse-waveguide-shape",
+      "git_tree": "b7d69fa982a0f710c2fcfbebb401a44e6013e044",
+      "harbor_digest": "sha256:2e798c88bc50bce23fead7e9ea6550a384a3735e0af2fe7674e704df449c8260",
+      "secondary": false
+    }
+  ]
+}

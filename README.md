@@ -56,6 +56,10 @@ We tested the same drafts with ordinary and skill-assisted review on original Li
 
 The [integrity review study](benchmarks/integrity_review/README.md) tested experimental coverage, measurement provenance and deployment validity. Only deployment qualified for a holdout. The specialist verified that every fitting and assessment record in a theophylline study matched the registered split and restored a valid release that ordinary review had withdrawn. Ordinary review found a different repair that the specialist missed. Both finished with 16 of 18 study/model pairs correct. General review finished with 15.
 
+## Reviewing frontier and everyday research
+
+A researcher can use the skills to review a numerical method that will be run on unfamiliar data. They can also use them for everyday decisions where a unit, a missing calibration or a change to the wrong record would alter the result. We test the first use on published scientific computing tasks and the second on paired research handoffs. Every reviewer starts with the same model's original work. [Study design and reproduction](benchmarks/research_review/README.md)
+
 ## Does a skill improve a second review?
 
 We gave ordinary and skill-assisted reviewers the same first draft on 24 scientific tasks and eight financial investigations. Luna's program-review skill corrected a reversed comparison on real exposure data. Another skill changed a correct response fraction from 0.32 to 0.23. On the 71 science pairs that completed under the tool rules, both reviewers passed 69. The study found no meaningful overall gain. [Results, task packets and replay](benchmarks/paired_review/README.md)

@@ -1,0 +1,8 @@
+{
+  "general": "audit-a-scientific-claim",
+  "default": "review-a-protocol-decision",
+  "units": "review-a-numerical-result",
+  "assumptions": "preserve-the-research-question",
+  "blockers": "trace-claims-to-evidence",
+  "scope": "review-a-protocol-decision"
+}
