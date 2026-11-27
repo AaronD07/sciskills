@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from benchmarks.research_review import study
+from benchmarks.research_review import dispatch, frontier, study
 
 
 class FrontierGate(unittest.TestCase):
@@ -75,3 +75,36 @@ class FrontierGate(unittest.TestCase):
             {"status": "submitted", "score": {"correct": None}},
         )
         self.assertFalse(self.qualifies())
+
+
+class ContextPlacement(unittest.TestCase):
+    @patch.object(
+        frontier,
+        "_engine_id",
+        side_effect=lambda ctx: {"left": "one", "right": "two"}[ctx],
+    )
+    def test_verified_engine_affinity(self, _engine):
+        base = {
+            "task": "science",
+            "commit": frontier.MANIFEST["commit"],
+            "ready": True,
+            "negative": {"correct": False},
+            "positive": {"correct": True, "reward": 1},
+            "verifier_context": "left",
+            "verifier_engine": "one",
+            "participant_context": "left",
+            "participant_engine": "one",
+        }
+        second = {**base, "participant_context": "right", "participant_engine": "two"}
+        selected = dispatch.choose_context([base, second], None, "science")
+        self.assertEqual(
+            dispatch.choose_context([second, base], selected, "science"), selected
+        )
+        with self.assertRaises(RuntimeError):
+            dispatch.choose_context(
+                [base, second], {**selected, "engine": "changed"}, "science"
+            )
+        with self.assertRaises(ValueError):
+            dispatch.choose_context(
+                [{**base, "positive": {"correct": False}}], None, "science"
+            )

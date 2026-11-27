@@ -689,7 +689,10 @@ def _read_control(task):
 
 
 def ready(task):
-    record = _read_control(task)
+    return live_control(task, _read_control(task))
+
+
+def live_control(task, record):
     if not (
         record.get("ready") is True
         and record.get("negative", {}).get("correct") is False

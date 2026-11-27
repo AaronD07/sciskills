@@ -20,6 +20,10 @@ CHECKS = (
     "original_inputs",
 )
 KNOWN_STATUS = {
+    "participant_host_oom",
+    "pending_engine_requalification",
+    "verifier_killed",
+    "unsupported_artifact",
     "submitted",
     "quota_exhausted",
     "authentication_error",
@@ -154,6 +158,84 @@ def public_row(raw, draft, case):
     return summary
 
 
+def _docker_identity(record, role="participant"):
+    """Keep context and engine distinct: a rebuilt daemon can reuse a context name."""
+    identity = {}
+    for field in ("context", "engine"):
+        value = record.get(role + "_" + field)
+        if isinstance(value, str) and value:
+            identity[field] = field + "-" + study.digest(field + "/" + value)[:16]
+    return identity
+
+
+def _controls(folder, track, task, phase):
+    main = folder / (task + ".json")
+    paths = ([main] if main.is_file() else []) + sorted(
+        (folder / "contexts").glob("*/" + task + ".json")
+    )
+    contexts = {}
+    for path in paths:
+        receipt = study.read(path)
+        if receipt.get("task", task) != task or receipt.get("phase", phase) != phase:
+            continue
+        if (
+            track == "frontier"
+            and receipt.get("commit", frontier.MANIFEST["commit"])
+            != frontier.MANIFEST["commit"]
+        ):
+            continue
+        participant = _docker_identity(receipt)
+        negative = (receipt.get("negative") or {}).get("correct")
+        positive = (receipt.get("positive") or {}).get("correct")
+        ready = receipt.get("ready") is True and negative is False
+        if track == "frontier":
+            ready = (
+                ready
+                and positive is True
+                and (receipt.get("positive") or {}).get("reward", 1) == 1
+            )
+        # The runtime gives this participant's scoped receipt precedence over the main copy.
+        key = participant.get("context") or participant.get("engine") or "legacy"
+        contexts[key] = {
+            "participant": participant,
+            "verifier": _docker_identity(receipt, "verifier"),
+            "ready": ready,
+            "negative_correct": negative if type(negative) is bool else None,
+            "positive_correct": positive if type(positive) is bool else None,
+        }
+    if not contexts:
+        return None
+    entries = [contexts[k] for k in sorted(contexts)]
+    chosen = next((r for r in entries if r["ready"]), entries[0])
+    return {k: chosen[k] for k in ("ready", "negative_correct", "positive_correct")} | {
+        "any_context_ready": any(r["ready"] for r in entries),
+        "contexts": entries,
+        "used_contexts": [],
+    }
+
+
+def _match_controls(control, participant):
+    if (
+        not participant
+        or set(participant) != {"context", "engine"}
+        or not all(participant.values())
+    ):
+        return []
+    return [
+        r
+        for r in (control or {}).get("contexts", [])
+        if r["participant"] == participant
+    ]
+
+
+def _verified(control):
+    return (
+        control.get("ready") is True
+        and control.get("negative_correct") is False
+        and control.get("positive_correct") is True
+    )
+
+
 def archive_runs(root, tracks=study.TRACKS):
     """Build an allowlisted archive from local primary records, independent of wall time."""
     archive = {"schema_version": 1, "tracks": {}, "rows": []}
@@ -179,20 +261,13 @@ def archive_runs(root, tracks=study.TRACKS):
             }
         if track != "everyday":
             frozen["controls"] = {}
-            for ids in design["tasks"].values():
+            for phase, ids in design["tasks"].items():
                 for task in sorted(ids):
-                    control = root / (track + "-controls") / (task + ".json")
-                    if control.is_file():
-                        receipt = study.read(control)
-                        frozen["controls"][task] = {
-                            "ready": receipt.get("ready") is True,
-                            "negative_correct": (receipt.get("negative") or {}).get(
-                                "correct"
-                            ),
-                            "positive_correct": (receipt.get("positive") or {}).get(
-                                "correct"
-                            ),
-                        }
+                    control = _controls(
+                        root / (track + "-controls"), track, task, phase
+                    )
+                    if control:
+                        frozen["controls"][task] = control
         archive["tracks"][track] = frozen
         for phase, ids in sorted(frozen["tasks"].items()):
             ev = (
@@ -226,6 +301,26 @@ def archive_runs(root, tracks=study.TRACKS):
                         if any(row[k] != v for k, v in identity.items()):
                             raise ValueError(f"Session identity mismatch for {name}")
                         grade = public_row(row, draft, ev.get(task))
+                        if track == "frontier":
+                            participant = _docker_identity(row)
+                            if participant:
+                                grade["participant"] = participant
+                            if phase == "holdout" and row["status"] == "submitted":
+                                control = frozen["controls"].get(task)
+                                matching = _match_controls(control, participant)
+                                qualified = any(_verified(r) for r in matching)
+                                if (
+                                    control
+                                    and participant not in control["used_contexts"]
+                                ):
+                                    control["used_contexts"].append(participant)
+                                if "correct" in grade and not qualified:
+                                    grade = {
+                                        "outcome": "infrastructure",
+                                        "reason": "unverified_participant_control",
+                                        "participant": participant,
+                                    }
+                                grade["participant_control_verified"] = qualified
                         session = row.get("session", {})
                         if session.get("reported_model") == session.get(
                             "model"
@@ -239,6 +334,9 @@ def archive_runs(root, tracks=study.TRACKS):
                             grade["tool_calls"] = len(session["calls"])
                         if session.get("termination") == "task_deadline":
                             grade["task_deadline"] = True
+                        excluded = path.parent / "host-memory-incidents" / name
+                        if excluded.is_file():
+                            grade["excluded_host_oom_attempt"] = True
                         previous = path.parent / "failed-attempts" / name
                         if previous.is_file():
                             grade["previous_attempt"] = safe_status(
@@ -251,6 +349,22 @@ def archive_runs(root, tracks=study.TRACKS):
                 raise ValueError(
                     f"Unexpected sessions outside frozen design: {sorted(observed)}"
                 )
+        for control in frozen.get("controls", {}).values():
+            used = control["used_contexts"]
+            if used:
+                control["ready"] = all(
+                    any(r["ready"] for r in _match_controls(control, p)) for p in used
+                )
+                # Task-level control evidence must describe engines used for those results.
+                relevant = [r for p in used for r in _match_controls(control, p)]
+                for field in ("negative_correct", "positive_correct"):
+                    values = {r[field] for r in relevant}
+                    control[field] = (
+                        values.pop()
+                        if len(values) == 1
+                        and all(_match_controls(control, p) for p in used)
+                        else None
+                    )
     return archive
 
 
@@ -320,6 +434,18 @@ def render(archive):
     ]
     by_group = defaultdict(dict)
     for r in archive["rows"]:
+        if r["track"] == "frontier" and r["phase"] == "holdout" and "correct" in r:
+            control = archive["tracks"]["frontier"].get("controls", {}).get(r["task"])
+            if not any(
+                _verified(c) for c in _match_controls(control, r.get("participant"))
+            ):
+                # Older exports can carry a score without binding it to a tested engine.
+                r = {
+                    **r,
+                    "outcome": "infrastructure",
+                    "reason": "unverified_participant_control",
+                }
+                r.pop("correct")
         by_group[r["track"], r["phase"], r["model"], r["task"]][r["arm"]] = r
     for track, design in sorted(archive["tracks"].items()):
         for phase in ("dev", "holdout"):
@@ -343,6 +469,44 @@ def render(archive):
                         "",
                     ]
                 )
+                comparisons = []
+                for task in sorted(design["tasks"][phase]):
+                    metadata = design["controls"].get(task, {})
+                    engines = metadata.get("contexts", [])
+                    if not any(e["participant"] for e in engines) and not metadata.get(
+                        "used_contexts"
+                    ):
+                        continue
+                    for engine in engines:
+                        participant = engine["participant"]
+                        used = any(
+                            engine in _match_controls(metadata, p)
+                            for p in metadata["used_contexts"]
+                        )
+                        name = ", ".join(participant.values()) or "unrecorded"
+                        verifier = (
+                            ", ".join(engine["verifier"].values()) or "unrecorded"
+                        )
+                        comparisons.append(
+                            f"| `{task}` | {name} | {verifier} | {'ready' if engine['ready'] else 'failed'} | {'yes' if used else '—'} |"
+                        )
+                    for participant in metadata.get("used_contexts", []):
+                        if not _match_controls(metadata, participant):
+                            name = ", ".join(participant.values()) or "unrecorded"
+                            comparisons.append(
+                                f"| `{task}` | {name} | unrecorded | missing | yes |"
+                            )
+                if comparisons:
+                    lines.extend(
+                        [
+                            "Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.",
+                            "",
+                            "| Task | Participant | Verifier | Reference controls | Recorded holdout use |",
+                            "|---|---|---|---|---|",
+                            *comparisons,
+                            "",
+                        ]
+                    )
             if (
                 phase == "holdout"
                 and not design["sealed"]

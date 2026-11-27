@@ -313,7 +313,38 @@
     {
       "task": "noisy-blackbox-optimization",
       "phase": "dev",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:7d9f3e0a709842f7c090465cc7be69c0347af0096f94df4ed9f809e632536474",
+      "tests_image": "sha256:5dd80212312d51aa663ef58b6999e4a2c9f9d39ecaaa7ea14ae88b1bb1e8e6e9",
+      "sidecar_image": "sha256:58146de90ad4787f667cc688c9673776d451eadfcf71620c4c57e98ac9ac69d1",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795797895,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 1,
+          "passed": 25
+        },
+        "pytest_outcomes": {
+          "failed": 1,
+          "passed": 29
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 26
+        },
+        "pytest_outcomes": {
+          "passed": 30
+        }
+      }
     },
     {
       "task": "rv-astrometry-fitting",
@@ -399,7 +430,28 @@
     {
       "task": "ode-law-discovery",
       "phase": "holdout",
-      "status": "pending"
+      "status": "unqualified_reference_solution",
+      "environment_image": "sha256:d3a426bbedaac434456187981dc90140b4f6a9f723514634447f44df51980f52",
+      "tests_image": "sha256:70ecb4d998be3278da2bf6248fbdadd3313289e2c9c507c70f8e0f937ea1d7ef",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795798667,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 8,
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "errors": 4,
+          "failed": 4,
+          "passed": 13
+        }
+      }
     },
     {
       "task": "finite-free-stam",
@@ -524,7 +576,37 @@
     {
       "task": "xrd-multiphase-qpa",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:89d6827c11a2d3dc82d581d3e258b0276a80288166a842080f2a4fe627514291",
+      "tests_image": "sha256:90ad050dab7ceb71edbb125d6afa09e319a3d68dbea0e967415305aafadb1259",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795798349,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 3,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 3,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 4
+        },
+        "pytest_outcomes": {
+          "passed": 4
+        }
+      }
     },
     {
       "task": "frustrated-heisenberg-nqs",

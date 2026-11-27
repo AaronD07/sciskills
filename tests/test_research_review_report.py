@@ -203,7 +203,184 @@ class FourArmSummaryTests(unittest.TestCase):
             }
             for arm in report.ARMS
         ]
+        participant = {"context": "context-one", "engine": "engine-one"}
+        design["controls"] = {
+            "task": {
+                "ready": True,
+                "contexts": [
+                    {
+                        "participant": participant,
+                        "verifier": {},
+                        "ready": True,
+                        "negative_correct": False,
+                        "positive_correct": True,
+                    }
+                ],
+                "used_contexts": [participant],
+            }
+        }
+        for row in rows:
+            row["participant"] = participant
         archive = {"schema_version": 1, "tracks": {"frontier": design}, "rows": rows}
         self.assertNotIn("all four submissions failed", report.render(archive))
         rows[0]["correct"] = False
         self.assertIn("all four submissions failed", report.render(archive))
+
+
+class MultiEngineReportTests(unittest.TestCase):
+    def test_scoped_success_qualifies_its_engine_only(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            design = {
+                "study": "test",
+                "effort": "high",
+                "tasks": {"dev": {"dev-case": "h"}, "holdout": {"case": "h"}},
+                "transfer_ids": [],
+                "primary": ["terra", "sonnet"],
+                "transfer": [],
+            }
+            study.save(root / "frontier" / "design.json", design)
+            desktop = {
+                "participant_context": "private-desktop-label",
+                "participant_engine": "private-engine-a",
+                "verifier_context": "private-grader-label",
+                "verifier_engine": "private-engine-v",
+            }
+            alternate = {
+                **desktop,
+                "participant_context": "private-colima-label",
+                "participant_engine": "private-engine-b",
+            }
+            for task in ("dev-case", "case"):
+                failed = {
+                    **desktop,
+                    "task": task,
+                    "ready": False,
+                    "negative": {"correct": False},
+                    "error": "/Users/private-developer",
+                }
+                qualified = {
+                    **alternate,
+                    "task": task,
+                    "ready": True,
+                    "negative": {"correct": False},
+                    "positive": {"correct": True, "reward": 1},
+                }
+                study.save(root / "frontier-controls" / (task + ".json"), failed)
+                study.save(
+                    root
+                    / "frontier-controls"
+                    / "contexts"
+                    / "opaque-local-path"
+                    / (task + ".json"),
+                    qualified,
+                )
+            for model, participant in [
+                ("terra", alternate),
+                ("sonnet", {**alternate, "participant_engine": "private-recreated-id"}),
+            ]:
+                row = {
+                    "track": "frontier",
+                    "phase": "holdout",
+                    "model": model,
+                    "task": "case",
+                    "arm": "draft",
+                    "score": {"correct": True, "reward": 1},
+                    "status": "submitted",
+                    "session": {},
+                    **participant,
+                }
+                study.save(
+                    root / "frontier" / "holdout" / f"case.{model}.draft.json", row
+                )
+            result = report.archive_runs(root)
+            controls = result["tracks"]["frontier"]["controls"]
+            self.assertTrue(controls["dev-case"]["ready"])
+            self.assertTrue(controls["case"]["any_context_ready"])
+            self.assertFalse(controls["case"]["ready"])
+            self.assertEqual(len(controls["case"]["contexts"]), 2)
+            rows = {r["model"]: r for r in result["rows"]}
+            self.assertTrue(rows["terra"]["correct"])
+            self.assertEqual(rows["sonnet"]["outcome"], "infrastructure")
+            self.assertNotIn("correct", rows["sonnet"])
+            rendered = report.render(result)
+            for private_text in ("private-", "/Users/", "opaque-local-path"):
+                self.assertNotIn(private_text, json.dumps(result) + rendered)
+            self.assertIn("missing | yes", rendered)
+            # A later scoped failure on the same participant supersedes its old main receipt.
+            passage = (
+                root
+                / "frontier-controls"
+                / "contexts"
+                / "opaque-local-path"
+                / "case.json"
+            )
+            study.save(root / "frontier-controls" / "case.json", study.read(passage))
+            study.save(passage, {**study.read(passage), "ready": False})
+            refreshed = report.archive_runs(root)
+            self.assertFalse(
+                refreshed["tracks"]["frontier"]["controls"]["case"]["any_context_ready"]
+            )
+
+    def test_legacy_or_partial_context_can_only_support_development(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            design = {
+                "study": "test",
+                "effort": "high",
+                "primary": ["terra"],
+                "transfer": [],
+                "transfer_ids": [],
+                "tasks": {"dev": {"old": "h"}, "holdout": {"case": "h"}},
+            }
+            study.save(root / "frontier" / "design.json", design)
+            matching = {"participant_context": "ctx", "participant_engine": "engine"}
+            for task in ("old", "case"):
+                study.save(
+                    root / "frontier-controls" / (task + ".json"),
+                    {
+                        **matching,
+                        "ready": True,
+                        "negative": {"correct": False},
+                        "positive": {"correct": True, "reward": 1},
+                    },
+                )
+            for identity in (
+                {},
+                {"participant_context": "ctx"},
+                {"participant_engine": "engine"},
+            ):
+                with self.subTest(identity=identity):
+                    for task, phase in (("old", "dev"), ("case", "holdout")):
+                        row = {
+                            **identity,
+                            "track": "frontier",
+                            "task": task,
+                            "phase": phase,
+                            "arm": "draft",
+                            "model": "terra",
+                            "status": "submitted",
+                            "score": {"correct": True, "reward": 1},
+                            "session": {},
+                        }
+                        study.save(
+                            root / "frontier" / phase / f"{task}.terra.draft.json", row
+                        )
+                    result = report.archive_runs(root)
+                    dev, held = result["rows"]
+                    self.assertTrue(dev["correct"])
+                    self.assertFalse(held["participant_control_verified"])
+                    self.assertNotIn("correct", held)
+                    self.assertEqual(held["outcome"], "infrastructure")
+                    self.assertFalse(
+                        result["tracks"]["frontier"]["controls"]["case"]["ready"]
+                    )
+                    held.update(
+                        correct=True,
+                        outcome="graded",
+                        participant_control_verified=True,
+                    )
+                    self.assertIn(
+                        "| primary | terra | draft | 0/0 | 0 | 0 | 0 | 0 | 1 |",
+                        report.render(result),
+                    )

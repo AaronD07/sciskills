@@ -245,6 +245,7 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
     container = None
     image = None
     participant_context = participant_engine_id = None
+    memory_events = {}
     try:
         if track != "everyday":
             participant_context, participant_engine_id = participant_engine(prior)
@@ -279,8 +280,47 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             # Only a validated client session can be scored or reviewed.
             image = backend.snapshot(container)
         if container:
+            probe = module("frontier").command(
+                "docker",
+                "--context",
+                participant_context,
+                "exec",
+                container,
+                "cat",
+                "/sys/fs/cgroup/memory.events",
+                check=False,
+            )
+            if not probe.returncode:
+                for field in probe.stdout.splitlines():
+                    key, _, value = field.partition(" ")
+                    if (
+                        key in {"max", "oom", "oom_kill", "oom_group_kill"}
+                        and value.isdigit()
+                    ):
+                        memory_events[key] = int(value)
+            if probe.returncode or not memory_events:
+                memory_events["probe_unavailable"] = True
+                state = module("frontier").command(
+                    "docker",
+                    "--context",
+                    participant_context,
+                    "inspect",
+                    "-f",
+                    "{{.State.OOMKilled}}",
+                    container,
+                    check=False,
+                )
+                if state.stdout.strip() == "true":
+                    session["status"] = "participant_oom_unattributed"
+                    score = None
             backend.stop(container)
             container = None
+            if (
+                memory_events.get("oom_kill", 0) > 0
+                and memory_events.get("oom", 0) == 0
+            ):
+                session["status"] = "participant_host_oom"
+                score = None
         return {
             "track": track,
             "phase": phase,
@@ -293,6 +333,7 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             "image": image,
             "participant_context": participant_context,
             "participant_engine": participant_engine_id,
+            "memory_events": memory_events,
             "parent": draft_identity(prior) if prior else None,
             "parent_scheme": "participant-v1" if prior else None,
         }
@@ -324,6 +365,7 @@ def run_one(args):
                 "tool_unavailable",
                 "quota_exhausted",
                 "authentication_error",
+                "participant_host_oom",
             }:
                 return
             failed = path.parent / "failed-attempts" / path.name
@@ -350,6 +392,7 @@ def main():
     p.add_argument("--out", type=Path, default=DEFAULT_OUT)
     p.add_argument("--workers", type=int, default=2)
     p.add_argument("--tasks", nargs="+")
+    p.add_argument("--models", nargs="+", choices=PRIMARY + TRANSFER)
     p.add_argument("--skill-map", type=Path)
     args = p.parse_args()
     design, groups = freeze(args.out, args.track)
@@ -376,6 +419,8 @@ def main():
         )
         arms = ARMS if args.action == "reviews" else ("draft",)
         for m in models:
+            if args.models and m not in args.models:
+                continue
             for arm in arms:
                 path = row_path(args.out, args.track, phase, c, m, arm)
                 if (
