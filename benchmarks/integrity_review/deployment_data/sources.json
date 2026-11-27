@@ -1,0 +1,108 @@
+{
+  "sleep": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/lme4/sleepstudy.csv",
+    "source_sha256": "20922ddc87d538bf2344f73d49000eeb2d7e14934b6191a3e071fefc329942c4",
+    "columns": [
+      "Subject",
+      "Days",
+      "Days",
+      "Reaction"
+    ],
+    "observations": 180,
+    "extract_sha256": "a63d624a5bb3f5cd1f66289e64eda254cb1378cdcff152dafeed42f53f2c206b"
+  },
+  "dental": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/nlme/Orthodont.csv",
+    "source_sha256": "57793f38654aefd74338be403738f75d469c979c5ed224a9025c9c7ae541b8ee",
+    "columns": [
+      "Subject",
+      "age",
+      "age",
+      "distance"
+    ],
+    "observations": 108,
+    "extract_sha256": "d1e286f2a07a2ba2b327cb562a27d33970a264cf9b0262bd33322b53f839ceac"
+  },
+  "wafer": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/nlme/Wafer.csv",
+    "source_sha256": "86fbfee0bc720904888690a6bc8cde562f759a41f27a5e83c855f4169bdd5883",
+    "columns": [
+      "Wafer",
+      "Site",
+      "voltage",
+      "current"
+    ],
+    "observations": 400,
+    "extract_sha256": "72386d37e0e670fd5fb570347df1af6ab6d9d924ae5486f619c3364ec0f684fa"
+  },
+  "soy": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/nlme/Soybean.csv",
+    "source_sha256": "2dbdbe4d72cf76eedd3b1463d1513d12fea22f0c69b982fd72959637cd25c71c",
+    "columns": [
+      "Plot",
+      "Time",
+      "Time",
+      "weight"
+    ],
+    "observations": 412,
+    "extract_sha256": "fafb11313947696aa13ad55afcb510de2a1d74232de9f5231da0d2b0961a4646"
+  },
+  "challenge": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/Theoph.csv",
+    "source_sha256": "f9b77033090644cf38c83056c25c8137bca71cf629d7c0159a72ef18095726b0",
+    "columns": [
+      "Subject",
+      "Time",
+      "Time",
+      "conc"
+    ],
+    "observations": 132,
+    "extract_sha256": "50f6e3ca242b7536adeab1ccc51496b0dc789d8f3ecd005cb2769dc291a98837"
+  },
+  "epilepsy": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/MASS/epil.csv",
+    "source_sha256": "6d4aded9dda1c8cd051d370ce77816264c972e773417e62cfad3d061d3083a99",
+    "columns": [
+      "subject",
+      "period",
+      "base",
+      "y"
+    ],
+    "observations": 236,
+    "extract_sha256": "ef56f7f19e76e604a79ddfabdc1af8204f3dea4ca1a446a6f81f1d345c16ae57"
+  },
+  "milk": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/nlme/Milk.csv",
+    "source_sha256": "a41a7503f26805ef9ed79cbb45053c502351d189a7009cbe0df88c84b896c6f1",
+    "columns": [
+      "Cow",
+      "Time",
+      "Time",
+      "protein"
+    ],
+    "observations": 1337,
+    "extract_sha256": "beafd6aabade6ef3414e243280cf49a23908811d5f45f67093197ab79e126f48"
+  },
+  "filtration": {
+    "url": "https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/nlme/Dialyzer.csv",
+    "source_sha256": "653b1de5209fd141cf3ff09e57670c29ee04279949e0e3f29f8b6fc30b8a3517",
+    "columns": [
+      "Subject",
+      "index",
+      "pressure",
+      "rate"
+    ],
+    "observations": 140,
+    "extract_sha256": "f791919514445aa4d0cf7e7b03f539fcf4ae24fbb24c3a0a69e5ccee3314dec2"
+  },
+  "har": {
+    "url": "https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip",
+    "source_sha256": "c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031",
+    "observations": 360,
+    "features": [
+      "tBodyAcc-std()-X",
+      "tBodyAcc-std()-Y"
+    ],
+    "extract_sha256": "8481399aa00baf6cb03c303664784e24ec964f35d0eeaf826856ac8d4381c832"
+  }
+}
