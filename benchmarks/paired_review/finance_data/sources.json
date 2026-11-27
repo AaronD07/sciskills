@@ -1,0 +1,88 @@
+{
+  "aapl": {
+    "issuer": "Apple Inc.",
+    "period_end": "2024-09-28",
+    "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+    "filing_sha256": "a9810f368b7bea14618f78a91f655deb6ab9c0961dd85ce5ca77800a8e7af63d",
+    "tables": {
+      "income": 22,
+      "geography": 50,
+      "reconciliation": 51
+    }
+  },
+  "msft": {
+    "issuer": "Microsoft Corporation",
+    "period_end": "2024-06-30",
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+    "filing_sha256": "3e2cf67539cc9831c5f14e362deac8f90a09af73cf9c92e63625df2e92871486",
+    "tables": {
+      "commitments": 21,
+      "lease_balance": 68,
+      "lease_maturities": 69
+    }
+  },
+  "goog": {
+    "issuer": "Alphabet Inc.",
+    "period_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+    "filing_sha256": "355808ce6f7ef574065e1a546c6bbae58716bb838ccc81f747bd06e3a3ac0230",
+    "tables": {
+      "charges": 137,
+      "accrual": 138
+    }
+  },
+  "nflx": {
+    "issuer": "Netflix, Inc.",
+    "period_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000030/nflx-20231231.htm",
+    "filing_sha256": "82fcbb8661c5d7d1d6947c495f4fbdd404ef12187ab96397d3426be173e4786d",
+    "tables": {
+      "commitments": 24,
+      "balance_sheet": 35,
+      "content_maturities": 59
+    }
+  },
+  "luv": {
+    "issuer": "Southwest Airlines Co.",
+    "period_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/92380/000009238024000027/luv-20231231.htm",
+    "filing_sha256": "b6e1d15843206bff32be63b57cc5f4acde6b02fa3f4d0ed3ad44be6f5ab32066",
+    "tables": {
+      "operations": 20,
+      "fuel_bridge": 30,
+      "premium_note": 66
+    }
+  },
+  "nvda": {
+    "issuer": "NVIDIA Corporation",
+    "period_end": "2024-01-28",
+    "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+    "filing_sha256": "0732b11fcb640a18d9a3510da2a0f59bcf5a4852ac68bcb84c092c2813af2e52",
+    "tables": {
+      "income": 19,
+      "balance_sheet": 21,
+      "inventory_note": 41
+    }
+  },
+  "amzn": {
+    "issuer": "Amazon.com, Inc.",
+    "period_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+    "filing_sha256": "448c71f5272a4030ef1dbae2cfca27ea1e1efe973bea7c653b793dabd9eac9ae",
+    "tables": {
+      "repayment_measure": 28,
+      "equipment_measure": 29,
+      "supplement": 41
+    }
+  },
+  "ford": {
+    "issuer": "Ford Motor Company",
+    "period_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/37996/000003799624000009/f-20231231.htm",
+    "filing_sha256": "8ef3322930b77712f955bd96fff79cb46a00e30b7fa8ff25fc78a672419de8f0",
+    "tables": {
+      "retirement_summary": 46,
+      "retirement_note": 126
+    }
+  }
+}

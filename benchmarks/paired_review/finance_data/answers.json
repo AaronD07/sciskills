@@ -1,0 +1,69 @@
+{
+  "aapl": {
+    "sales_effect": 3061.1028,
+    "margin_effect": 8094.8972,
+    "corporate_effect": -2241,
+    "consolidated_change": 8915,
+    "largest_sales_drag": "Greater China"
+  },
+  "msft": {
+    "supported": [
+      "A",
+      "D"
+    ],
+    "fy2025_excess": 4815,
+    "interest": 9497,
+    "current_gap": 1506
+  },
+  "goog": {
+    "supported": [
+      "B",
+      "D"
+    ],
+    "cash_settled_pct": 95.3502,
+    "rd_share_pct": 40.613,
+    "expense_less_cash": 509,
+    "closing_liability": 77
+  },
+  "nflx": {
+    "supported": [
+      "A",
+      "D"
+    ],
+    "recognized": 7044643,
+    "unrecognized_known": 14668706,
+    "after_three_years_pct": 11.9748,
+    "upper_scenario": 25713.349
+  },
+  "luv": {
+    "volume": 679.2128,
+    "price": -385.2128,
+    "economic_change": 294,
+    "basis_difference": 52,
+    "premium_contribution": 28
+  },
+  "nvda": {
+    "days_in_period": 364,
+    "reported_inventory_days": 114.329,
+    "scenario_inventory_days": 128.8023,
+    "margin_lift_bps": 127.0477,
+    "reported_wip_change": 1039
+  },
+  "amzn": {
+    "supported": [
+      "B",
+      "C"
+    ],
+    "equipment_principal": 3701,
+    "equipment_additions": 310,
+    "spread_2023": 3391,
+    "spread_change": -3581
+  },
+  "ford": {
+    "actual_end": -2299,
+    "actual_change": -2093,
+    "fx_effect": 30,
+    "amendment_effect": -627,
+    "scenario_change": -1496
+  }
+}

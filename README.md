@@ -22,6 +22,9 @@ Ask your coding agent to follow the relevant `SKILL.md` while working in your re
 | [Trace claims to evidence](skills/trace-claims-to-evidence/SKILL.md) | Source version, arithmetic and interpretation | [Edit a results paragraph](benchmarks/tasks/claims/TASK.md) |
 | [Test fresh inputs](skills/test-fresh-inputs/SKILL.md) | Whether a completion consumes caller-supplied data | [External coding problems](benchmarks/input-transfer/README.md) |
 | [Reconstruct a data vintage](skills/reconstruct-a-vintage/SKILL.md) | Which revision of each record was available on a reporting date | [Calibration ledgers](benchmarks/ledger-replay/README.md) |
+| [Review a numerical result](skills/review-a-numerical-result/SKILL.md) | Independently reconstruct a saved result | [Assay summary](benchmarks/tasks/assay/) |
+| [Review an analysis program](skills/review-an-analysis-program/SKILL.md) | Verify a saved program through its caller's interface | [Seeded simulation](examples/pin-the-environment/) |
+| [Review a protocol decision](skills/review-a-protocol-decision/SKILL.md) | Trace included and excluded records to a governing rule | [Research contract](benchmarks/tasks/contract/) |
 
 For example, if one participant has six follow-up measurements and another has one, averaging every row gives the first participant more weight. Ask the assistant to follow **Identify the independent unit**, calculate each participant’s change, and report how many participants have paired measurements. The [research notes](docs/research-notes.md) explain the evidence behind each new workflow.
 
