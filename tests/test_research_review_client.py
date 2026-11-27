@@ -29,6 +29,17 @@ class SessionEvidenceTests(unittest.TestCase):
         self.assertEqual(self.partial([], model="sonnet"), ("timeout", "", None))
         self.assertEqual(self.partial([])[0], "incomplete_turn")
 
+    def test_codex_feature_notice_is_informational(self):
+        warning = {
+            "type": "item.completed",
+            "item": {
+                "type": "error",
+                "message": "Under-development features enabled: skip_host_skill_discovery. To suppress this warning, set the config.",
+            },
+        }
+        events = [{"type": "turn.started"}, warning, {"type": "turn.completed"}]
+        self.assertEqual(self.partial(events)[0], "submitted")
+
     def test_deadline_never_hides_observed_protocol_violations(self):
         cases = [
             ({"type": "model/rerouted"}, "model_identity_mismatch"),

@@ -90,19 +90,27 @@ Each comparison uses the same task, model and frozen first draft. A malformed su
 
 ## Frontier dev
 
-Upstream empty and reference submission control counts are 5 ready, 0 failed and 7 without a receipt.
+Upstream empty and reference submission control counts are 5 ready, 1 failed and 6 without a receipt.
 
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| primary | terra | draft | 0/0 | 0 | 11 | 0 | 1 | 0 | 0 | 0 |
-| primary | sonnet | draft | 0/0 | 0 | 12 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | draft | 1/4 | 0 | 7 | 0 | 1 | 0 | 0 | 0 |
+| primary | sonnet | draft | 0/2 | 0 | 10 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
 
+### Observed discrepancies
+
+* terra, `masked-spherical-remap` — upstream reward 0 (1 failed, 21 passed).
+* terra, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
+* terra, `tess-transit-vetting` — upstream reward 0 (4 failed, 1 passed).
+* sonnet, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
+* sonnet, `symbolic-regression` — upstream reward 0 (1 failed, 1 passed).
+
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 0 ready, 0 failed and 16 without a receipt.
+Upstream empty and reference submission control counts are 2 ready, 0 failed and 14 without a receipt.
 
 Holdouts have been frozen. Review interventions have yet to be sealed.
 

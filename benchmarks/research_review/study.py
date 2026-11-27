@@ -217,6 +217,10 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
                 score = backend.grade(c, final)
             else:
                 image = backend.snapshot(container)
+        elif container and session["calls"]:
+            # Keep partially completed work private for transport and identity audits.
+            # Only a validated client session can be scored or reviewed.
+            image = backend.snapshot(container)
         if container:
             backend.stop(container)
             container = None
@@ -273,7 +277,7 @@ def run_one(args):
         scratch.parent.mkdir(exist_ok=True, parents=True, mode=0o700)
         row = grade_and_run(out, track, phase, c, model, arm, skills, scratch)
         save(path, row)
-        if row["image"]:
+        if row["status"] == "submitted" and row["image"]:
             row["score"] = module(track).grade(c, row["image"])
             save(path, row)
         print(track, phase, path.stem, row["status"], flush=True)

@@ -215,7 +215,17 @@ def _result(model, tool, stdout, stderr, returncode, *, deadline=False):
             item = event.get("item", {})
             kind = item.get("type")
             if kind == "error":
-                return _failure(str(item.get("message", ""))), "", observed
+                message = str(item.get("message", ""))
+                # Codex emits this informational feature notice as an error item even
+                # on successful runs. Other errors still invalidate the submission.
+                if (
+                    message.startswith(
+                        "Under-development features enabled: skip_host_skill_discovery."
+                    )
+                    and "To suppress this warning" in message
+                ):
+                    continue
+                return _failure(message), "", observed
             if kind == "mcp_tool_call" and (item.get("server"), item.get("tool")) == (
                 "ledger",
                 tool,
