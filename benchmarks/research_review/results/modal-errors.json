@@ -1,0 +1,145 @@
+{
+  "task": "rolling-shutter-oma",
+  "verifier_image": "sha256:1dd47e681c52f8a6d37d92350cc7a32b412f8cea7e013987291ada53a0eca2ef",
+  "inputs_sha256": "f6ab1d27bd961815b8aff42a90248f24e227327e87781c11255b1b469d7faed9",
+  "submissions": {
+    "terra.draft.json": {
+      "submission_sha256": "c3793ef14cdc069009df0d71d8646a06174c885e2f5e4cccccf29c680e9fb424",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.26,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.24,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.013,
+          "outside_among_covered": 0
+        }
+      }
+    },
+    "terra.ordinary.json": {
+      "submission_sha256": "c3793ef14cdc069009df0d71d8646a06174c885e2f5e4cccccf29c680e9fb424",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.26,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.24,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.013,
+          "outside_among_covered": 0
+        }
+      }
+    },
+    "terra.repair.json": {
+      "submission_sha256": "ecbe8ee9ff2ab52c8b5eaae4ab67e2520b5810e16d1b83d4dc090481948c000e",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.26,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.24,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.013,
+          "outside_among_covered": 0
+        }
+      }
+    },
+    "sonnet.draft.json": {
+      "submission_sha256": "609124f6d6b685a657b036c82e0104dc05f98818f59a2044dbc586ebbb33e78b",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.17,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.15,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.004,
+          "outside_among_covered": 0
+        }
+      }
+    },
+    "sonnet.ordinary.json": {
+      "submission_sha256": "0e4aaed7163d29ed359a4d29b8e0d9ca55ce4e1a6ea33d6048f10a2ef5ee48e1",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.17,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.14,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.004,
+          "outside_among_covered": 0
+        }
+      }
+    },
+    "sonnet.repair.json": {
+      "submission_sha256": "609124f6d6b685a657b036c82e0104dc05f98818f59a2044dbc586ebbb33e78b",
+      "metrics": {
+        "frequency_pct": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.17,
+          "outside_among_covered": 0
+        },
+        "damping_pp": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.15,
+          "outside_among_covered": 0
+        },
+        "shape_one_minus_mac": {
+          "coverage": 28,
+          "missing_or_invalid": 0,
+          "mean_error": 0.004,
+          "outside_among_covered": 0
+        }
+      }
+    }
+  }
+}

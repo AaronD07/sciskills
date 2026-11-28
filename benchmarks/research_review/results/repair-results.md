@@ -1,11 +1,11 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **9/24**.
+Target **pending**. Complete three-arm comparisons **10/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 10 | 9 | 10 |
-| Full passes among complete comparisons | 2 | 2 | 2 |
+| Scored assignments | 11 | 10 | 10 |
+| Full passes among complete comparisons | 3 | 3 | 3 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
 
@@ -22,7 +22,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | certified-sparse-regression | terra | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) |
 | certified-sparse-regression | sonnet | missing | missing | missing |
 | finite-free-stam | terra | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
-| finite-free-stam | sonnet | missing | missing | missing |
+| finite-free-stam | sonnet | 0 (3 failed, 6 passed) | missing | missing |
 | frustrated-heisenberg-nqs | terra | missing | missing | missing |
 | frustrated-heisenberg-nqs | sonnet | missing | missing | missing |
 | hbv-calibration-1 | terra | missing | missing | missing |
@@ -34,7 +34,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | ode-law-discovery | terra | missing | missing | missing |
 | ode-law-discovery | sonnet | missing | missing | missing |
 | rolling-shutter-oma | terra | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
-| rolling-shutter-oma | sonnet | 1 (50 passed) | missing | 1 (50 passed) |
+| rolling-shutter-oma | sonnet | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
 | si-fracture-fbc | terra | missing | missing | missing |
 | si-fracture-fbc | sonnet | missing | missing | missing |
 | small-area-equivalence | terra | missing | missing | missing |
@@ -55,6 +55,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| rolling-shutter-oma (sonnet) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (terra) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (sonnet) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -62,7 +63,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 ## Review time and tool use
 
-Both review sessions have recorded wall time and shell requests for 9 of 9 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+Both review sessions have recorded wall time and shell requests for 10 of 10 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
 
 | Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
 | --- | ---: | ---: | ---: | ---: |
@@ -71,10 +72,11 @@ Both review sessions have recorded wall time and shell requests for 9 of 9 compl
 | nanoindentation-property-extraction (terra) | 72.16 | 114.84 | 10 | 8 |
 | nanoindentation-property-extraction (sonnet) | 89.54 | 706.46 | 12 | 21 |
 | rolling-shutter-oma (terra) | 45.23 | 115.52 | 7 | 10 |
+| rolling-shutter-oma (sonnet) | 527.59 | 620.96 | 17 | 17 |
 | stacking-disorder-diffraction (terra) | 68.80 | 427.69 | 5 | 8 |
 | stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
 | xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
 | xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
-| **Total** | 1016.57 | 2759.62 | 71 | 114 |
+| **Total** | 1544.16 | 3380.58 | 88 | 131 |
 
 [Protocol and interpretation](../repair-study.md)
