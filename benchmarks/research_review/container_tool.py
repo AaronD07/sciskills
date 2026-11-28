@@ -8,6 +8,7 @@ import re
 import subprocess
 import sys
 import threading
+import time
 
 OUTPUT_LIMIT = 32_000
 
@@ -152,7 +153,29 @@ def shell(container, script, seconds):
     return status, output
 
 
-def serve(container, receipts, max_seconds):
+def freeze_snapshot(container, stop_client):
+    """Commit the paused filesystem before allowing cleanup to touch the container."""
+    subprocess.run(
+        ["docker", "pause", container], check=True, capture_output=True, timeout=30
+    )
+    try:
+        stop_client()
+        image = subprocess.check_output(
+            ["docker", "commit", "--pause=false", container], text=True, timeout=600
+        ).strip()
+        if not re.fullmatch(r"sha256:[0-9a-f]{64}", image):
+            raise ValueError("Invalid deadline snapshot")
+        return image
+    finally:
+        subprocess.run(
+            ["docker", "unpause", container],
+            check=True,
+            capture_output=True,
+            timeout=30,
+        )
+
+
+def serve(container, receipts, max_seconds, deadline=None):
     cwd = validate_container(container)
     tool = {
         "name": "shell",
@@ -197,7 +220,15 @@ def serve(container, receipts, max_seconds):
                 and type(requested) is int
                 and 1 <= requested <= max_seconds
             ):
-                status, output = shell(container, script, requested)
+                remaining = (
+                    int(deadline - time.monotonic())
+                    if deadline is not None
+                    else requested
+                )
+                if remaining < 1:
+                    status, output = 124, "Session deadline reached"
+                else:
+                    status, output = shell(container, script, min(requested, remaining))
                 with receipts.open("a", encoding="utf-8") as log:
                     log.write(
                         json.dumps({"code": script, "status": status, "output": output})
@@ -230,4 +261,9 @@ def serve(container, receipts, max_seconds):
 
 
 if __name__ == "__main__":
-    serve(sys.argv[1], Path(sys.argv[2]), int(sys.argv[3]))
+    serve(
+        sys.argv[1],
+        Path(sys.argv[2]),
+        int(sys.argv[3]),
+        float(sys.argv[4]) if len(sys.argv) > 4 else None,
+    )

@@ -41,7 +41,7 @@ def authenticate():
         return _receipt
 
 
-def _launch(model, tool, workspace, receipts, seconds):
+def _launch(model, tool, workspace, receipts, seconds, deadline=None):
     # This helper process isolates the legacy study module's imports and model overrides.
     sys.path.insert(0, str(LEDGER))
     import study
@@ -53,6 +53,8 @@ def _launch(model, tool, workspace, receipts, seconds):
         if tool == "shell"
         else ["-I", str(LEDGER / "python_tool.py"), workspace, receipts]
     )
+    if tool == "shell" and deadline is not None:
+        mcp_args.append(deadline)
     config = {"command": sys.executable, "args": mcp_args}
     context = os.environ.get("DOCKER_CONTEXT") if tool == "shell" else None
     if context:
@@ -273,6 +275,7 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
     stdout, stderr, receipts = [
         scratch / p for p in ("stdout", "stderr", "calls.jsonl")
     ]
+    (scratch / "subscription.json").write_text(json.dumps(auth))
     start = time.monotonic()
     reply, observed, calls, artifacts, deleted = "", None, [], {}, []
     context = (
@@ -281,6 +284,7 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
         else nullcontext({})
     )
     deadline_hit = False
+    cutoff_image = None
     with tempfile.TemporaryDirectory() as tmp, context as history:
         prompt = _prompt(files, stage, tool, history)
         root = Path(tmp).resolve()
@@ -306,6 +310,10 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
         if container and os.environ.get("DOCKER_CONTEXT"):
             helper_env["DOCKER_CONTEXT"] = os.environ["DOCKER_CONTEXT"]
         with stdout.open("wb") as out, stderr.open("wb") as err:
+            deadline = time.monotonic() + timeout
+            cmd.append(str(deadline))
+            # A crash after this marker is ambiguous until the original attempt is recovered.
+            (scratch / "launch-intent").touch(exist_ok=False)
             with subprocess.Popen(
                 cmd,
                 cwd=cli_dir,
@@ -316,13 +324,43 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
                 start_new_session=True,
             ) as proc:
                 try:
-                    proc.communicate(prompt.encode(), timeout=timeout)
+                    (scratch / "process.json").write_text(
+                        json.dumps(
+                            {
+                                "pid": proc.pid,
+                                "container": container,
+                                "model": MODELS[model],
+                                "deadline_monotonic": deadline,
+                                "context": helper_env.get("DOCKER_CONTEXT"),
+                            }
+                        )
+                    )
+                    proc.communicate(
+                        prompt.encode(), timeout=max(0, deadline - time.monotonic())
+                    )
                     status, reply, observed = _result(
                         model, tool, stdout, stderr, proc.returncode
                     )
                 except subprocess.TimeoutExpired:
-                    os.killpg(proc.pid, signal.SIGKILL)
-                    proc.communicate()
+                    # Stopping the CLI alone leaves detached Docker execs running.
+                    # Capture the actual cutoff image before parsing its transcript.
+                    try:
+                        os.killpg(proc.pid, signal.SIGSTOP)
+                    except ProcessLookupError:
+                        pass
+
+                    def stop_client():
+                        if proc.poll() is None:
+                            os.killpg(proc.pid, signal.SIGKILL)
+                        proc.communicate()
+
+                    try:
+                        if container:
+                            cutoff_image = container_tool.freeze_snapshot(
+                                container, stop_client
+                            )
+                    finally:
+                        stop_client()
                     deadline_hit = True
                     status, reply, observed = _result(
                         model, tool, stdout, stderr, proc.returncode, deadline=True
@@ -367,6 +405,7 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
             else "requested_only"
         ),
         "client_deadline_reached": deadline_hit,
+        "cutoff_image": cutoff_image,
         "review_context_sha256": {
             name: hashlib.sha256(files[name].encode()).hexdigest() for name in history
         },

@@ -26,6 +26,7 @@ Ask your coding agent to follow the relevant `SKILL.md` while working in your re
 | [Review an analysis program](skills/review-an-analysis-program/SKILL.md) | Verify a saved program through its caller's interface | [Seeded simulation](examples/pin-the-environment/) |
 | [Test a competing explanation](skills/test-a-competing-explanation/SKILL.md) | Compare a research result with an alternative the original procedure could miss | Instrument drift |
 | [Check a local optimum](skills/check-a-local-optimum/SKILL.md) | Test whether a numerical search settled on an inferior feasible solution | Collection-point placement |
+| [Repair the delivered result](skills/repair-the-delivered-result/SKILL.md) | Test the saved scientific result independently and verify a repair against prior successes | Sensor calibration |
 | [Review a protocol decision](skills/review-a-protocol-decision/SKILL.md) | Trace included and excluded records to a governing rule | [Research contract](benchmarks/tasks/contract/) |
 | [Audit a scientific claim](skills/audit-a-scientific-claim/SKILL.md) | Derive the expected evidence for a domain-specific decision | [Integrity review study](benchmarks/integrity_review/) |
 | [Verify experimental coverage](skills/verify-experimental-coverage/SKILL.md) | Reconcile protocol obligations and actual results | [Coverage cases](benchmarks/integrity_review/coverage_data/) |
@@ -61,6 +62,8 @@ The [integrity review study](benchmarks/integrity_review/README.md) tested exper
 ## Reviewing frontier and everyday research
 
 A researcher can use the skills to review a numerical method that will be run on unfamiliar data. They can also use them for everyday decisions where a unit, a missing calibration or a change to the wrong record would alter the result. We test the first use on published scientific computing tasks and the second on paired research handoffs. All 40 everyday first drafts passed. Ordinary, general and specialist review each finished at 39/40 after withdrawing the same +0.48% cash-flow result. [What changed under review](benchmarks/research_review/RESULTS.md) · [Study design and reproduction](benchmarks/research_review/README.md)
+
+A separate [preregistered repair study](benchmarks/research_review/repair-study.md) compares Terra and Sonnet on twelve fresh frontier science tasks. The [paired results](benchmarks/research_review/results/repair-results.md) track full repairs, regressions and partial check counts.
 
 ## Does a skill improve a second review?
 

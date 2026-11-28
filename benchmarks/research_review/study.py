@@ -99,6 +99,10 @@ def freeze(out, track):
 
 
 def row_path(out, track, phase, case, model, arm):
+    if arm == "repair":
+        if (track, phase) != ("frontier", "holdout"):
+            raise ValueError("The frozen repair study uses frontier holdouts")
+        return out / "repair-study" / phase / f"{case['id']}.{model}.{arm}.json"
     return out / track / phase / f"{case['id']}.{model}.{arm}.json"
 
 
@@ -242,6 +246,8 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             files["SKILL.md"] = skills["general"]
         elif arm == "specialist":
             files["SKILL.md"] = skills["specialist"][c["id"]]
+        elif arm == "repair":
+            files["SKILL.md"] = skills["repair"]
     container = None
     image = None
     participant_context = participant_engine_id = None
@@ -274,7 +280,7 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
                     final.pop(name, None)
                 score = backend.grade(c, final)
             else:
-                image = backend.snapshot(container)
+                image = session.get("cutoff_image") or backend.snapshot(container)
         elif container and session["calls"]:
             # Keep partially completed work private for transport and identity audits.
             # Only a validated client session can be scored or reviewed.
@@ -337,6 +343,15 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             "parent": draft_identity(prior) if prior else None,
             "parent_scheme": "participant-v1" if prior else None,
         }
+    except Exception:
+        # This receipt is written only on a synchronous failure observed by the
+        # original supervisor before dispatch. A missing PID alone proves nothing.
+        if not (scratch / "launch-intent").exists():
+            save(
+                scratch.with_suffix(scratch.suffix + ".unstarted"),
+                {"participant_started": False},
+            )
+        raise
     finally:
         if container:
             backend.stop(container)
@@ -348,8 +363,40 @@ def run_one(args):
     path.parent.mkdir(exist_ok=True, parents=True)
     with path.with_suffix(".lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
+        pending = path.with_suffix(".attempt")
+        archived = path.parent / "failed-attempts" / path.name
+
+        def never_started(scratch):
+            proof = scratch.with_suffix(scratch.suffix + ".unstarted")
+            return (
+                proof.is_file()
+                and read(proof) == {"participant_started": False}
+                and not (scratch / "launch-intent").exists()
+            )
+
+        if pending.is_file() and not path.exists():
+            reserved = read(pending)["attempt_id"]
+            if never_started(out / "private" / (path.stem + "-" + reserved)):
+                pending.unlink()
+        if not path.exists():
+            known = read(archived).get("attempt_id") if archived.is_file() else None
+            previous = [
+                p
+                for p in (out / "private").glob(path.stem + "-*")
+                if p.is_dir()
+                and p.name.rpartition("-")[2] != known
+                and not never_started(p)
+            ]
+            if pending.exists() or previous:
+                raise RuntimeError(
+                    f"Unresolved original attempt for {path.stem}. Recover its session before resuming."
+                )
         if path.exists():
             existing = read(path)
+            if pending.exists():
+                if read(pending)["attempt_id"] != existing.get("attempt_id"):
+                    raise RuntimeError(f"Attempt receipt mismatch for {path.stem}")
+                pending.unlink()
             if existing["status"] == "submitted":
                 if (
                     existing.get("image")
@@ -378,9 +425,24 @@ def run_one(args):
         attempt_id = uuid.uuid4().hex
         scratch = out / "private" / (path.stem + "-" + attempt_id)
         scratch.parent.mkdir(exist_ok=True, parents=True, mode=0o700)
+        save(
+            pending,
+            {
+                "attempt_id": attempt_id,
+                "context": os.environ.get("DOCKER_CONTEXT"),
+                "task": c["id"],
+                "model": model,
+                "arm": arm,
+                "track": track,
+                "phase": phase,
+            },
+        )
         row = grade_and_run(out, track, phase, c, model, arm, skills, scratch)
+        if arm == "repair":
+            row["review_skill_sha256"] = digest(skills[arm])
         row["attempt_id"] = attempt_id
         save(path, row)
+        pending.unlink()
         if row["status"] == "submitted" and row["image"]:
             row["score"] = module(track).grade(c, row["image"])
             save(path, row)

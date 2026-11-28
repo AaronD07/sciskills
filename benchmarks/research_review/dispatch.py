@@ -107,6 +107,24 @@ def incomplete_assignments(archive, design, jobs, phase):
                     yield key
 
 
+def reserve_context(out, task, capacities, *, require_prior=False):
+    path = out / "execution-contexts" / (task + ".json")
+    controls = [study.read(f) for f in frontier.STATE.glob(f"contexts/*/{task}.json")]
+    path.parent.mkdir(exist_ok=True)
+    with path.with_suffix(".lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if require_prior and not path.exists():
+            raise ValueError(f"No original participant placement saved for {task}")
+        placement = choose_context(
+            controls,
+            study.read(path) if path.is_file() else None,
+            task,
+            capacities=capacities,
+        )
+        study.immutable(path, placement)
+    return placement
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("phase", choices=["holdout", "reviews"])
@@ -128,22 +146,9 @@ def main():
     jobs = []
     capacities = {}
     for task in sorted(case_ids):
-        path = out / "execution-contexts" / (task + ".json")
-        controls = [
-            study.read(f) for f in frontier.STATE.glob(f"contexts/*/{task}.json")
-        ]
-        path.parent.mkdir(exist_ok=True)
-        with path.with_suffix(".lock").open("a") as lock:
-            fcntl.flock(lock, fcntl.LOCK_EX)
-            if args.phase == "reviews" and not path.exists():
-                p.error(f"No original participant placement saved for {task}")
-            placement = choose_context(
-                controls,
-                study.read(path) if path.is_file() else None,
-                task,
-                capacities=capacities,
-            )
-            study.immutable(path, placement)
+        placement = reserve_context(
+            out, task, capacities, require_prior=args.phase == "reviews"
+        )
         jobs.append((task, placement))
 
     def run(job):

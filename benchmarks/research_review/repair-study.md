@@ -7,3 +7,17 @@ We selected all twelve tasks in the original sixteen-task holdout that still had
 For each task, Terra and Sonnet each produce a first draft. Ordinary and skill-assisted reviews independently begin with the same saved image, original prompt, earlier tool calls and earlier reply. Both get the same model, scientific tools, published time limit and grading procedure. The model receives no scores or hints about which drafts failed. Every draft enters both arms, including full passes. A missing or interrupted trial cannot earn a repair.
 
 The primary comparison covers 24 matched assignments. To meet the target, the skill must turn at least two distinct tasks from a failed first draft and failed ordinary review into an upstream full pass. Its total full passes must also exceed ordinary review by at least two across matched assignments. A second model repairing the same task counts once toward the distinct-task requirement. We report ordinary-only passes, changes that break a correct first draft, and partial improvements separately. The final target decision requires all 24 comparisons, or an explicit accounting of permanently ungradable assignments. Until then the status is pending.
+
+## Reproduce the comparison
+
+Use the setup and control procedure in the [frontier study](frontier.md) on the pinned upstream revision. Freeze the original track and seal its interventions first. The repair runner checks the protocol, development evidence and skill digests before accepting an assignment. The selected skills and ordinary prompt receive no evaluator feedback. Keep the private run directory outside all participant containers.
+
+```bash
+python3 -m benchmarks.research_review.repair_trial run
+python3 -m benchmarks.research_review.repair_trial export
+python3 -m benchmarks.research_review.repair_trial render
+```
+
+For a single task, pass `--tasks nanoindentation-property-extraction`. Select one primary model with `--models terra` or `--models sonnet`. Repeated runs reuse saved grades. If a supervisor exits before it saves the participant row, the pending attempt and private subscription receipt identify the original launch for recovery. Confirm the original process has exited and retain its container and receipts before recovering the row. A missing qualified control blocks only the affected task.
+
+The [results table](results/repair-results.md) shows each arm's upstream reward and available check counts. The [public archive](results/repair-archive.json) regenerates that table offline with the render command. A completed subset describes only those matched assignments. Missing grades leave the target pending. If a grade proves permanently unavailable, the final report must name that assignment and treat the target as inconclusive.
