@@ -28,9 +28,9 @@ For complete comparisons with both original session records, the archive stores 
 
 ## Verify the starting filesystem image
 
-In the first twelve complete comparisons, Docker recorded the qualified participant environment as the immediate parent of all twelve draft snapshots. Each of the 24 review snapshots had its own model's first-draft snapshot as its immediate parent. The archive separately checks the fingerprints of the tool history and final reply staged for review.
+In the first thirteen complete comparisons, Docker recorded the qualified participant environment as the immediate parent of all thirteen draft snapshots. Each of the 26 review snapshots had its own model's first-draft snapshot as its immediate parent. The archive separately checks the fingerprints of the tool history and final reply staged for review.
 
-With the original private grades and Docker snapshots available, run this from the repository root. The command checks the private grades against each complete comparison in the checked-out archive and inspects the image metadata on the original engine. The SHA-256 of the sorted task, model and image records for the first twelve comparisons was `3d79805f9ae2b4666d6fb79a2479abe71136cadc559a30c03d75bccd94861869`. An archive with additional complete comparisons produces a new fingerprint.
+With the original private grades and Docker snapshots available, run this from the repository root. The command checks the private grades against each complete comparison in the checked-out archive and inspects the image metadata on the original engine. The SHA-256 of the sorted task, model and image records for the first thirteen comparisons was `c28cc50bf7f53b538b3cc0e8df84115ba899213959425dd4a2a368dd58fc1c11`. An archive with additional complete comparisons produces a new fingerprint.
 
 ```bash
 python3 - <<'PY'
@@ -93,6 +93,8 @@ At the next scheduling check, four tasks still had no model attempt on any arm. 
 For these four unopened tasks, an earlier task with a live reference qualification and a live dispatcher dedicated to it on another machine has already entered the alternative queue. A free machine may take the next alphabetically eligible task. Record each earlier task skipped, its alternative machine, and the observed status of its qualification and dispatcher. If qualification has finished, skipping that task requires both a passing control receipt on its alternative and a live dispatcher waiting to use it. A stale reservation alone cannot establish that an earlier task is being handled. If the original machine can run the candidate, retain its original reservation. Each alternative must still pass both controls with the pinned images before dispatch. Preserve the original engine for every started task. This change affects dispatch order among the four unopened tasks. The frozen skill, prompts, graders, budgets, cohorts and outcomes are the same.
 
 Equation discovery moved before its first draft while the original machine had all four CPUs allocated. The alternative used the same Linux/AMD64 images and the same four-CPU, 8 GiB limits. The untouched submission passed four checks and failed eight on both machines. The published solution passed all twelve on both. Terra started on the alternative after its control receipt was saved. The selected receipt has SHA-256 `71aac7ad9b7dcc4fc65e611d3fdad5704236150dff33fe04235e68de7d825ecf`.
+
+Small-area estimation moved before its first draft to a local machine with two CPUs. Both machines used the same Linux/AMD64 images and the published two-CPU, 8 GiB limits. On each, the untouched submission passed eleven checks and failed seven. The published reference passed all eighteen. Terra started from the qualified environment. The selected receipt has SHA-256 `60ffc2f260fbc544039362d7e83707a22a2e11dac5d25bb7284f51b1f472ccea`.
 
 ## Replay the hydrology calibration
 
@@ -174,6 +176,10 @@ Diffraction and nanoindentation both deliver `/workspace/output/results.csv`. On
 To verify the changed estimates in nanoindentation, read the CSVs from those same containers and join the 29 records on `sample` and `property`. Sonnet changed `sample_01 / hardness_GPa` and `sample_05 / modulus_GPa`. Terra changed `sample_12 / modulus_GPa` and `sample_12 / work_of_adhesion_J_m2`. [Reported values and grades](RESULTS.md#frozen-repair-skill)
 
 For structural vibration analysis, use the same container procedure with `/app/answer/modal_results.json` and tar member `modal_results.json`. Terra's draft and ordinary review have SHA-256 `c3793ef14cdc069009df0d71d8646a06174c885e2f5e4cccccf29c680e9fb424`. The skill review has SHA-256 `ecbe8ee9ff2ab52c8b5eaae4ab67e2520b5810e16d1b83d4dc090481948c000e`. Compare JSON values at matching object keys and array indices. Each submission contains 532 scalar entries. All 479 changes occur under `recordings`. Count `f_hz` and `zeta` once per mode and count `shape_re` and `shape_im` once per array element. The `damage` object contains the damaged storey and the eight stiffness ratios.
+
+## Verify the equation discovery deliverables
+
+For Terra's three equation-discovery snapshots, use the stopped-container procedure above with each private graded row's `participant_context` and `image`. Hash `/results/equations.json`, `/results/predictions.csv` and `/results/report.md` separately. Across all three arms, the equations have SHA-256 `46ef94d05f60a6fe84e8be99c449c0ca2f9d0af1c0bae694e9c2fda66f416266` and predictions have SHA-256 `c288f5375d7c33fddb65251f7d8f4b46ed9daa365c2f39e870d4bfcd9471b56d`. The draft and ordinary report have SHA-256 `0e8275e98853972b7e3cbbe553e7017aad0233651d3d190eb6e475012757d2cc`. The skill-assisted report has SHA-256 `e67a54ea58d8e03558b28ea8e8bda053ce01c104e26e30328b56f0679c052594` and starts with the entire original report. Its appended paragraph reports the two validation errors and the difference from the saved predictions. The third shell request in the skill-assisted session records the calculations.
 
 ## Verify the proof and optimization certificate
 

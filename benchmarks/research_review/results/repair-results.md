@@ -1,11 +1,11 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **12/24**.
+Target **pending**. Complete three-arm comparisons **13/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 12 | 12 | 12 |
-| Full passes among complete comparisons | 3 | 3 | 3 |
+| Scored assignments | 13 | 13 | 13 |
+| Full passes among complete comparisons | 4 | 4 | 4 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
 
@@ -31,7 +31,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | hysteretic-aquifer-control | sonnet | missing | missing | missing |
 | nanoindentation-property-extraction | terra | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) |
 | nanoindentation-property-extraction | sonnet | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) |
-| ode-law-discovery | terra | missing | missing | missing |
+| ode-law-discovery | terra | 1 (21 passed) | 1 (21 passed) | 1 (21 passed) |
 | ode-law-discovery | sonnet | missing | missing | missing |
 | rolling-shutter-oma | terra | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
 | rolling-shutter-oma | sonnet | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
@@ -56,6 +56,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | hbv-calibration-1 (terra) | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 10 |
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ode-law-discovery (terra) | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (sonnet) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (terra) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -65,7 +66,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 ## Review time and tool use
 
-Both review sessions have recorded wall time and shell requests for 12 of 12 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+Both review sessions have recorded wall time and shell requests for 13 of 13 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
 
 | Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
 | --- | ---: | ---: | ---: | ---: |
@@ -75,12 +76,13 @@ Both review sessions have recorded wall time and shell requests for 12 of 12 com
 | hbv-calibration-1 (terra) | 625.53 | 616.01 | 20 | 21 |
 | nanoindentation-property-extraction (terra) | 72.16 | 114.84 | 10 | 8 |
 | nanoindentation-property-extraction (sonnet) | 89.54 | 706.46 | 12 | 21 |
+| ode-law-discovery (terra) | 52.19 | 75.06 | 5 | 4 |
 | rolling-shutter-oma (terra) | 45.23 | 115.52 | 7 | 10 |
 | rolling-shutter-oma (sonnet) | 527.59 | 620.96 | 17 | 17 |
 | stacking-disorder-diffraction (terra) | 68.80 | 427.69 | 5 | 8 |
 | stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
 | xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
 | xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
-| **Total** | 2441.29 | 4207.24 | 113 | 160 |
+| **Total** | 2493.48 | 4282.30 | 118 | 164 |
 
 [Protocol and interpretation](../repair-study.md)
