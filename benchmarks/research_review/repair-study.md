@@ -84,6 +84,8 @@ The sparse-regression task started on its original engine while an alternative r
 | Verifier image | `sha256:c2c6061bbe31170edf632cf44eb4503ea5f15c16f8262c0dd19f6a36cb9639f9` |
 | Selected control receipt | `ae9238541dbf58d1e0d13eb808a42881f4aff8247a127a6c0fceae5695ddd95f` |
 
+The HBV rainfall-runoff calibration task also moved before its first model attempt. Its original machine had allocated all four CPUs. Both machines used the same Linux/AMD64 images and the task's four-CPU, 2 GiB limits. On each machine the untouched submission failed one check and skipped fifteen, and the published solution passed all sixteen. Terra started its draft on the newly qualified machine. The selected control receipt has SHA-256 `af8659272d42bac78a096018ce81dd9a714c22f86a7b3817b4217973bb14c2e8`.
+
 ### Dispatch while another reference is running
 
 At the next scheduling check, four tasks still had no model attempt on any arm. The hydrology reference was running on one alternative machine and the equation-discovery reference on another. Silicon fracture and small-area equivalence were still waiting. The original four-CPU machine was occupied by a model run.
