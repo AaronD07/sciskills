@@ -84,17 +84,20 @@ The sparse-regression task started on its original engine while an alternative r
 | Verifier image | `sha256:c2c6061bbe31170edf632cf44eb4503ea5f15c16f8262c0dd19f6a36cb9639f9` |
 | Selected control receipt | `ae9238541dbf58d1e0d13eb808a42881f4aff8247a127a6c0fceae5695ddd95f` |
 
-The HBV rainfall-runoff calibration task also moved before its first model attempt. Its original machine had allocated all four CPUs. Both machines used the same Linux/AMD64 images and the task's four-CPU, 2 GiB limits. On each machine the untouched submission failed one check and skipped fifteen, and the published solution passed all sixteen. Terra started its draft on the newly qualified machine. The selected control receipt has SHA-256 `af8659272d42bac78a096018ce81dd9a714c22f86a7b3817b4217973bb14c2e8`.
-
 ### Dispatch while another reference is running
 
 At the next scheduling check, four tasks still had no model attempt on any arm. The hydrology reference was running on one alternative machine and the equation-discovery reference on another. Silicon fracture and small-area equivalence were still waiting. The original four-CPU machine was occupied by a model run.
 
 For these four unopened tasks, an earlier task with a live reference qualification and a live dispatcher dedicated to it on another machine has already entered the alternative queue. A free machine may take the next alphabetically eligible task. Record each earlier task skipped, its alternative machine, and the observed status of its qualification and dispatcher. If qualification has finished, skipping that task requires both a passing control receipt on its alternative and a live dispatcher waiting to use it. A stale reservation alone cannot establish that an earlier task is being handled. If the original machine can run the candidate, retain its original reservation. Each alternative must still pass both controls with the pinned images before dispatch. Preserve the original engine for every started task. This change affects dispatch order among the four unopened tasks. The frozen skill, prompts, graders, budgets, cohorts and outcomes are the same.
 
-Equation discovery moved before its first draft while the original machine had all four CPUs allocated. The alternative used the same Linux/AMD64 images and the same four-CPU, 8 GiB limits. The untouched submission passed four checks and failed eight on both machines. The published solution passed all twelve on both. Terra started on the alternative after its control receipt was saved. The selected receipt has SHA-256 `71aac7ad9b7dcc4fc65e611d3fdad5704236150dff33fe04235e68de7d825ecf`.
+All four tasks moved before their first model attempt. The original machine had allocated all four CPUs at each move. On each task the two machines used identical Linux/AMD64 participant and verifier images and the published resource limits. Their controls produced the same check counts. Terra was the first participant on each selected machine.
 
-Small-area estimation moved before its first draft to a local machine with two CPUs. Both machines used the same Linux/AMD64 images and the published two-CPU, 8 GiB limits. On each, the untouched submission passed eleven checks and failed seven. The published reference passed all eighteen. Terra started from the qualified environment. The selected receipt has SHA-256 `60ffc2f260fbc544039362d7e83707a22a2e11dac5d25bb7284f51b1f472ccea`.
+| Task | Selected local Docker context | Task CPUs / GiB | Untouched submission | Published reference | Selected control receipt SHA-256 |
+| --- | --- | ---: | --- | --- | --- |
+| Rainfall-runoff calibration | `desktop-linux` | 4 / 2 | 1 failed, 15 skipped | 16 passed | `af8659272d42bac78a096018ce81dd9a714c22f86a7b3817b4217973bb14c2e8` |
+| Equation discovery | `colima-sciskills-participant` | 4 / 8 | 4 passed, 8 failed | 12 passed | `71aac7ad9b7dcc4fc65e611d3fdad5704236150dff33fe04235e68de7d825ecf` |
+| Small-area estimation | `colima-sciskills-statistics` | 2 / 8 | 11 passed, 7 failed | 18 passed | `60ffc2f260fbc544039362d7e83707a22a2e11dac5d25bb7284f51b1f472ccea` |
+| Silicon fracture | `colima-sciskills-stacking` | 4 / 8 | 9 failed | 9 passed | `31ff8f0043330ed9b9ac6ba56bbf68f3fb725bdc7ee049ee880c2e0f47ccd1e6` |
 
 ## Replay the hydrology calibration
 
