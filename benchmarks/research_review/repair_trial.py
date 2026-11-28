@@ -40,6 +40,10 @@ def assignment(out, task, model, protocol, *, components=None, validated_rows=No
     if not placement.exists():
         return {arm: {"outcome": "missing"} for arm in ARMS}
     machine = study.read(placement)
+    if not study.placement_control_matches(
+        task, machine, control_root=out / "frontier-controls"
+    ):
+        return {arm: {"outcome": "unverified_engine"} for arm in ARMS}
     identity = report._docker_identity(
         {
             "participant_context": machine["context"],

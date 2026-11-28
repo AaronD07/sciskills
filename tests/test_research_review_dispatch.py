@@ -3,11 +3,59 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from benchmarks.research_review import dispatch, report, study
 
 
 class DispatchQualificationTests(unittest.TestCase):
+    def test_prelaunch_move_binds_qualification_to_the_selected_receipt(self):
+        with TemporaryDirectory() as tmp, patch.object(study, "module") as backend:
+            receipt = Path(tmp) / "receipt.json"
+            backend.return_value._scoped_receipt.return_value = receipt
+            control = {"environment_image": "original", "tests_image": "grader"}
+            expected = study.digest(study.encode(control))
+            placement = {
+                "context": "new",
+                "prelaunch_move": {"control_sha256": {"new": expected}},
+            }
+            self.assertFalse(study.placement_control_matches("example", placement))
+            study.save(receipt, control)
+            self.assertTrue(study.placement_control_matches("example", placement))
+            backend.return_value.STATE = receipt.parent
+            copied = Path(tmp) / "copy/frontier-controls"
+            self.assertFalse(
+                study.placement_control_matches(
+                    "example", placement, control_root=copied
+                )
+            )
+            study.save(copied / receipt.name, control)
+            study.save(receipt, {**control, "tests_image": "replacement"})
+            self.assertTrue(
+                study.placement_control_matches(
+                    "example", placement, control_root=copied
+                )
+            )
+            self.assertFalse(study.placement_control_matches("example", placement))
+
+    def test_stale_worker_cannot_open_a_first_launch_marker(self):
+        with TemporaryDirectory() as temp, patch.object(study, "module") as module:
+            out = Path(temp)
+            row = out / "frontier/holdout/example.terra.draft.json"
+            row.parent.mkdir(parents=True)
+            saved = out / "frontier/execution-contexts/example.json"
+            study.save(saved, {"context": "new", "engine": "original-id"})
+            backend = module.return_value
+            for context, engine in (("old", "original-id"), ("new", "replaced-id")):
+                backend._participant_context.return_value = context
+                backend._engine_id.return_value = engine
+                with self.assertRaisesRegex(RuntimeError, "placement changed"):
+                    study._arm_lock(out, "frontier", "holdout", "example", row)
+                self.assertFalse(row.with_suffix(".lock").exists())
+            backend._engine_id.return_value = "original-id"
+            with study._arm_lock(out, "frontier", "holdout", "example", row):
+                self.assertTrue(row.with_suffix(".lock").exists())
+
     def test_completion_uses_qualified_draft_engine_and_matching_review_lineage(self):
         placement = {"context": "selected", "engine": "first"}
         identity = {"participant_context": "selected", "participant_engine": "first"}

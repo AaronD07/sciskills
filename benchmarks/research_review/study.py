@@ -358,11 +358,50 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
             backend.stop(container)
 
 
+def placement_control_matches(task_id, placement, *, control_root=None):
+    move = placement.get("prelaunch_move")
+    if move is None:
+        return True
+    context = placement["context"]
+    backend = module("frontier")
+    receipt = backend._scoped_receipt({"id": task_id}, context)
+    if control_root is not None:
+        receipt = control_root / receipt.relative_to(backend.STATE)
+    if not receipt.is_file():
+        return False
+    return move.get("control_sha256", {}).get(context) == digest(encode(read(receipt)))
+
+
+def _arm_lock(out, track, phase, task_id, path):
+    marker = path.with_suffix(".lock")
+    if track != "frontier" or phase != "holdout":
+        return marker.open("a")
+    placement = out / "frontier" / "execution-contexts" / (task_id + ".json")
+    placement.parent.mkdir(parents=True, exist_ok=True)
+    # Opening the persistent arm marker under the placement lock makes first launch
+    # and prelaunch reassignment mutually exclusive, including for direct workers.
+    with placement.with_suffix(".lock").open("a") as gate:
+        fcntl.flock(gate, fcntl.LOCK_EX)
+        if placement.exists():
+            backend = module(track)
+            selected = read(placement)
+            context = backend._participant_context()
+            if selected["context"] != context or selected[
+                "engine"
+            ] != backend._engine_id(context):
+                raise RuntimeError(
+                    f"Task placement changed before launch for {task_id}"
+                )
+            if not placement_control_matches(task_id, selected):
+                raise RuntimeError(f"Selected qualification changed for {task_id}")
+        return marker.open("a")
+
+
 def run_one(args):
     out, track, phase, c, model, arm, skills = args
     path = row_path(out, track, phase, c, model, arm)
     path.parent.mkdir(exist_ok=True, parents=True)
-    with path.with_suffix(".lock").open("a") as lock:
+    with _arm_lock(out, track, phase, c["id"], path) as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         pending = path.with_suffix(".attempt")
         archived = path.parent / "failed-attempts" / path.name

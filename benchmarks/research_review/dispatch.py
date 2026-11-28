@@ -63,6 +63,8 @@ def choose_context(controls, prior, task_id, *, task=None, capacities=None):
         ):
             continue
     if prior:
+        if not study.placement_control_matches(task_id, prior):
+            raise RuntimeError(f"Saved qualification changed for {task_id}")
         if eligible.get(prior["context"]) != prior["engine"]:
             raise RuntimeError(
                 f"Saved task placement no longer has matching controls and sufficient capacity for {task_id}"
