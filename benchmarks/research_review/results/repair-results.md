@@ -4,7 +4,7 @@ Target **pending**. Complete three-arm comparisons **9/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 10 | 9 | 9 |
+| Scored assignments | 10 | 9 | 10 |
 | Full passes among complete comparisons | 2 | 2 | 2 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -34,7 +34,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | ode-law-discovery | terra | missing | missing | missing |
 | ode-law-discovery | sonnet | missing | missing | missing |
 | rolling-shutter-oma | terra | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
-| rolling-shutter-oma | sonnet | 1 (50 passed) | missing | missing |
+| rolling-shutter-oma | sonnet | 1 (50 passed) | missing | 1 (50 passed) |
 | si-fracture-fbc | terra | missing | missing | missing |
 | si-fracture-fbc | sonnet | missing | missing | missing |
 | small-area-equivalence | terra | missing | missing | missing |
