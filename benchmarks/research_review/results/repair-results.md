@@ -1,11 +1,11 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **3/24**.
+Target **pending**. Complete three-arm comparisons **4/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 3 | 3 | 3 |
-| Full passes among complete comparisons | 0 | 0 | 0 |
+| Scored assignments | 4 | 4 | 4 |
+| Full passes among complete comparisons | 1 | 1 | 1 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
 
@@ -33,7 +33,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | nanoindentation-property-extraction | sonnet | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) |
 | ode-law-discovery | terra | missing | missing | missing |
 | ode-law-discovery | sonnet | missing | missing | missing |
-| rolling-shutter-oma | terra | missing | missing | missing |
+| rolling-shutter-oma | terra | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
 | rolling-shutter-oma | sonnet | missing | missing | missing |
 | si-fracture-fbc | terra | missing | missing | missing |
 | si-fracture-fbc | sonnet | missing | missing | missing |
@@ -52,6 +52,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 [Protocol and interpretation](../repair-study.md)

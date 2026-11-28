@@ -63,4 +63,6 @@ Terra also failed nanoindentation. Ordinary review kept all 29 estimates. The sk
 
 After all six nanoindentation submissions had been graded, an isolated supplemental comparison checked the direction of all four numerical edits. Both of Sonnet's edits moved closer to the reference. Terra's adhesive-gel modulus also moved closer. Its work-of-adhesion estimate moved farther away, although both versions passed that quantity's tolerance. **Three estimates improved, one worsened, and none crossed a pass threshold.** [Per-property evidence](results/material-properties.json) · [Reproduction](repair-study.md#check-the-direction-of-numerical-edits)
 
+Terra's first draft on structural vibration analysis from rolling-shutter video passed all 50 upstream checks. Ordinary review left its submitted estimates byte-for-byte identical. The skill-assisted review changed 479 of the 532 scalar entries in the submitted JSON. Both reviews still passed all 50 checks. This was the first correct draft among the four completed comparisons. The changes earned zero additional passes and caused zero check regressions. [Paired scores](results/repair-results.md)
+
 [Anonymized task results](results/archive.json) · [Complete counts and paired comparisons](results/results.md) · [Protocol and reproduction](README.md)
