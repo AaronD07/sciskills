@@ -83,7 +83,22 @@ class ContextPlacement(unittest.TestCase):
         "_engine_id",
         side_effect=lambda ctx: {"left": "one", "right": "two"}[ctx],
     )
-    def test_verified_engine_affinity(self, _engine):
+    @patch.object(
+        dispatch,
+        "_engine_capacity",
+        side_effect=lambda ctx: ({"left": "one", "right": "two"}[ctx], 4, 8 * 1024**3),
+    )
+    @patch.object(
+        frontier,
+        "tasks",
+        return_value=[
+            {
+                "id": "science",
+                "config": {"environment": {"memory_mb": 4096}, "verifier": {}},
+            }
+        ],
+    )
+    def test_verified_engine_affinity(self, _tasks, _capacity, _engine):
         base = {
             "task": "science",
             "commit": frontier.MANIFEST["commit"],

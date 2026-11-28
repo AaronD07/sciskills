@@ -10,23 +10,68 @@ import sys
 from . import frontier, report, study
 
 
-def choose_context(controls, prior, task_id):
-    """Keep all drafts and forks on a single previously qualified machine."""
-    eligible = {
-        r["participant_context"]: r["participant_engine"]
-        for r in controls
-        if r.get("task") == task_id
-        and r.get("commit") == frontier.MANIFEST["commit"]
-        and frontier.live_control({"id": task_id}, r)
-    }
+def _engine_capacity(context):
+    reply = frontier.command(
+        *frontier._docker(context), "info", "-f", "{{.ID}} {{.NCPU}} {{.MemTotal}}"
+    )
+    engine, cpus, total_bytes = reply.stdout.split()
+    return engine, int(cpus), int(total_bytes)
+
+
+def _fits_limits(task, receipt, cache):
+    for role in ("participant", "verifier"):
+        context, engine = receipt[role + "_context"], receipt[role + "_engine"]
+        key = (context, engine)
+        if key not in cache:
+            cache[key] = _engine_capacity(context)
+        actual_engine, cpus, total_bytes = cache[key]
+        cfg = frontier.role_environment(task, verifier=(role == "verifier"))
+        if (
+            actual_engine != engine
+            or cpus < float(cfg.get("cpus", 1))
+            or total_bytes < int(cfg["memory_mb"]) * 1024**2
+        ):
+            return False
+    return True
+
+
+def choose_context(controls, prior, task_id, *, task=None, capacities=None):
+    """Keep each task on qualified engines that can supply both published role limits."""
+    if task is None:
+        task = next((c for c in frontier.tasks("holdout") if c["id"] == task_id), None)
+    if not task or task["id"] != task_id:
+        raise ValueError(f"No frozen frontier holdout configuration for {task_id}")
+    if capacities is None:
+        capacities = {}
+    eligible = {}
+    for record in controls:
+        if (
+            record.get("task") != task_id
+            or record.get("commit") != frontier.MANIFEST["commit"]
+            or not frontier.live_control(task, record)
+        ):
+            continue
+        try:
+            if _fits_limits(task, record, capacities):
+                eligible[record["participant_context"]] = record["participant_engine"]
+        except (
+            KeyError,
+            OSError,
+            RuntimeError,
+            ValueError,
+            subprocess.SubprocessError,
+        ):
+            continue
     if prior:
         if eligible.get(prior["context"]) != prior["engine"]:
             raise RuntimeError(
-                f"Saved task placement no longer has valid controls: {task_id}"
+                f"Saved task placement no longer has matching controls and sufficient capacity for {task_id}"
             )
         return prior
     if not eligible:
-        raise ValueError(f"Missing positive/negative controls for {task_id}")
+        raise ValueError(
+            f"No matching positive/negative controls on engines with sufficient CPU and memory for {task_id}"
+        )
     # When both engines qualify, an outcome-independent hash divides their work.
     contexts = sorted(eligible)
     chosen = contexts[int(study.digest(task_id), 16) % len(contexts)]
@@ -81,6 +126,7 @@ def main():
             p.error("Unknown frontier holdout task")
         case_ids = list(dict.fromkeys(args.tasks))
     jobs = []
+    capacities = {}
     for task in sorted(case_ids):
         path = out / "execution-contexts" / (task + ".json")
         controls = [
@@ -92,7 +138,10 @@ def main():
             if args.phase == "reviews" and not path.exists():
                 p.error(f"No original participant placement saved for {task}")
             placement = choose_context(
-                controls, study.read(path) if path.is_file() else None, task
+                controls,
+                study.read(path) if path.is_file() else None,
+                task,
+                capacities=capacities,
             )
             study.immutable(path, placement)
         jobs.append((task, placement))

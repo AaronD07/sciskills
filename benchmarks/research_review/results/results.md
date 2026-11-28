@@ -96,9 +96,9 @@ Each attempt appears once, including exclusions whose replacement has yet to ret
 
 | Model | Arm | Recorded reason | Distinct recorded attempts | Same attempt as current row | Different current row | No current row |
 |---|---|---|---:|---:|---:|---:|
-| sonnet | draft | cli_error | 5 | 0 | 3 | 2 |
-| sonnet | draft | participant_host_oom | 3 | 0 | 2 | 1 |
-| sonnet | draft | tool_unavailable | 1 | 0 | 0 | 1 |
+| sonnet | draft | cli_error | 5 | 0 | 4 | 1 |
+| sonnet | draft | participant_host_oom | 3 | 0 | 3 | 0 |
+| sonnet | draft | tool_unavailable | 1 | 0 | 1 | 0 |
 | terra | draft | cli_error | 4 | 1 | 3 | 0 |
 | terra | draft | conflicting_client_permissions | 3 | 0 | 3 | 0 |
 | terra | draft | participant_host_oom | 2 | 0 | 2 | 0 |
@@ -127,7 +127,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | primary | terra | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | draft | 2/10 | 0 | 2 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 3/11 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
@@ -171,6 +171,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `inverse-waveguide-shape` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `linked-cell-suppression` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
+| `nanoindentation-property-extraction` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `neo-orbit-determination` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `ode-law-discovery` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `ode-law-discovery` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |

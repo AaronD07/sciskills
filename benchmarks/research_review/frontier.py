@@ -314,6 +314,14 @@ def _sync_image(context, image_id, tag):
         )
 
 
+def role_environment(task, *, verifier=False):
+    """Effective container settings; a separate verifier may override individual limits."""
+    cfg = dict(task["config"]["environment"])
+    if verifier:
+        cfg.update(task["config"]["verifier"].get("environment", {}))
+    return cfg
+
+
 def start(
     task,
     snapshot=None,
@@ -325,9 +333,7 @@ def start(
     sidecar_image=None,
 ):
     role = "tests" if verifier else "environment"
-    cfg = dict(task["config"]["environment"])
-    if verifier:
-        cfg.update(task["config"]["verifier"].get("environment", {}))
+    cfg = role_environment(task, verifier=verifier)
     control = _read_control(task)
     service = None if verifier or artifacts_only else SIDECARS.get(task["id"])
     if snapshot and service:

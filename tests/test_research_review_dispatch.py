@@ -87,3 +87,88 @@ class DispatchQualificationTests(unittest.TestCase):
             write("specialist")
             write("draft", participant_context=None)
             self.assertEqual(missing(), [("task", "terra", "draft")])
+
+
+class PlacementCapacityTests(unittest.TestCase):
+    def setUp(self):
+        from unittest.mock import patch
+
+        self.gib = 1024**3
+        self.receipt = {
+            "task": "test",
+            "commit": dispatch.frontier.MANIFEST["commit"],
+            "participant_context": "desktop",
+            "participant_engine": "d",
+            "verifier_context": "colima",
+            "verifier_engine": "c",
+        }
+        self.task = {
+            "id": "test",
+            "config": {
+                "environment": {"cpus": 4, "memory_mb": 8192},
+                "verifier": {"environment": {"memory_mb": 4096}},
+            },
+        }
+        self.specs = {
+            "desktop": ("d", 16, 8217190400),
+            "colima": ("c", 4, 24 * self.gib),
+        }
+        self.start_patch = patch.object(
+            dispatch.frontier, "live_control", return_value=True
+        )
+        self.start_patch.start()
+        self.addCleanup(self.start_patch.stop)
+        capacity = patch.object(
+            dispatch, "_engine_capacity", side_effect=lambda ctx: self.specs[ctx]
+        )
+        self.probe = capacity.start()
+        self.addCleanup(capacity.stop)
+
+    def choose(self, receipts=None, prior=None, cache=None):
+        return dispatch.choose_context(
+            receipts or [self.receipt], prior, "test", task=self.task, capacities=cache
+        )
+
+    def test_binary_units_apply_to_the_participant_and_pinned_placement(self):
+        alternative = {
+            **self.receipt,
+            "participant_context": "colima",
+            "participant_engine": "c",
+        }
+        self.assertEqual(self.choose([self.receipt, alternative])["context"], "colima")
+        with self.assertRaises(RuntimeError):
+            self.choose(
+                [self.receipt, alternative], {"context": "desktop", "engine": "d"}
+            )
+        self.specs["desktop"] = ("d", 16, 8 * self.gib - 1)
+        with self.assertRaises(ValueError):
+            self.choose()
+        self.specs["desktop"] = ("d", 16, 8 * self.gib)
+        self.assertEqual(self.choose()["context"], "desktop")
+
+    def test_each_verifier_override_is_merged_with_the_participant_settings(self):
+        self.specs["desktop"] = ("d", 16, 8 * self.gib)
+        self.specs["colima"] = ("c", 3, 4 * self.gib)
+        with self.assertRaises(ValueError):  # verifier inherits participant's 4 CPUs
+            self.choose()
+        self.task["config"]["verifier"]["environment"] = {"cpus": 2}
+        self.specs["colima"] = ("c", 2, 8 * self.gib - 1)
+        with self.assertRaises(ValueError):  # verifier inherits participant's 8192 MiB
+            self.choose()
+        self.specs["colima"] = ("c", 2, 8 * self.gib)
+        self.assertEqual(self.choose()["engine"], "d")
+
+    def test_capacity_cache_is_bound_to_a_certificate_engine_id_and_pass(self):
+        self.specs["desktop"] = ("d", 16, 8 * self.gib)
+        cache = {}
+        self.choose(cache=cache)
+        self.choose(cache=cache)
+        self.assertEqual(self.probe.call_count, 2)
+        updated = {**self.receipt, "participant_engine": "new"}
+        with self.assertRaises(ValueError):
+            self.choose(
+                [updated], cache=cache
+            )  # same context name, different engine ID
+        self.assertEqual(self.probe.call_count, 3)
+        self.specs["desktop"] = ("new", 16, 8 * self.gib)
+        self.assertEqual(self.choose([updated])["engine"], "new")
