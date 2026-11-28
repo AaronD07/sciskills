@@ -153,7 +153,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 10 ready, 6 failed and 0 without a receipt.
+Upstream empty and reference submission control counts are 11 ready, 5 failed and 0 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
@@ -168,7 +168,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `hysteretic-aquifer-control` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | failed | — |
 | `inverse-waveguide-shape` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
 | `inverse-waveguide-shape` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
-| `linked-cell-suppression` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
+| `linked-cell-suppression` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `neo-orbit-determination` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `ode-law-discovery` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |

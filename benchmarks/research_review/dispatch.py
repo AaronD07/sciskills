@@ -7,7 +7,7 @@ import os
 import subprocess
 import sys
 
-from . import frontier, study
+from . import frontier, report, study
 
 
 def choose_context(controls, prior, task_id):
@@ -31,6 +31,35 @@ def choose_context(controls, prior, task_id):
     contexts = sorted(eligible)
     chosen = contexts[int(study.digest(task_id), 16) % len(contexts)]
     return {"context": chosen, "engine": eligible[chosen]}
+
+
+def incomplete_assignments(archive, design, jobs, phase):
+    """Require a canonical, reportable grade on the saved machine for every scheduled arm."""
+    scored = {
+        (r["task"], r["model"], r["arm"]): r["participant"]
+        for r in archive["rows"]
+        if r["track"] == "frontier"
+        and r["phase"] == "holdout"
+        and r.get("participant_control_verified") is True
+        and type(r.get("correct")) is bool
+    }
+    # Reviews also need a qualified original draft for paired comparisons.
+    arms = ("draft", *study.ARMS) if phase == "reviews" else ("draft",)
+    for task, placement in jobs:
+        expected = report._docker_identity(
+            {
+                "participant_context": placement["context"],
+                "participant_engine": placement["engine"],
+            }
+        )
+        models = design["primary"] + (
+            design["transfer"] if task in design["transfer_ids"] else []
+        )
+        for model in models:
+            for arm in arms:
+                key = (task, model, arm)
+                if scored.get(key) != expected:
+                    yield key
 
 
 def main():
@@ -82,34 +111,25 @@ def main():
             "--workers",
             str(args.workers_per_task),
         ]
-        code = subprocess.run(
+        return subprocess.run(
             cmd,
             cwd=study.ROOT,
             env={**os.environ, "DOCKER_CONTEXT": placement["context"]},
         ).returncode
-        if code:
-            return code
-        models = design["primary"] + (
-            design["transfer"] if task in design["transfer_ids"] else []
-        )
-        arms = ("draft",) if args.phase == "holdout" else study.ARMS
-        for model in models:
-            for arm in arms:
-                path = out / "holdout" / f"{task}.{model}.{arm}.json"
-                row = study.read(path) if path.is_file() else {}
-                if (
-                    row.get("status") != "submitted"
-                    or type((row.get("score") or {}).get("correct")) is not bool
-                ):
-                    print(f"Incomplete result {task}/{model}/{arm}", flush=True)
-                    return 1
-        return 0
 
     with ThreadPoolExecutor(args.parallel_tasks) as pool:
         codes = list(pool.map(run, jobs))
     if any(codes):
         raise SystemExit(
             "One or more tasks require attention. Saved attempts can be resumed."
+        )
+    archive = report.archive_runs(out.parent, tracks=("frontier",))
+    missing = list(incomplete_assignments(archive, design, jobs, args.phase))
+    if missing:
+        for task, model, arm in missing:
+            print(f"Missing qualified result {task}/{model}/{arm}", flush=True)
+        raise SystemExit(
+            "The public results do not contain every scheduled grade on its saved participant engine."
         )
 
 

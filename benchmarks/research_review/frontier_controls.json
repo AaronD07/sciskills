@@ -728,7 +728,37 @@
     {
       "task": "inverse-waveguide-shape",
       "phase": "holdout",
-      "status": "pending"
+      "status": "verified",
+      "environment_image": "sha256:ea5c148690cc1909275e2e813d3c90b1ace1484da9b46e0020c1edb12ff1a52f",
+      "tests_image": "sha256:ee07c1dad98bb0aa73e0a298886ea3d71e635d45abfb35d757f18d4ea6bb8eb0",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795832400,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 7,
+          "passed": 1
+        },
+        "pytest_outcomes": {
+          "failed": 7,
+          "passed": 1
+        }
+      },
+      "positive": {
+        "status": "graded",
+        "reward": 1.0,
+        "checks": {
+          "passed": 8
+        },
+        "pytest_outcomes": {
+          "passed": 8
+        }
+      }
     }
   ]
 }
