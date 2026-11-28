@@ -26,6 +26,50 @@ For complete comparisons with the same uniquely named upstream checks, the evalu
 
 For complete comparisons with both original session records, the archive stores elapsed seconds and logged shell requests under `review_effort`, alongside the official grades. Wall time includes staging the draft history, cleanup and any snapshot taken at the deadline. Verifier time is separate. Each logged shell request counts once, including failed requests. A request interrupted before the tool writes its receipt has no entry. A reconstructed session or malformed call record excludes the pair from the effort totals. On the machine that holds the private grades, compare `elapsed_seconds` with `session.elapsed_seconds` and `tool_calls` with the length of `session.calls`. The public archive excludes commands and their output.
 
+## Verify the starting filesystem image
+
+In the first eleven complete comparisons, Docker recorded the qualified participant environment as the immediate parent of all eleven draft snapshots. Each of the 22 review snapshots had its own model's first-draft snapshot as its immediate parent. The archive separately checks the fingerprints of the tool history and final reply staged for review.
+
+With the original private grades and Docker snapshots available, run this from the repository root. The command checks the private grades against each complete comparison in the checked-out archive and inspects the image metadata on the original engine. The SHA-256 of the sorted task, model and image records for the first eleven comparisons was `f0b58ef4b4e6520a3407b169f9d336d28b1e61ef81e499d704160a243483c117`. An archive with additional complete comparisons produces a new fingerprint.
+
+```bash
+python3 - <<'PY'
+from benchmarks.research_review import frontier, repair_trial, study
+
+out = study.DEFAULT_OUT
+protocol, _, cases = repair_trial.validate_protocol(out)
+archive = study.read(study.HERE / "results/repair-archive.json")
+repair_trial.summarize(archive, protocol)
+verified = []
+for observation in archive["observations"]:
+    task, model = observation["task"], observation["model"]
+    published = observation["arms"]
+    if not all(type(published[arm].get("correct")) is bool for arm in repair_trial.ARMS):
+        continue
+    rows = {}
+    grades = repair_trial.assignment(out, task, model, protocol, validated_rows=rows)
+    if grades != published or set(rows) != set(repair_trial.ARMS):
+        raise ValueError(f"Local grades differ from the archive for {task}, {model}")
+    context = rows["draft"]["participant_context"]
+    control = study.read(frontier._scoped_receipt(cases[task], context))
+    if (control["task"] != task or control["participant_context"] != context
+            or control["participant_engine"] != rows["draft"]["participant_engine"]
+            or not frontier.live_control(cases[task], control)):
+        raise ValueError(f"Cannot verify the original control for {task}, {model}")
+    images = [rows[arm]["image"] for arm in repair_trial.ARMS]
+    parents = [control["environment_image"], images[0], images[0]]
+    lines = frontier.command(
+        "docker", "--context", context, "image", "inspect",
+        "-f", "{{.Id}} {{.Parent}}", *images
+    ).stdout.splitlines()
+    if lines != [f"{image} {parent}" for image, parent in zip(images, parents)]:
+        raise ValueError(f"Snapshot ancestry mismatch for {task}, {model}")
+    verified.append([task, model, control["environment_image"], *images])
+print(f"Verified {len(verified)} draft origins and {2 * len(verified)} review parents.")
+print(study.digest(study.encode(sorted(verified))))
+PY
+```
+
 ## Placement of unopened tasks
 
 On 28 November, six tasks had a saved machine reservation but no first-draft attempt, model session or submitted grade. They were certified sparse regression, finite free Stam, HBV calibration, ODE law discovery, silicon fracture and small-area equivalence. Their reserved machine was fully allocated to an earlier experiment. To use available local machines, we adopted this scheduling rule before starting an alternative reference run for any of the six.
