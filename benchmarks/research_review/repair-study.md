@@ -77,3 +77,9 @@ diff -u benchmarks/research_review/results/material-properties.json /tmp/materia
 ```
 
 The command checks the protocol, verifier image, original drafts and all six CSV fingerprints. It needs the original private snapshots. The [public evidence](results/material-properties.json) contains the submitted values, their tolerance decisions and the direction of each change. Reference values stay inside the verifier. For unequal submissions, error differences within one thousandth of the applicable tolerance are reported as unresolved. Identical submitted values are recorded as unchanged.
+
+## Quantify changes in vibration estimates
+
+Terra's structural-vibration draft and both reviews passed all 50 checks, although its skill-assisted review changed 479 scalar entries. To determine whether those edits improved measurement accuracy within the allowed tolerances, we specified this supplemental comparison while Sonnet's first draft was still running and before comparing either model's modal errors against the reference.
+
+After all six submissions receive official grades, compare the four ordered modes in each of recordings A, B and C and in each of the four segments of D. That gives 28 modes per submission. Give every mode equal weight. For each model and arm report three separate means using the verifier's definitions. Frequency error is the absolute relative error in percent. Damping error is the absolute error in percentage points. Mode-shape error is one minus the verifier's conjugation-invariant modal assurance criterion. For each metric also count how many of the 28 modes miss its official tolerance. If a metric cannot be computed for every mode, report its coverage and leave its mean unavailable. Keep reference values inside the evaluator. These descriptive comparisons do not add any full-task passes.
