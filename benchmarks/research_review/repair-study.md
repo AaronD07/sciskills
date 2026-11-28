@@ -26,6 +26,50 @@ For complete comparisons with the same uniquely named upstream checks, the evalu
 
 For complete comparisons with both original session records, the archive stores elapsed seconds and logged shell requests under `review_effort`, alongside the official grades. Wall time includes staging the draft history, cleanup and any snapshot taken at the deadline. Verifier time is separate. Each logged shell request counts once, including failed requests. A request interrupted before the tool writes its receipt has no entry. A reconstructed session or malformed call record excludes the pair from the effort totals. On the machine that holds the private grades, compare `elapsed_seconds` with `session.elapsed_seconds` and `tool_calls` with the length of `session.calls`. The public archive excludes commands and their output.
 
+## Recombine saved spin configurations
+
+This retrospective development diagnostic uses the public edges and checkpoints from each model's original spin-glass draft. The participant task asks for the lowest-energy assignment of 10,648 spins on each of six lattices. Independently recomputing every single- or double-spin change had found no improvement on any submitted state.
+
+For two configurations on the same lattice, identify the sites where their spins disagree and split those sites into connected components. Flipping a whole component preserves all its internal pair energies. Its change in energy therefore comes entirely from edges to the unchanged sites. Distinct components share no edges, so the replay can combine all components that strictly lower energy. It checks both global signs of each candidate because reversing every spin preserves this objective. On each iteration it chooses the largest decrease, breaks ties by filename and then sign (+ before −), and checks the new energy against a fresh sum over the complete edge list. The original submission is also eligible as a donor after the other files. Iteration stops when none of those donors lowers the energy further. [Replay implementation](spin_replay.py)
+
+| Development result | Terra | Sonnet |
+| --- | ---: | ---: |
+| Saved alternatives per instance | 3–5 | 16 |
+| Instances improved over the best original candidate | 0/6 | 6/6 |
+| Instances at the exact target before recombination | 0/6 | 0/6 |
+| Instances at the exact target after recombination | 0/6 | 2/6 |
+
+The exact-target counts come from comparing the final energies with each model's original private grader record after the replay finished. The program reads only the public instance, the original draft and the same model's saved alternatives. This analysis adds no participant trials or holdout repairs.
+
+Run the following in Bash from the repository root. Each pinned image is an original development submission. The command uses Sonnet's 16 annealing runs or Terra's saved solver outputs for the same instance. It prints the input fingerprints, chosen moves, exact energies and final configuration fingerprint. Set `SCISKILLS_REPLAY_CONTEXT` to the name of a local Docker engine that holds both images.
+
+```bash
+set -eu
+context=${SCISKILLS_REPLAY_CONTEXT:-desktop-linux}
+for model in terra sonnet; do
+  case "$model" in
+    terra) image=sha256:b6a7ccafb29a5fa36fb60ef8a27e6dd5bc2968d61f962659f020b1bf1366ec4a ;;
+    sonnet) image=sha256:ffb2de72786a535bbd8e2a7da7bdacfcf7434ae1fe613505d4bc1d04106bf680 ;;
+  esac
+  for k in 0 1 2 3 4 5; do
+    docker --context "$context" run --rm -i --platform linux/amd64 --network none \
+      --read-only --cpus 1 --memory 512m --cap-drop ALL --security-opt no-new-privileges \
+      --entrypoint sh "$image" -c '
+        set -eu
+        model=$1; k=$2
+        if [ "$model" = sonnet ]; then
+          set -- /root/w/sa"$k"_*.txt
+        else
+          set -- /root/work/[bfstw]*"$k".txt
+        fi
+        exec python3 - "/root/data/instance_$k.json" "/root/artifacts/spins_$k.txt" "$@"
+      ' sh "$model" "$k" < benchmarks/research_review/spin_replay.py
+  done
+done
+```
+
+The SHA-256 of the twelve JSON lines printed above, in order with their final newline, is `5c5d246f3f7d61523872d23fa199e1318b10b2d789f3468141fe3d222ea7c536`. A separate implementation using a sparse adjacency matrix reproduced every final configuration.
+
 ## Verify the starting filesystem image
 
 In the first fourteen complete comparisons, Docker recorded the qualified participant environment as the immediate parent of all fourteen draft snapshots. Each of the 28 review snapshots had its own model's first-draft snapshot as its immediate parent. The archive separately checks the fingerprints of the tool history and final reply staged for review.
