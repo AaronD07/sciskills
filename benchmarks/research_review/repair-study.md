@@ -24,6 +24,12 @@ The [results table](results/repair-results.md) shows each arm's upstream reward 
 
 For complete comparisons with the same uniquely named upstream checks, the evaluator also counts which draft defects each review repaired and which passing checks each review broke. A skipped check remains unscored. Missing names, ambiguous matches and different check sets are reported as unavailable. Only transition counts leave the evaluator. This also detects opposing changes when the total number of passing checks stays the same.
 
+## Placement of unopened tasks
+
+On 28 November, six tasks had a saved machine reservation but no first-draft attempt, model session or submitted grade. They were certified sparse regression, finite free Stam, HBV calibration, ODE law discovery, silicon fracture and small-area equivalence. Their reserved machine was fully allocated to an earlier experiment. To use available local machines, we adopted this scheduling rule before starting an alternative reference run for any of the six.
+
+A task can move once, before its first participant launch, if its existing reservation lacks capacity. The alternative must pass both official controls with the original environment and verifier image digests, architecture, time limits, CPU and memory allowances. Tasks enter the available machine's queue in alphabetical order among those it can run. Keep the original reservation whenever it has capacity at dispatch. Archive the previous reservation, the new one, and the checks for any prior attempt. A launch lock, private session, attempt or grade on any arm rules out a move. Once a task launches, both models and all reviews use that saved engine. The selection of tasks, models, skill, review prompts and success criteria was frozen before these scheduling decisions.
+
 ## Verify the reported CSV changes
 
 Diffraction and nanoindentation both deliver `/workspace/output/results.csv`. On the machine that holds the graded snapshots, take `participant_context` and `image` from each private graded row. The first draft and ordinary review live under `frontier/holdout`. The repair review lives under `repair-study/holdout`. Run the following with those two values supplied as `context` and `image`. The container is created from the saved image and never started.
