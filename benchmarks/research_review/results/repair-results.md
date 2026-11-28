@@ -1,10 +1,10 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **13/24**.
+Target **pending**. Complete three-arm comparisons **14/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 14 | 13 | 13 |
+| Scored assignments | 15 | 14 | 14 |
 | Full passes among complete comparisons | 4 | 4 | 4 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -35,7 +35,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | ode-law-discovery | sonnet | missing | missing | missing |
 | rolling-shutter-oma | terra | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
 | rolling-shutter-oma | sonnet | 1 (50 passed) | 1 (50 passed) | 1 (50 passed) |
-| si-fracture-fbc | terra | missing | missing | missing |
+| si-fracture-fbc | terra | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
 | si-fracture-fbc | sonnet | missing | missing | missing |
 | small-area-equivalence | terra | awaiting grade | missing | missing |
 | small-area-equivalence | sonnet | missing | missing | missing |
@@ -59,6 +59,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | ode-law-discovery (terra) | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (sonnet) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| si-fracture-fbc (terra) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (terra) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (sonnet) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -66,7 +67,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 ## Review time and tool use
 
-Both review sessions have recorded wall time and shell requests for 13 of 13 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+Both review sessions have recorded wall time and shell requests for 14 of 14 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
 
 | Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
 | --- | ---: | ---: | ---: | ---: |
@@ -79,10 +80,11 @@ Both review sessions have recorded wall time and shell requests for 13 of 13 com
 | ode-law-discovery (terra) | 52.19 | 75.06 | 5 | 4 |
 | rolling-shutter-oma (terra) | 45.23 | 115.52 | 7 | 10 |
 | rolling-shutter-oma (sonnet) | 527.59 | 620.96 | 17 | 17 |
+| si-fracture-fbc (terra) | 320.20 | 114.32 | 17 | 11 |
 | stacking-disorder-diffraction (terra) | 68.80 | 427.69 | 5 | 8 |
 | stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
 | xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
 | xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
-| **Total** | 2493.48 | 4282.30 | 118 | 164 |
+| **Total** | 2813.68 | 4396.62 | 135 | 175 |
 
 [Protocol and interpretation](../repair-study.md)
