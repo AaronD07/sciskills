@@ -4,7 +4,7 @@ Target **pending**. Complete three-arm comparisons **15/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 16 | 15 | 15 |
+| Scored assignments | 17 | 16 | 15 |
 | Full passes among complete comparisons | 4 | 4 | 4 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -20,7 +20,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | Task | Model | First draft | Ordinary review | Repair skill |
 | --- | --- | --- | --- | --- |
 | certified-sparse-regression | terra | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) |
-| certified-sparse-regression | sonnet | missing | missing | missing |
+| certified-sparse-regression | sonnet | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) | missing |
 | finite-free-stam | terra | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
 | finite-free-stam | sonnet | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
 | frustrated-heisenberg-nqs | terra | missing | missing | missing |
