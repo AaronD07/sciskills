@@ -57,7 +57,9 @@ def number(value):
 
 
 def safe_status(value):
-    return value if value in KNOWN_STATUS else "unknown_error"
+    return (
+        value if isinstance(value, str) and value in KNOWN_STATUS else "unknown_error"
+    )
 
 
 def measurements(case, raw, draft):
@@ -236,9 +238,93 @@ def _verified(control):
     )
 
 
+# A retry or later infrastructure adjudication can save the same session in several places.
+_HISTORY_DIRS = (
+    "failed-attempts",
+    "discarded-retries",
+    "interrupted-network-or-host",
+    "host-memory-incidents",
+    "conflicting-client-permissions",
+)
+
+
+def _attempt_key(row):
+    """Local-only identity; receipts and their digests never enter the published export."""
+    session = row.get("session") or {}
+    if row.get("attempt_id") or session.get("attempt_id"):
+        receipt = {"attempt": row.get("attempt_id") or session["attempt_id"]}
+    elif row.get("incident_sha256"):
+        receipt = {"incident": row["incident_sha256"]}
+    elif number(session.get("elapsed_seconds")):
+        # Adjudication may recover a missing reply or change status on the same tool trace.
+        receipt = {k: session.get(k) for k in ("model", "elapsed_seconds", "calls")}
+    elif session:
+        receipt = {
+            k: v for k, v in session.items() if k not in ("status", "subscription")
+        }
+    else:
+        receipt = {
+            k: v for k, v in row.items() if k not in ("score", "reason", "recovery")
+        }
+    return study.digest(study.encode(receipt))
+
+
+def _history_paths(directory):
+    paths = defaultdict(list)
+    for source in _HISTORY_DIRS:
+        for path in sorted((directory / source).rglob("*.json")):
+            paths[path.name].append((source, path))
+    return paths
+
+
+def _history_for(identity, paths, current):
+    reasons = defaultdict(set)
+    current_key = _attempt_key(current) if current else None
+    if current and current["status"] != "submitted":
+        reasons[current_key].add(safe_status(current["status"]))
+    for source, path in paths:
+        record = study.read(path)
+        if any(record.get(k) != v for k, v in identity.items()):
+            raise ValueError(
+                "Archived attempt identity differs from its scheduled task"
+            )
+        if source == "host-memory-incidents":
+            reason = "participant_host_oom"
+        elif source == "conflicting-client-permissions":
+            reason = "conflicting_client_permissions"
+        else:
+            reason = safe_status(record.get("status"))
+        reasons[_attempt_key(record)].add(reason)
+    # Prefer confirmed causes to provisional CLI errors when both refer to one attempt.
+    priorities = (
+        "participant_host_oom",
+        "conflicting_client_permissions",
+        "tool_unavailable",
+        "quota_exhausted",
+        "authentication_error",
+        "pending_engine_requalification",
+        "cli_error",
+    )
+    counts = Counter()
+    for key, labels in reasons.items():
+        reason = next((s for s in priorities if s in labels), sorted(labels)[0])
+        relationship = (
+            "same_attempt"
+            if key == current_key
+            else "other_attempt"
+            if current
+            else "no_current_record"
+        )
+        counts[reason, relationship] += 1
+    return [
+        {**identity, "reason": reason, "current_record": relationship, "count": n}
+        for (reason, relationship), n in sorted(counts.items())
+    ]
+
+
 def archive_runs(root, tracks=study.TRACKS):
     """Build an allowlisted archive from local primary records, independent of wall time."""
-    archive = {"schema_version": 1, "tracks": {}, "rows": []}
+    archive = {"schema_version": 1, "tracks": {}, "rows": [], "attempt_history": []}
     for track in sorted(tracks):
         directory = root / track
         if not (directory / "design.json").is_file():
@@ -276,6 +362,7 @@ def archive_runs(root, tracks=study.TRACKS):
                 else {}
             )
             observed = {p.name for p in (directory / phase).glob("*.json")}
+            history = _history_paths(directory / phase)
             for task in sorted(ids):
                 models = design["primary"] + (
                     design["transfer"]
@@ -286,11 +373,6 @@ def archive_runs(root, tracks=study.TRACKS):
                     draft = None
                     for arm in ARMS if phase == "holdout" else ("draft",):
                         name = f"{task}.{model}.{arm}.json"
-                        if name not in observed:
-                            continue
-                        observed.remove(name)
-                        path = directory / phase / name
-                        row = study.read(path)
                         identity = {
                             "track": track,
                             "phase": phase,
@@ -298,8 +380,17 @@ def archive_runs(root, tracks=study.TRACKS):
                             "model": model,
                             "arm": arm,
                         }
-                        if any(row[k] != v for k, v in identity.items()):
+                        path = directory / phase / name
+                        row = study.read(path) if name in observed else None
+                        if row and any(row[k] != v for k, v in identity.items()):
                             raise ValueError(f"Session identity mismatch for {name}")
+                        if name in history or (row and row["status"] != "submitted"):
+                            archive["attempt_history"].extend(
+                                _history_for(identity, history.get(name, []), row)
+                            )
+                        if row is None:
+                            continue
+                        observed.remove(name)
                         grade = public_row(row, draft, ev.get(task))
                         if track == "frontier":
                             participant = _docker_identity(row)
@@ -334,14 +425,6 @@ def archive_runs(root, tracks=study.TRACKS):
                             grade["tool_calls"] = len(session["calls"])
                         if session.get("termination") == "task_deadline":
                             grade["task_deadline"] = True
-                        excluded = path.parent / "host-memory-incidents" / name
-                        if excluded.is_file():
-                            grade["excluded_host_oom_attempt"] = True
-                        previous = path.parent / "failed-attempts" / name
-                        if previous.is_file():
-                            grade["previous_attempt"] = safe_status(
-                                study.read(previous)["status"]
-                            )
                         archive["rows"].append({**identity, **grade})
                         if arm == "draft":
                             draft = row
@@ -450,6 +533,44 @@ def render(archive):
     for track, design in sorted(archive["tracks"].items()):
         for phase in ("dev", "holdout"):
             lines.extend([f"## {track.capitalize()} {phase}", ""])
+            if "attempt_history" in archive:
+                history = [
+                    r
+                    for r in archive["attempt_history"]
+                    if r["track"] == track and r["phase"] == phase
+                ]
+                if history:
+                    totals = Counter()
+                    for attempt in history:
+                        totals[
+                            attempt["model"],
+                            attempt["arm"],
+                            attempt["reason"],
+                            attempt["current_record"],
+                        ] += attempt["count"]
+                    lines.extend(
+                        [
+                            "### Distinct recorded interruptions and exclusions",
+                            "",
+                            "Each attempt appears once, including exclusions whose replacement has yet to return. A recovered attempt can also have a current result. These counts do not enter the task accuracy denominators.",
+                            "",
+                            "| Model | Arm | Recorded reason | Distinct recorded attempts | Same attempt as current row | Different current row | No current row |",
+                            "|---|---|---|---:|---:|---:|---:|",
+                        ]
+                    )
+                    for model, arm, reason in sorted({k[:3] for k in totals}):
+                        values = [
+                            totals[model, arm, reason, r]
+                            for r in (
+                                "same_attempt",
+                                "other_attempt",
+                                "no_current_record",
+                            )
+                        ]
+                        lines.append(
+                            f"| {model} | {arm} | {reason} | {sum(values)} | {values[0]} | {values[1]} | {values[2]} |"
+                        )
+                    lines.append("")
             if "controls" in design:
                 controls = [
                     design["controls"][t]

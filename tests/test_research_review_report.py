@@ -384,3 +384,284 @@ class MultiEngineReportTests(unittest.TestCase):
                         "| primary | terra | draft | 0/0 | 0 | 0 | 0 | 0 | 1 |",
                         report.render(result),
                     )
+
+
+class AttemptHistoryTests(unittest.TestCase):
+    def test_pending_replacements_and_cross_directory_deduplication(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            phase = root / "frontier" / "dev"
+            key = {
+                "track": "frontier",
+                "phase": "dev",
+                "task": "case",
+                "model": "terra",
+                "arm": "draft",
+            }
+            filename = "case.terra.draft.json"
+            design = {
+                "study": "test",
+                "effort": "high",
+                "primary": ["terra"],
+                "transfer": [],
+                "transfer_ids": [],
+                "tasks": {"dev": {"case": "h"}, "holdout": {}},
+            }
+            study.save(root / "frontier" / "design.json", design)
+            secret = "private-scratch-id-and@example.invalid"
+            first = {
+                **key,
+                "status": "cli_error",
+                "score": {"secret_grade": secret},
+                "session": {
+                    "elapsed_seconds": 23,
+                    "model": "terra",
+                    "calls": [{"output": secret}],
+                    "reply": secret,
+                    "subscription": secret,
+                },
+            }
+            study.save(phase / "failed-attempts" / filename, first)
+            study.save(
+                phase / "host-memory-incidents" / filename,
+                {**first, "status": "participant_host_oom"},
+            )
+            study.save(
+                phase / "interrupted-network-or-host" / secret / filename,
+                {**first, "status": "pending_engine_requalification"},
+            )
+            second = {
+                **key,
+                "status": "tool_unavailable",
+                "incident_sha256": secret,
+                "reason": secret,
+            }
+            study.save(
+                phase / "interrupted-network-or-host" / "other" / filename, second
+            )
+            study.save(
+                phase / "interrupted-network-or-host" / "copy" / filename, second
+            )
+            third = {
+                **key,
+                "status": secret,
+                "incident_sha256": "second-recovery",
+                "reason": secret,
+            }
+            study.save(
+                phase / "interrupted-network-or-host" / "third" / filename, third
+            )
+            archive = report.archive_runs(root)
+            self.assertEqual(archive["rows"], [])
+            self.assertEqual(
+                {
+                    (r["reason"], r["current_record"], r["count"])
+                    for r in archive["attempt_history"]
+                },
+                {
+                    ("participant_host_oom", "no_current_record", 1),
+                    ("tool_unavailable", "no_current_record", 1),
+                    ("unknown_error", "no_current_record", 1),
+                },
+            )
+            self.assertNotIn(secret, json.dumps(archive))
+            self.assertNotIn("secret_grade", json.dumps(archive))
+            self.assertNotIn("second-recovery", json.dumps(archive))
+            self.assertIn(
+                "| terra | draft | tool_unavailable | 1 | 0 | 0 | 1 |",
+                report.render(archive),
+            )
+            self.assertIn(
+                "| primary | terra | draft | 0/0 | 0 | 1 |", report.render(archive)
+            )
+
+            # Adjudication recovered the first reply from the *same* original client execution.
+            study.save(
+                phase / filename,
+                {
+                    **first,
+                    "status": "submitted",
+                    "score": {"correct": True, "reward": 1},
+                    "session": {**first["session"], "reply": "recovered"},
+                },
+            )
+            updated = report.archive_runs(root)
+            self.assertEqual(
+                {r["reason"]: r["current_record"] for r in updated["attempt_history"]},
+                {
+                    "participant_host_oom": "same_attempt",
+                    "tool_unavailable": "other_attempt",
+                    "unknown_error": "other_attempt",
+                },
+            )
+            self.assertEqual(sum(r["count"] for r in updated["attempt_history"]), 3)
+            self.assertEqual(len(updated["rows"]), 1)
+
+    def test_current_interruption_is_counted_once_and_duplicate_rows_never_count_as_tasks(
+        self,
+    ):
+        key = {
+            "track": "frontier",
+            "phase": "dev",
+            "task": "case",
+            "model": "terra",
+            "arm": "draft",
+        }
+        receipt = {
+            **key,
+            "status": "quota_exhausted",
+            "session": {"elapsed_seconds": 8, "calls": []},
+        }
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "row.json"
+            study.save(path, receipt)
+            history = report._history_for(
+                key, [("failed-attempts", path), ("discarded-retries", path)], receipt
+            )
+            self.assertEqual(
+                history,
+                [
+                    {
+                        **key,
+                        "reason": "quota_exhausted",
+                        "current_record": "same_attempt",
+                        "count": 1,
+                    }
+                ],
+            )
+
+    def test_explicit_attempt_ids_separate_two_short_identical_quota_failures(self):
+        key = {
+            "track": "frontier",
+            "phase": "dev",
+            "task": "case",
+            "model": "terra",
+            "arm": "draft",
+        }
+        with TemporaryDirectory() as tmp:
+            paths = []
+            for n in ("private-a", "private-b"):
+                path = Path(tmp) / (n + ".json")
+                study.save(
+                    path,
+                    {
+                        **key,
+                        "attempt_id": n,
+                        "status": "quota_exhausted",
+                        "session": {"elapsed_seconds": 0.1, "calls": []},
+                    },
+                )
+                paths.append(("interrupted-network-or-host", path))
+            history = report._history_for(key, paths, None)
+            self.assertEqual(
+                history,
+                [
+                    {
+                        **key,
+                        "reason": "quota_exhausted",
+                        "current_record": "no_current_record",
+                        "count": 2,
+                    }
+                ],
+            )
+
+
+class RecordedAttemptIdentityTests(unittest.TestCase):
+    def test_run_one_assigns_a_unique_private_id_to_each_actual_launch(self):
+        from unittest.mock import patch
+        from contextlib import redirect_stdout
+        import io
+
+        key = {
+            "track": "frontier",
+            "phase": "dev",
+            "task": "case",
+            "model": "terra",
+            "arm": "draft",
+        }
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            design = {
+                "study": "test",
+                "effort": "high",
+                "primary": ["terra"],
+                "transfer": [],
+                "transfer_ids": [],
+                "tasks": {"dev": {"case": "h"}, "holdout": {}},
+            }
+            study.save(root / "frontier" / "design.json", design)
+            args = (root, "frontier", "dev", {"id": "case"}, "terra", "draft", {})
+
+            # Identical early failures can have the same elapsed time and no tool calls.
+            def invoke(*args):
+                return {
+                    **key,
+                    "status": "cli_error",
+                    "score": None,
+                    "image": None,
+                    "session": {"elapsed_seconds": 0.1, "calls": []},
+                }
+
+            with (
+                patch.object(study, "grade_and_run", side_effect=invoke) as launch,
+                patch.object(study, "module") as module,
+                redirect_stdout(io.StringIO()),
+            ):
+                module.return_value.ready.return_value = True
+                study.run_one(args)
+                study.run_one(args)
+            current = root / "frontier" / "dev" / "case.terra.draft.json"
+            records = [
+                study.read(current.parent / "failed-attempts" / current.name),
+                study.read(current),
+            ]
+            ids = [r["attempt_id"] for r in records]
+            self.assertNotEqual(*ids)
+            for index, ident in enumerate(ids):
+                self.assertRegex(ident, r"^[a-f0-9]{32}$")
+                self.assertTrue(
+                    launch.call_args_list[index].args[-1].name.endswith("-" + ident)
+                )
+            public = report.archive_runs(root)
+            self.assertEqual(sum(r["count"] for r in public["attempt_history"]), 2)
+            for ident in ids:
+                self.assertNotIn(ident, json.dumps(public) + report.render(public))
+
+    def test_regrading_reuses_id_without_launching_again(self):
+        from contextlib import redirect_stdout
+        import io
+        from unittest.mock import patch
+
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            args = (root, "frontier", "dev", {"id": "case"}, "terra", "draft", {})
+            path = root / "frontier" / "dev" / "case.terra.draft.json"
+            submitted = {
+                "track": "frontier",
+                "phase": "dev",
+                "task": "case",
+                "model": "terra",
+                "arm": "draft",
+                "status": "submitted",
+                "score": None,
+                "image": "image",
+                "session": {},
+            }
+            with (
+                patch.object(study, "grade_and_run", return_value=submitted) as launch,
+                patch.object(study, "module") as module,
+                patch.object(study, "participant_engine"),
+                redirect_stdout(io.StringIO()),
+            ):
+                module.return_value.ready.return_value = True
+                module.return_value.grade.side_effect = [
+                    {"correct": None},
+                    {"correct": True},
+                ]
+                study.run_one(args)
+                original = study.read(path)
+                study.run_one(args)
+                recovered = study.read(path)
+            launch.assert_called_once()
+            self.assertEqual(original["attempt_id"], recovered["attempt_id"])
+            self.assertTrue(recovered["score"]["correct"])

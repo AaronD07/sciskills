@@ -375,9 +375,11 @@ def run_one(args):
             path.rename(failed)
         if track != "everyday" and not module(track).ready(c):
             raise RuntimeError(f"Reference controls not ready for {c['id']}")
-        scratch = out / "private" / (path.stem + "-" + uuid.uuid4().hex)
+        attempt_id = uuid.uuid4().hex
+        scratch = out / "private" / (path.stem + "-" + attempt_id)
         scratch.parent.mkdir(exist_ok=True, parents=True, mode=0o700)
         row = grade_and_run(out, track, phase, c, model, arm, skills, scratch)
+        row["attempt_id"] = attempt_id
         save(path, row)
         if row["status"] == "submitted" and row["image"]:
             row["score"] = module(track).grade(c, row["image"])
