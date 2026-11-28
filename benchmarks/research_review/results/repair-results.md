@@ -1,10 +1,10 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **11/24**.
+Target **pending**. Complete three-arm comparisons **12/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 12 | 11 | 12 |
+| Scored assignments | 12 | 12 | 12 |
 | Full passes among complete comparisons | 3 | 3 | 3 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -25,7 +25,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | finite-free-stam | sonnet | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
 | frustrated-heisenberg-nqs | terra | missing | missing | missing |
 | frustrated-heisenberg-nqs | sonnet | missing | missing | missing |
-| hbv-calibration-1 | terra | 0 (1 failed, 5 passed, 10 skipped) | missing | 0 (1 failed, 5 passed, 10 skipped) |
+| hbv-calibration-1 | terra | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) |
 | hbv-calibration-1 | sonnet | missing | missing | missing |
 | hysteretic-aquifer-control | terra | missing | missing | missing |
 | hysteretic-aquifer-control | sonnet | missing | missing | missing |
@@ -53,6 +53,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | certified-sparse-regression (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
 | finite-free-stam (terra) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | finite-free-stam (sonnet) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| hbv-calibration-1 (terra) | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 10 |
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -64,13 +65,14 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 ## Review time and tool use
 
-Both review sessions have recorded wall time and shell requests for 11 of 11 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+Both review sessions have recorded wall time and shell requests for 12 of 12 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
 
 | Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
 | --- | ---: | ---: | ---: | ---: |
 | certified-sparse-regression (terra) | 298.21 | 329.36 | 9 | 18 |
 | finite-free-stam (terra) | 69.82 | 158.49 | 5 | 9 |
 | finite-free-stam (sonnet) | 271.60 | 210.65 | 5 | 8 |
+| hbv-calibration-1 (terra) | 625.53 | 616.01 | 20 | 21 |
 | nanoindentation-property-extraction (terra) | 72.16 | 114.84 | 10 | 8 |
 | nanoindentation-property-extraction (sonnet) | 89.54 | 706.46 | 12 | 21 |
 | rolling-shutter-oma (terra) | 45.23 | 115.52 | 7 | 10 |
@@ -79,6 +81,6 @@ Both review sessions have recorded wall time and shell requests for 11 of 11 com
 | stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
 | xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
 | xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
-| **Total** | 1815.76 | 3591.23 | 93 | 139 |
+| **Total** | 2441.29 | 4207.24 | 113 | 160 |
 
 [Protocol and interpretation](../repair-study.md)
