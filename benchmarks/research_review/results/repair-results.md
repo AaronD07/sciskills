@@ -1,12 +1,17 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **0/24**.
+Target **pending**. Complete three-arm comparisons **1/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 1 | 0 | 0 |
+| Scored assignments | 1 | 1 | 1 |
+| Full passes among complete comparisons | 0 | 0 | 0 |
 
-The additional full passes and regressions can be estimated once a matched comparison is available.
+The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
+
+- Skill-only repairs of wrong drafts — None.
+- Ordinary-only full passes — None.
+- Correct drafts broken by the skill — None.
 
 ## Outcomes by task
 
@@ -36,7 +41,15 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | small-area-equivalence | sonnet | missing | missing | missing |
 | stacking-disorder-diffraction | terra | missing | missing | missing |
 | stacking-disorder-diffraction | sonnet | missing | missing | missing |
-| xrd-multiphase-qpa | terra | 0 (1 failed, 3 passed) | missing | missing |
+| xrd-multiphase-qpa | terra | 0 (1 failed, 3 passed) | 0 (1 failed, 3 passed) | 0 (1 failed, 3 passed) |
 | xrd-multiphase-qpa | sonnet | missing | missing | missing |
+
+## Individual scientific checks
+
+Each change below compares the same upstream check across all three arms. A fix changes a failed draft check to a pass. A regression changes a passing draft check to a failure. These component changes do not count toward the full-task target.
+
+| Task and model | Comparable | Both fixed | Ordinary alone fixed | Skill alone fixed | Both broke | Ordinary alone broke | Skill alone broke | Skipped or other |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 [Protocol and interpretation](../repair-study.md)
