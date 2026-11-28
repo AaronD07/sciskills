@@ -63,7 +63,7 @@ The [integrity review study](benchmarks/integrity_review/README.md) tested exper
 
 A researcher can use the skills to review a numerical method that will be run on unfamiliar data. They can also use them for everyday decisions where a unit, a missing calibration or a change to the wrong record would alter the result. We test the first use on published scientific computing tasks and the second on paired research handoffs. All 40 everyday first drafts passed. Ordinary, general and specialist review each finished at 39/40 after withdrawing the same +0.48% cash-flow result. [What changed under review](benchmarks/research_review/RESULTS.md) · [Study design and reproduction](benchmarks/research_review/README.md)
 
-A separate [preregistered repair study](benchmarks/research_review/repair-study.md) compares Terra and Sonnet on twelve fresh frontier science tasks. The [paired results](benchmarks/research_review/results/repair-results.md) track full repairs, regressions and partial check counts.
+A separate study compares Terra and Sonnet on twelve fresh frontier science tasks. In the first nine completed comparisons, seven first drafts failed. The skill left five of those failed deliverables unchanged and edited numerical estimates in the other two. Three estimates moved closer to their references and one moved farther away. All four stayed on the same side of their acceptance thresholds. First drafts, ordinary review and skill-assisted review each passed the same two tasks. [Paired results](benchmarks/research_review/results/repair-results.md) · [Evidence for the edits](benchmarks/research_review/RESULTS.md#frozen-repair-skill) · [Frozen protocol](benchmarks/research_review/repair-study.md)
 
 ## Does a skill improve a second review?
 
