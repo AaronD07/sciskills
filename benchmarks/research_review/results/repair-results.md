@@ -1,10 +1,10 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **7/24**.
+Target **pending**. Complete three-arm comparisons **8/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 9 | 7 | 7 |
+| Scored assignments | 9 | 9 | 8 |
 | Full passes among complete comparisons | 2 | 2 | 2 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -19,9 +19,9 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 
 | Task | Model | First draft | Ordinary review | Repair skill |
 | --- | --- | --- | --- | --- |
-| certified-sparse-regression | terra | 0 (1 failed, 2 passed, 1 skipped) | missing | missing |
+| certified-sparse-regression | terra | 0 (1 failed, 2 passed, 1 skipped) | 0 (1 failed, 2 passed, 1 skipped) | missing |
 | certified-sparse-regression | sonnet | missing | missing | missing |
-| finite-free-stam | terra | 0 (3 failed, 6 passed) | missing | missing |
+| finite-free-stam | terra | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) | 0 (3 failed, 6 passed) |
 | finite-free-stam | sonnet | missing | missing | missing |
 | frustrated-heisenberg-nqs | terra | missing | missing | missing |
 | frustrated-heisenberg-nqs | sonnet | missing | missing | missing |
@@ -50,6 +50,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 | Task and model | Comparable | Both fixed | Ordinary alone fixed | Skill alone fixed | Both broke | Ordinary alone broke | Skill alone broke | Skipped or other |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| finite-free-stam (terra) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
