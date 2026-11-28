@@ -417,7 +417,25 @@
     {
       "task": "hysteretic-aquifer-control",
       "phase": "holdout",
-      "status": "pending"
+      "status": "unqualified_reference_solution",
+      "environment_image": "sha256:03dabfb6b55489d1750699042fb67e1873534cd2c23a8bf40346c7c22f73bb47",
+      "tests_image": "sha256:df7c762d9d190f9611c6b3d8d0323b5854bd1da145cad45863f16f289fa3eb94",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "desktop-linux",
+      "verifier_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "timestamp": 1795827872,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 10
+        },
+        "pytest_outcomes": {
+          "failed": 10
+        }
+      }
     },
     {
       "task": "supraglacial-lake-classification",

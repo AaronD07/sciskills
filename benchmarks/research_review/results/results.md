@@ -113,7 +113,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| primary | terra | draft | 3/11 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| primary | terra | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | primary | sonnet | draft | 1/6 | 0 | 6 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
@@ -124,6 +124,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 * terra, `amr-poisson-optimize` — upstream reward 0 (1 failed, 15 passed).
 * terra, `masked-spherical-remap` — upstream reward 0 (1 failed, 21 passed).
 * terra, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
+* terra, `noisy-blackbox-optimization` — upstream reward 0 (1 failed, 25 passed).
 * terra, `rv-astrometry-fitting` — upstream reward 0 (1 failed, 1 passed).
 * terra, `sparse-network-assimilation` — upstream reward 0 (3 failed, 4 passed).
 * terra, `spin-glass-groundstate` — upstream reward 0 (1 failed, 3 passed).
@@ -137,7 +138,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 8 ready, 2 failed and 6 without a receipt.
+Upstream empty and reference submission control counts are 8 ready, 3 failed and 5 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
@@ -145,6 +146,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 |---|---|---|---|---|
 | `certified-sparse-regression` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `finite-free-stam` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `hysteretic-aquifer-control` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | failed | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `neo-orbit-determination` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `ode-law-discovery` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |

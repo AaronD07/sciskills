@@ -533,6 +533,9 @@ def _evaluate(task, source, *, context=None, image_id=None):
             "missing": missing,
             "verifier_tail": (run.stdout + run.stderr)[-2200:],
         }
+        failures = _pytest_failures(run.stdout + "\n" + run.stderr)
+        if failures:
+            outcome["private_pytest_failures"] = failures
         events = execute("cat", "/sys/fs/cgroup/memory.events", check=False).stdout
         oom = re.search(r"^oom_kill ([1-9]\d*)$", events, re.MULTILINE)
         killed = re.search(r"line \d+:\s+\d+ Killed\s+", run.stderr)
@@ -584,7 +587,95 @@ def _evaluate(task, source, *, context=None, image_id=None):
                 outcome["checks"] = dict(Counter(t["status"] for t in records))
             except (ValueError, KeyError, TypeError):
                 pass
+        if task["id"] == "noisy-blackbox-optimization":
+            metrics = _blackbox_metrics(execute)
+            if metrics:
+                outcome["private_scientific_metrics"] = metrics
         return {**outcome, "status": "graded", "correct": reward == 1, "reward": reward}
+
+
+def _pytest_failures(output):
+    """Keep early failure assertions externally to the participant and published results."""
+    failures = []
+    in_failures = False
+    case = None
+    for line in output.splitlines():
+        if line.startswith("==="):
+            if re.fullmatch(r"=+ FAILURES =+", line.rstrip()):
+                in_failures = True
+            elif in_failures:
+                break
+        elif in_failures:
+            header = re.fullmatch(r"_+ (.+?) _+", line.rstrip())
+            if header:
+                if len(failures) == 4:
+                    break
+                case = {
+                    "test": header[1].encode()[:160].decode(errors="ignore"),
+                    "assertions": [],
+                }
+            elif line.startswith("---"):
+                # Pytest can echo arbitrary submitted stdout/stderr after the assertion.
+                case = None
+            elif case is not None and re.match(r"^E[ \t]+\S", line):
+                assertions = case["assertions"]
+                if not assertions:
+                    failures.append(case)
+                if len(assertions) < 6:
+                    assertions.append(
+                        line[1:].lstrip().encode()[:384].decode(errors="ignore")
+                    )
+    return failures
+
+
+# This optional verifier report includes hidden per-problem records. Select only the
+# documented aggregate scalar fields *inside* the isolated verifier.
+_BLACKBOX_FIELDS = (
+    "score_diff",
+    "pass_score_diff",
+    "agent_score",
+    "baseline_score",
+    "num_problems",
+    "invalid_submission",
+)
+_BLACKBOX_READER = """
+import json, math, sys
+from pathlib import Path
+p = Path("/logs/verifier/report.json")
+if p.is_file() and not p.is_symlink() and p.stat().st_size <= 4 * 1024 * 1024:
+    data = json.loads(p.read_bytes())
+    selected = {k: data[k] for k in sys.argv[1:] if type(data.get(k)) in (bool, int, float)
+                and math.isfinite(data[k])}
+    print(json.dumps(selected, allow_nan=False))
+"""
+
+
+def _blackbox_metrics(execute):
+    try:
+        run = execute(
+            "python3",
+            "-I",
+            "-c",
+            _BLACKBOX_READER,
+            *_BLACKBOX_FIELDS,
+            check=False,
+            timeout=15,
+        )
+        if run.returncode or not run.stdout.strip():
+            return {}
+        values = json.loads(run.stdout)
+        if not isinstance(values, dict):
+            return {}
+        return {
+            k: v
+            for k, v in values.items()
+            if k in _BLACKBOX_FIELDS
+            and type(v) in (bool, int, float)
+            and math.isfinite(v)
+        }
+    except (OSError, subprocess.SubprocessError, ValueError, OverflowError):
+        # An absent or malformed optional diagnostic cannot change the upstream grade.
+        return {}
 
 
 def _pytest_counts(output):
