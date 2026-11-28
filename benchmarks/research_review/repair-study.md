@@ -61,6 +61,12 @@ From each graded Terra snapshot for `stacking-disorder-diffraction`, use the sto
 
 Ordinary review also contains `__pycache__/solve_stacking.cpython-312.pyc`. To reproduce the three recorded cutoff values from the original private graded rows, look for `exceeded the runtime gate` in `score.verifier_tail`. The cutoff is computed for each grading run. It is a time limit, so the elapsed time a solver would have needed to finish remains unknown.
 
+Sonnet submitted `basis.py`, `basis_cache.npz`, `fit.py`, `markov.py`, `model.py` and `solve_stacking.py`. The three snapshots also differ in automatically generated Python bytecode. To compare the files used by the solver, copy each submission directory with the stopped-container procedure and run this command from the copied directory. All three give `32ec9fb96d3d95928fc33c0772ff4b101b4af1df82e2f98de2077ced489d1783`.
+
+```bash
+shasum -a 256 basis.py basis_cache.npz fit.py markov.py model.py solve_stacking.py | shasum -a 256
+```
+
 ## Check the direction of numerical edits
 
 The nanoindentation quantification check covers 29 estimates in each submission. An estimate may get more or less accurate while its pass status stays the same. After both models finished all three arms, we compared the changed values inside the original verifier image using the official per-property error rule and tolerance. This supplemental analysis leaves the primary grades intact.

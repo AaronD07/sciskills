@@ -1,11 +1,11 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **6/24**.
+Target **pending**. Complete three-arm comparisons **7/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 7 | 6 | 7 |
-| Full passes among complete comparisons | 1 | 1 | 1 |
+| Scored assignments | 7 | 7 | 7 |
+| Full passes among complete comparisons | 2 | 2 | 2 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
 
@@ -40,7 +40,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | small-area-equivalence | terra | missing | missing | missing |
 | small-area-equivalence | sonnet | missing | missing | missing |
 | stacking-disorder-diffraction | terra | 0 (3 failed, 2 passed) | 0 (3 failed, 2 passed) | 0 (3 failed, 2 passed) |
-| stacking-disorder-diffraction | sonnet | 1 (5 passed) | missing | 1 (5 passed) |
+| stacking-disorder-diffraction | sonnet | 1 (5 passed) | 1 (5 passed) | 1 (5 passed) |
 | xrd-multiphase-qpa | terra | 0 (1 failed, 3 passed) | 0 (1 failed, 3 passed) | 0 (1 failed, 3 passed) |
 | xrd-multiphase-qpa | sonnet | 0 (2 failed, 2 passed) | 0 (2 failed, 2 passed) | 0 (2 failed, 2 passed) |
 
@@ -54,6 +54,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | rolling-shutter-oma (terra) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | stacking-disorder-diffraction (terra) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| stacking-disorder-diffraction (sonnet) | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (sonnet) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
