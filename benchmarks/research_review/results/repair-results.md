@@ -4,7 +4,7 @@ Target **pending**. Complete three-arm comparisons **0/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 0 | 0 | 0 |
+| Scored assignments | 1 | 0 | 0 |
 
 The additional full passes and regressions can be estimated once a matched comparison is available.
 
@@ -36,7 +36,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | small-area-equivalence | sonnet | missing | missing | missing |
 | stacking-disorder-diffraction | terra | missing | missing | missing |
 | stacking-disorder-diffraction | sonnet | missing | missing | missing |
-| xrd-multiphase-qpa | terra | missing | missing | missing |
+| xrd-multiphase-qpa | terra | 0 (1 failed, 3 passed) | missing | missing |
 | xrd-multiphase-qpa | sonnet | missing | missing | missing |
 
 [Protocol and interpretation](../repair-study.md)
