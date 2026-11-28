@@ -155,7 +155,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 13 ready, 3 failed and 0 without a receipt.
+Upstream empty and reference submission control counts are 14 ready, 2 failed and 0 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
@@ -165,7 +165,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `certified-sparse-regression` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `finite-free-stam` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `frustrated-heisenberg-nqs` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
-| `hbv-calibration-1` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
+| `hbv-calibration-1` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `hysteretic-aquifer-control` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `hysteretic-aquifer-control` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | failed | — |
 | `inverse-waveguide-shape` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
@@ -185,20 +185,20 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `stacking-disorder-diffraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `stacking-disorder-diffraction` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `supraglacial-lake-classification` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
-| `supraglacial-lake-classification` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
+| `supraglacial-lake-classification` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | yes |
 | `xrd-multiphase-qpa` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `xrd-multiphase-qpa` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| primary | terra | draft | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | terra | ordinary | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | terra | general | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | terra | specialist | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | draft | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | ordinary | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | general | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | specialist | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | draft | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | ordinary | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | general | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | specialist | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | ordinary | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | general | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | specialist | 0/1 | 0 | 15 | 0 | 0 | 0 | 0 | 0 |
 | transfer | luna | draft | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
 | transfer | luna | ordinary | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
 | transfer | luna | general | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
@@ -213,16 +213,16 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 | Model | Paired comparison | Matched tasks | Correct before → after | Repaired | Regressed |
 |---|---|---:|---:|---:|---:|
-| terra | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
-| terra | draft → general | 0 | 0 → 0 | 0 | 0 |
-| terra | draft → specialist | 0 | 0 → 0 | 0 | 0 |
-| terra | ordinary → general | 0 | 0 → 0 | 0 | 0 |
-| terra | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
-| sonnet | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
-| sonnet | draft → general | 0 | 0 → 0 | 0 | 0 |
-| sonnet | draft → specialist | 0 | 0 → 0 | 0 | 0 |
-| sonnet | ordinary → general | 0 | 0 → 0 | 0 | 0 |
-| sonnet | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
+| terra | draft → ordinary | 1 | 0 → 0 | 0 | 0 |
+| terra | draft → general | 1 | 0 → 0 | 0 | 0 |
+| terra | draft → specialist | 1 | 0 → 0 | 0 | 0 |
+| terra | ordinary → general | 1 | 0 → 0 | 0 | 0 |
+| terra | ordinary → specialist | 1 | 0 → 0 | 0 | 0 |
+| sonnet | draft → ordinary | 1 | 0 → 0 | 0 | 0 |
+| sonnet | draft → general | 1 | 0 → 0 | 0 | 0 |
+| sonnet | draft → specialist | 1 | 0 → 0 | 0 | 0 |
+| sonnet | ordinary → general | 1 | 0 → 0 | 0 | 0 |
+| sonnet | ordinary → specialist | 1 | 0 → 0 | 0 | 0 |
 | luna | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
 | luna | draft → general | 0 | 0 → 0 | 0 | 0 |
 | luna | draft → specialist | 0 | 0 → 0 | 0 | 0 |
@@ -233,6 +233,11 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | opus | draft → specialist | 0 | 0 → 0 | 0 | 0 |
 | opus | ordinary → general | 0 | 0 → 0 | 0 | 0 |
 | opus | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
+
+### Observed discrepancies
+
+* terra, `supraglacial-lake-classification` — all four submissions failed. The draft showed upstream reward 0 (2 failed, 4 passed).
+* sonnet, `supraglacial-lake-classification` — all four submissions failed. The draft showed upstream reward 0 (2 failed, 4 passed).
 
 ## Swe dev
 
