@@ -1,0 +1,33 @@
+{
+  "source": "frontier",
+  "models": [
+    "terra",
+    "sonnet"
+  ],
+  "skill": "repair-the-delivered-result",
+  "skill_sha256": "5d2bb8a8c17d3d630ab98309e5fc02cb53c4f01b8e5d638a4dc8f2f2c7db5f1e",
+  "development_audit_sha256": "d51a44d9875ef0f40085f2945b1d6a731c1e7f87b4bac0dcb8e4b7eb029a440b",
+  "all_or_nothing": true,
+  "minimum_distinct_repaired_tasks": 2,
+  "minimum_net_additional_passes": 2,
+  "previously_started": [
+    "inverse-waveguide-shape",
+    "linked-cell-suppression",
+    "neo-orbit-determination",
+    "supraglacial-lake-classification"
+  ],
+  "tasks": {
+    "certified-sparse-regression": "affd331c1a7361d1ad2e7817069ae5e2d1be88791a6df7b0d940136eddd36c4b",
+    "finite-free-stam": "a02ec2c665ee68733a20a9c4061a742ca8c54f6a29cd1bc42b0e30610f2d706e",
+    "frustrated-heisenberg-nqs": "9a0e3211d5c4906e512e55bfbf294e77afcd69dc1e1ea8b6ee734ec0019cc140",
+    "hbv-calibration-1": "c0cd9bf9602e11fe3aefa01288df66042cfb73eeba2e19dfe3c84c7bc44cccb0",
+    "hysteretic-aquifer-control": "8e5a7b3b651b73a8c60f26d5c2f8d2cc2978d222d39631f30e4f275a0fb98fd7",
+    "nanoindentation-property-extraction": "af83410985ebcb2d73d323cae2772947eda3bf5db6f08dd6d28d06d2dfee0bf2",
+    "ode-law-discovery": "8bf19b3c5a2cd96bc446fa1c8ce4a849e95d440e6fb92653ce0b2a9de960ecf5",
+    "rolling-shutter-oma": "a524954bf526e642bca7f57da5e816678e1f9e11def8e3c5b175bf3c83d03dc7",
+    "si-fracture-fbc": "4550c1520bf35fe1f800fc431edacd7eb7fcb68b8016dee63aef8cc4d4adeac3",
+    "small-area-equivalence": "c274edac04690f8bb1eb4e6c460bf711272ad4e041535c2ea5e03e4173b13c24",
+    "stacking-disorder-diffraction": "1447560635fe91713ab85239543ee62216191dc71bbb9647a401e89797691385",
+    "xrd-multiphase-qpa": "12aaf172d52b3ddc475e795e48eaff2355d2e0f3ba651567e5cd6efb7b9338f9"
+  }
+}
