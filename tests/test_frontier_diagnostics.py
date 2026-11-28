@@ -131,11 +131,26 @@ E   private stdout must not be selected
             ["AssertionError: margin 0.77"],
         )
 
+    def test_public_controls_drop_nonstandard_status_labels(self):
+        controls = {
+            "ready": True,
+            "positive": {
+                "status": "graded",
+                "reward": 1,
+                "checks": {"passed": 1, "private assertion": 2},
+            },
+        }
+        with patch.object(frontier, "_read_control", return_value=controls):
+            rows = frontier.control_summary([{"id": "example", "phase": "holdout"}])
+        self.assertEqual(rows["tasks"][0]["positive"]["checks"], {"passed": 1})
+        self.assertNotIn("private", json.dumps(rows))
+
     def test_public_export_omits_private_fields(self):
         score = {
             "status": "graded",
             "correct": False,
             "reward": 0,
+            "private_component_status": {"private expected parameter": "failed"},
             "private_scientific_metrics": {"score_diff": 0.775715},
             "private_pytest_failures": [
                 {"test": "private_test_name", "assertions": ["private expected values"]}

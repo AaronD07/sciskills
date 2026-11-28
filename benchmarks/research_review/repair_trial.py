@@ -33,7 +33,7 @@ def validate_protocol(out):
     return protocol, skill, {c["id"]: c for c in groups["holdout"]}
 
 
-def assignment(out, task, model, protocol):
+def assignment(out, task, model, protocol, *, components=None):
     """Only scores from the original engine, parent draft and frozen skill enter a pair."""
     folder = out / "frontier"
     placement = folder / "execution-contexts" / (task + ".json")
@@ -128,6 +128,8 @@ def assignment(out, task, model, protocol):
         if type(scores[arm].get("correct")) is bool:
             if arm == "draft":
                 draft = row
+            if components is not None:
+                components[arm] = row["score"].get("private_component_status", {})
             identity_hash = (
                 study.draft_identity(row) if arm == "draft" else row["parent"]
             )
@@ -198,6 +200,53 @@ def run(out, selected, models):
     return blocked
 
 
+def matched_components(statuses):
+    """Count same-check transitions without publishing evaluator names or parameters."""
+    if not all(statuses.get(arm) for arm in ARMS):
+        return None
+    draft, ordinary, repair = (statuses[a] for a in ARMS)
+    if draft.keys() != ordinary.keys() or draft.keys() != repair.keys():
+        return None
+    counts = {
+        "comparable": 0,
+        "other": 0,
+        "both_fixed": 0,
+        "ordinary_only_fixed": 0,
+        "skill_only_fixed": 0,
+        "both_broke": 0,
+        "ordinary_only_broke": 0,
+        "skill_only_broke": 0,
+    }
+    for name in draft:
+        steps = draft[name], ordinary[name], repair[name]
+        if any(s not in ("passed", "failed") for s in steps):
+            counts["other"] += 1
+            continue
+        counts["comparable"] += 1
+        first, normal, skill = steps
+        if first == normal == skill:
+            continue
+        suffix = "fixed" if first == "failed" else "broke"
+        which = (
+            "both"
+            if normal == skill
+            else "ordinary_only"
+            if normal != first
+            else "skill_only"
+        )
+        counts[which + "_" + suffix] += 1
+    return counts
+
+
+def observation(out, task, model, protocol):
+    statuses = {}
+    arms = assignment(out, task, model, protocol, components=statuses)
+    row = {"task": task, "model": model, "arms": arms}
+    if all(type(arms[a].get("correct")) is bool for a in ARMS):
+        row["component_transitions"] = matched_components(statuses)
+    return row
+
+
 def export(out):
     protocol, _, _ = validate_protocol(out)
     return {
@@ -206,11 +255,7 @@ def export(out):
         "tasks": list(protocol["tasks"]),
         "models": protocol["models"],
         "observations": [
-            {
-                "task": task,
-                "model": model,
-                "arms": assignment(out, task, model, protocol),
-            }
+            observation(out, task, model, protocol)
             for task in protocol["tasks"]
             for model in protocol["models"]
         ],
@@ -332,6 +377,44 @@ def render(archive):
     for row in archive["observations"]:
         values = [row["task"], row["model"], *(cell(row["arms"][arm]) for arm in ARMS)]
         lines.append("| " + " | ".join(values) + " |")
+    if result["matched"]:
+        lines.extend(
+            [
+                "",
+                "## Individual scientific checks",
+                "",
+                "Each change below compares the same upstream check across all three arms. A fix changes a failed draft check to a pass. A regression changes a passing draft check to a failure. These component changes do not count toward the full-task target.",
+                "",
+                "| Task and model | Comparable | Both fixed | Ordinary alone fixed | Skill alone fixed | Both broke | Ordinary alone broke | Skill alone broke | Skipped or other |",
+                "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+            ]
+        )
+        for row in archive["observations"]:
+            if not all(type(row["arms"][a].get("correct")) is bool for a in ARMS):
+                continue
+            c = row.get("component_transitions")
+            counts = (
+                [
+                    str(c[k])
+                    for k in (
+                        "comparable",
+                        "both_fixed",
+                        "ordinary_only_fixed",
+                        "skill_only_fixed",
+                        "both_broke",
+                        "ordinary_only_broke",
+                        "skill_only_broke",
+                        "other",
+                    )
+                ]
+                if c
+                else ["unavailable", *(["—"] * 7)]
+            )
+            lines.append(
+                "| "
+                + " | ".join([row["task"] + " (" + row["model"] + ")", *counts])
+                + " |"
+            )
     lines.extend(["", "[Protocol and interpretation](../repair-study.md)", ""])
     return "\n".join(lines)
 

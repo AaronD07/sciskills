@@ -8,10 +8,52 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from benchmarks.research_review import container_tool, repair_trial, study
+from benchmarks.research_review import container_tool, frontier, repair_trial, study
 
 
 class RepairTrialTests(unittest.TestCase):
+    def test_same_totals_can_hide_opposing_repairs_and_regressions(self):
+        names = [
+            "private original defect A",
+            "private original defect B",
+            "private working C",
+            "private working D",
+            "private skipped E",
+        ]
+        states = {
+            "draft": ["failed", "failed", "passed", "passed", "passed"],
+            "ordinary": ["passed", "failed", "failed", "passed", "skipped"],
+            "repair": ["failed", "passed", "passed", "failed", "passed"],
+        }
+        statuses = {
+            a: frontier._component_status(
+                [{"name": n, "status": v} for n, v in zip(names, seq)]
+            )
+            for a, seq in states.items()
+        }
+        counts = repair_trial.matched_components(statuses)
+        self.assertEqual(
+            counts,
+            {
+                "comparable": 4,
+                "other": 1,
+                "both_fixed": 0,
+                "both_broke": 0,
+                "ordinary_only_fixed": 1,
+                "skill_only_fixed": 1,
+                "ordinary_only_broke": 1,
+                "skill_only_broke": 1,
+            },
+        )
+        self.assertNotIn("private", json.dumps(counts))
+        del statuses["repair"][names[0]]
+        self.assertIsNone(repair_trial.matched_components(statuses))
+        self.assertEqual(
+            frontier._component_status([{"name": "duplicate", "status": "passed"}] * 2),
+            {},
+        )
+        self.assertIsNone(repair_trial.matched_components({}))
+
     def test_two_models_on_one_task_count_once_and_regressions_reduce_net(self):
         protocol = study.read(repair_trial.PROTOCOL)
         archive = {
@@ -222,6 +264,17 @@ class RepairTrialTests(unittest.TestCase):
                 [result()[arm]["correct"] for arm in repair_trial.ARMS],
                 [False, True, True],
             )
+            with patch.object(study, "read", wraps=study.read) as read:
+                triplet = repair_trial.observation(root, task, "terra", protocol)
+                self.assertIsNone(triplet["component_transitions"])
+                for arm in repair_trial.ARMS:
+                    self.assertEqual(
+                        sum(
+                            call.args == (path(root, arm),)
+                            for call in read.call_args_list
+                        ),
+                        1,
+                    )
             original = study.read(path(root, "repair"))
             for changes, expected in [
                 ({"participant_engine": "different"}, "unverified_engine"),

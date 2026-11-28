@@ -18,6 +18,8 @@ import tomllib
 from urllib.parse import urlsplit
 from uuid import uuid4
 
+CTRF_STATES = ("passed", "failed", "skipped", "pending", "other")
+
 HERE = Path(__file__).resolve().parent
 MANIFEST = json.loads((HERE / "frontier_manifest.json").read_text())
 SOURCE = Path(
@@ -590,7 +592,14 @@ def _evaluate(task, source, *, context=None, image_id=None):
         if not report.returncode:
             try:
                 records = json.loads(report.stdout)["results"]["tests"]
-                outcome["checks"] = dict(Counter(t["status"] for t in records))
+                outcome["checks"] = dict(
+                    Counter(
+                        t["status"] if t["status"] in CTRF_STATES else "other"
+                        for t in records
+                    )
+                )
+                if component_status := _component_status(records):
+                    outcome["private_component_status"] = component_status
             except (ValueError, KeyError, TypeError):
                 pass
         if task["id"] == "noisy-blackbox-optimization":
@@ -598,6 +607,27 @@ def _evaluate(task, source, *, context=None, image_id=None):
             if metrics:
                 outcome["private_scientific_metrics"] = metrics
         return {**outcome, "status": "graded", "correct": reward == 1, "reward": reward}
+
+
+def _component_status(records):
+    """Retain uniquely identifiable upstream checks for evaluator-only comparisons."""
+    if not isinstance(records, list) or not 0 < len(records) <= 10000:
+        return {}
+    statuses = {}
+    for record in records:
+        if not isinstance(record, dict):
+            return {}
+        name, state = record.get("name"), record.get("status")
+        if not isinstance(name, str) or not name or len(name) > 1024:
+            return {}
+        if state not in CTRF_STATES:
+            return {}
+        # Some pytest parametrizations share display names. Ambiguous identities
+        # cannot support claims about which scientific check changed.
+        if name in statuses:
+            return {}
+        statuses[name] = state
+    return statuses
 
 
 def _pytest_failures(output):
@@ -899,9 +929,15 @@ def control_summary(selected):
                 trial = record[key]
                 row[key] = {
                     field: trial[field]
-                    for field in ("status", "reward", "checks")
+                    for field in ("status", "reward")
                     if field in trial
                 }
+                if isinstance(trial.get("checks"), dict):
+                    row[key]["checks"] = {
+                        k: v
+                        for k, v in trial["checks"].items()
+                        if k in CTRF_STATES and type(v) is int
+                    }
                 pytest_counts = trial.get("pytest_outcomes") or _pytest_counts(
                     trial.get("verifier_tail", "")
                 )
