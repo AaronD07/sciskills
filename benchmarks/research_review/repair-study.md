@@ -30,6 +30,14 @@ On 28 November, six tasks had a saved machine reservation but no first-draft att
 
 A task can move once, before its first participant launch, if its existing reservation lacks capacity. The alternative must pass both official controls with the original environment and verifier image digests, architecture, time limits, CPU and memory allowances. Tasks enter the available machine's queue in alphabetical order among those it can run. Keep the original reservation whenever it has capacity at dispatch. Archive the previous reservation, the new one, and the checks for any prior attempt. A launch lock, private session, attempt or grade on any arm rules out a move. Once a task launches, both models and all reviews use that saved engine. The selection of tasks, models, skill, review prompts and success criteria was frozen before these scheduling decisions. The saved reservation records the prior engine and the hashes of both qualification receipts in `prelaunch_move`. Workers create their first-attempt marker under the placement lock. Dispatch and results collection check the selected receipt against its recorded hash.
 
+The sparse-regression task started on its original engine while an alternative reference was running. Its reservation and first draft stayed on the original engine. The alternative reference run was withdrawn. Finite free Stam moved before its first attempt. At that point the original machine had allocated all four CPUs, while the destination had four available. The untouched environment failed three of nine checks and the reference passed all nine. Both machines used the same Linux/ARM64 environment and verifier images, with the same four-CPU and 8 GiB limits.
+
+| Finite free Stam verification | SHA-256 |
+| --- | --- |
+| Participant image | `sha256:c457540a0cf56a2db2edd0a17fbf66868cf63df743f8380e3e3df7d14c79ef4c` |
+| Verifier image | `sha256:c2c6061bbe31170edf632cf44eb4503ea5f15c16f8262c0dd19f6a36cb9639f9` |
+| Selected control receipt | `ae9238541dbf58d1e0d13eb808a42881f4aff8247a127a6c0fceae5695ddd95f` |
+
 ## Verify the reported CSV changes
 
 Diffraction and nanoindentation both deliver `/workspace/output/results.csv`. On the machine that holds the graded snapshots, take `participant_context` and `image` from each private graded row. The first draft and ordinary review live under `frontier/holdout`. The repair review lives under `repair-study/holdout`. Run the following with those two values supplied as `context` and `image`. The container is created from the saved image and never started.
