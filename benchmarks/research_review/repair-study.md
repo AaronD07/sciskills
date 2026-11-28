@@ -40,6 +40,12 @@ The sparse-regression task started on its original engine while an alternative r
 | Verifier image | `sha256:c2c6061bbe31170edf632cf44eb4503ea5f15c16f8262c0dd19f6a36cb9639f9` |
 | Selected control receipt | `ae9238541dbf58d1e0d13eb808a42881f4aff8247a127a6c0fceae5695ddd95f` |
 
+### Dispatch while another reference is running
+
+At the next scheduling check, four tasks still had no model attempt on any arm. The hydrology reference was running on one alternative machine and the equation-discovery reference on another. Silicon fracture and small-area equivalence were still waiting. The original four-CPU machine was occupied by a model run.
+
+For these four unopened tasks, an earlier task with a live reference qualification and a live dispatcher dedicated to it on another machine has already entered the alternative queue. A free machine may take the next alphabetically eligible task. Record each earlier task skipped, its alternative machine, and the observed status of its qualification and dispatcher. If qualification has finished, skipping that task requires both a passing control receipt on its alternative and a live dispatcher waiting to use it. A stale reservation alone cannot establish that an earlier task is being handled. If the original machine can run the candidate, retain its original reservation. Each alternative must still pass both controls with the pinned images before dispatch. Preserve the original engine for every started task. This change affects dispatch order among the four unopened tasks. The frozen skill, prompts, graders, budgets, cohorts and outcomes are the same.
+
 ## Verify the reported CSV changes
 
 Diffraction and nanoindentation both deliver `/workspace/output/results.csv`. On the machine that holds the graded snapshots, take `participant_context` and `image` from each private graded row. The first draft and ordinary review live under `frontier/holdout`. The repair review lives under `repair-study/holdout`. Run the following with those two values supplied as `context` and `image`. The container is created from the saved image and never started.
