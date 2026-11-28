@@ -24,6 +24,8 @@ Ask your coding agent to follow the relevant `SKILL.md` while working in your re
 | [Reconstruct a data vintage](skills/reconstruct-a-vintage/SKILL.md) | Which revision of each record was available on a reporting date | [Calibration ledgers](benchmarks/ledger-replay/README.md) |
 | [Review a numerical result](skills/review-a-numerical-result/SKILL.md) | Independently reconstruct a saved result | [Assay summary](benchmarks/tasks/assay/) |
 | [Review an analysis program](skills/review-an-analysis-program/SKILL.md) | Verify a saved program through its caller's interface | [Seeded simulation](examples/pin-the-environment/) |
+| [Test a competing explanation](skills/test-a-competing-explanation/SKILL.md) | Compare a research result with an alternative the original procedure could miss | Instrument drift |
+| [Check a local optimum](skills/check-a-local-optimum/SKILL.md) | Test whether a numerical search settled on an inferior feasible solution | Collection-point placement |
 | [Review a protocol decision](skills/review-a-protocol-decision/SKILL.md) | Trace included and excluded records to a governing rule | [Research contract](benchmarks/tasks/contract/) |
 | [Audit a scientific claim](skills/audit-a-scientific-claim/SKILL.md) | Derive the expected evidence for a domain-specific decision | [Integrity review study](benchmarks/integrity_review/) |
 | [Verify experimental coverage](skills/verify-experimental-coverage/SKILL.md) | Reconcile protocol obligations and actual results | [Coverage cases](benchmarks/integrity_review/coverage_data/) |

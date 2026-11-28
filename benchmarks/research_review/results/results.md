@@ -127,7 +127,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | primary | terra | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | draft | 1/7 | 0 | 4 | 0 | 1 | 0 | 0 | 0 |
+| primary | sonnet | draft | 1/8 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
@@ -149,10 +149,11 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 * sonnet, `spin-glass-groundstate` — upstream reward 0 (1 failed, 3 passed).
 * sonnet, `symbolic-regression` — upstream reward 0 (1 failed, 1 passed).
 * sonnet, `tess-transit-vetting` — upstream reward 0 (4 failed, 1 passed).
+* sonnet, `traffic-flux-inversion` — upstream reward 0 (3 failed, 4 passed).
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 9 ready, 7 failed and 0 without a receipt.
+Upstream empty and reference submission control counts are 10 ready, 6 failed and 0 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
@@ -166,6 +167,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `hysteretic-aquifer-control` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `hysteretic-aquifer-control` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | failed | — |
 | `inverse-waveguide-shape` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
+| `inverse-waveguide-shape` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `linked-cell-suppression` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `neo-orbit-determination` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |

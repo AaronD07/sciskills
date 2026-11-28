@@ -16,6 +16,8 @@ After development, choose changes to the skill only from documented recurring be
 
 The primary result for each model and use case is the change from its first draft to its skill-assisted deliverable. Compare those same pairs against ordinary review, reporting uniquely repaired and newly broken tasks, incomplete sessions, unsupported answers and unnecessary abstention. Small transfer samples are descriptive. When grading a program, record the upstream task result and expose component checks only if the verifier provides them.
 
+The frontier development drafts motivate two review instructions. The general skill asks for a competing explanation that the original procedure could have missed. The numerical specialist asks how far the search could move and whether a different feasible start or a coupled change improves the original objective. Both permit direct verification when an exact result settles the question. Every specialist assignment receives the same text, independent of the task identity, draft or grade. The examples at the end of the skills are stripped before the text reaches a reviewer. [General skill](../../skills/test-a-competing-explanation/SKILL.md) · [Numerical specialist](../../skills/check-a-local-optimum/SKILL.md)
+
 ## Reproducing the comparison
 
 From the repository root, use Python 3.11 or newer. The everyday Python tool uses the macOS sandbox. Frontier environments and verifiers need Docker. Both the Codex CLI and Claude Code need an active subscription login. The runner checks authentication and included usage before dispatch. Prompts, transcripts, artifacts and grader receipts live under the ignored `benchmark-runs/research-review` directory.
