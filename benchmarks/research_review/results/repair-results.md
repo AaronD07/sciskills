@@ -1,10 +1,10 @@
 # Scientific repair holdout
 
-Target **pending**. Complete three-arm comparisons **14/24**.
+Target **pending**. Complete three-arm comparisons **15/24**.
 
 | | First draft | Ordinary review | Repair skill |
 | --- | ---: | ---: | ---: |
-| Scored assignments | 16 | 14 | 15 |
+| Scored assignments | 16 | 15 | 15 |
 | Full passes among complete comparisons | 4 | 4 | 4 |
 
 The skill earned +0 net full passes over ordinary review. It repaired 0 distinct tasks on which both the draft and ordinary review failed.
@@ -26,7 +26,7 @@ Scores below are upstream rewards. A full pass earns 1. Where the verifier repor
 | frustrated-heisenberg-nqs | terra | missing | missing | missing |
 | frustrated-heisenberg-nqs | sonnet | missing | missing | missing |
 | hbv-calibration-1 | terra | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) |
-| hbv-calibration-1 | sonnet | 0 (1 failed, 5 passed, 10 skipped) | missing | 0 (1 failed, 5 passed, 10 skipped) |
+| hbv-calibration-1 | sonnet | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) | 0 (1 failed, 5 passed, 10 skipped) |
 | hysteretic-aquifer-control | terra | missing | missing | missing |
 | hysteretic-aquifer-control | sonnet | missing | missing | missing |
 | nanoindentation-property-extraction | terra | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) | 0 (1 failed, 2 passed) |
@@ -54,6 +54,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 | finite-free-stam (terra) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | finite-free-stam (sonnet) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | hbv-calibration-1 (terra) | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 10 |
+| hbv-calibration-1 (sonnet) | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 10 |
 | nanoindentation-property-extraction (terra) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | nanoindentation-property-extraction (sonnet) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | ode-law-discovery (terra) | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -67,7 +68,7 @@ Each change below compares the same upstream check across all three arms. A fix 
 
 ## Review time and tool use
 
-Both review sessions have recorded wall time and shell requests for 14 of 14 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+Both review sessions have recorded wall time and shell requests for 15 of 15 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
 
 | Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
 | --- | ---: | ---: | ---: | ---: |
@@ -75,6 +76,7 @@ Both review sessions have recorded wall time and shell requests for 14 of 14 com
 | finite-free-stam (terra) | 69.82 | 158.49 | 5 | 9 |
 | finite-free-stam (sonnet) | 271.60 | 210.65 | 5 | 8 |
 | hbv-calibration-1 (terra) | 625.53 | 616.01 | 20 | 21 |
+| hbv-calibration-1 (sonnet) | 252.87 | 3587.37 | 6 | 14 |
 | nanoindentation-property-extraction (terra) | 72.16 | 114.84 | 10 | 8 |
 | nanoindentation-property-extraction (sonnet) | 89.54 | 706.46 | 12 | 21 |
 | ode-law-discovery (terra) | 52.19 | 75.06 | 5 | 4 |
@@ -85,6 +87,6 @@ Both review sessions have recorded wall time and shell requests for 14 of 14 com
 | stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
 | xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
 | xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
-| **Total** | 2813.68 | 4396.62 | 135 | 175 |
+| **Total** | 3066.55 | 7983.99 | 141 | 189 |
 
 [Protocol and interpretation](../repair-study.md)
