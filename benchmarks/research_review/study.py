@@ -229,6 +229,7 @@ def participant_engine(previous=None):
 
 
 def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
+    original_workspace = scratch.exists()
     client = module("client")
     backend = module(track)
     prior = None
@@ -346,7 +347,7 @@ def grade_and_run(out, track, phase, c, model, arm, skills, scratch):
     except Exception:
         # This receipt is written only on a synchronous failure observed by the
         # original supervisor before dispatch. A missing PID alone proves nothing.
-        if not (scratch / "launch-intent").exists():
+        if not original_workspace and not (scratch / "launch-intent").exists():
             save(
                 scratch.with_suffix(scratch.suffix + ".unstarted"),
                 {"participant_started": False},

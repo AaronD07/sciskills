@@ -349,10 +349,17 @@ def run_session(model, files, stage, scratch, *, timeout=480, container=None):
                     except ProcessLookupError:
                         pass
 
+                    group_stopped = False
+
                     def stop_client():
-                        if proc.poll() is None:
-                            os.killpg(proc.pid, signal.SIGKILL)
-                        proc.communicate()
+                        nonlocal group_stopped
+                        if not group_stopped:
+                            try:
+                                os.killpg(proc.pid, signal.SIGKILL)
+                            except ProcessLookupError:
+                                pass
+                            group_stopped = True
+                            proc.communicate()
 
                     try:
                         if container:

@@ -26,7 +26,12 @@ class RepairTrialTests(unittest.TestCase):
                         "task": task,
                         "model": model,
                         "arms": {
-                            a: {"outcome": "graded", "correct": False, "reward": 0}
+                            a: {
+                                "outcome": "graded",
+                                "correct": False,
+                                "reward": 0,
+                                "draft_sha256": study.digest(task + model),
+                            }
                             for a in repair_trial.ARMS
                         },
                     }
@@ -47,6 +52,12 @@ class RepairTrialTests(unittest.TestCase):
             (result["target"], result["net"], result["distinct"]), ("met", 2, 2)
         )
         self.assertEqual(result["ordinary_only"], result["broken_drafts"])
+        rows[0]["arms"]["ordinary"]["draft_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "fingerprints"):
+            repair_trial.summarize(archive, protocol)
+        rows[0]["arms"]["ordinary"]["draft_sha256"] = rows[0]["arms"]["draft"][
+            "draft_sha256"
+        ]
         rows[-1]["arms"]["draft"] = {
             "outcome": "ungraded",
             "reason": "verifier_timeout",
@@ -105,6 +116,32 @@ class RepairTrialTests(unittest.TestCase):
                     with self.assertRaisesRegex(RuntimeError, "preflight failed"):
                         study.run_one(args)
                 self.assertEqual(check.call_count, 2)
+
+    def test_recovering_a_legacy_session_never_issues_prelaunch_proof(self):
+        with TemporaryDirectory() as tmp:
+            scratch = Path(tmp) / "example.terra.draft-123"
+            scratch.mkdir()
+            (scratch / "stdout").write_text("original session")
+            with (
+                patch.object(study, "module"),
+                patch.object(
+                    study, "participant_engine", side_effect=RuntimeError("lost engine")
+                ),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "lost engine"):
+                    study.grade_and_run(
+                        Path(tmp),
+                        "frontier",
+                        "holdout",
+                        {"id": "example", "prompt": "task"},
+                        "terra",
+                        "draft",
+                        {},
+                        scratch,
+                    )
+            self.assertFalse(
+                scratch.with_suffix(scratch.suffix + ".unstarted").exists()
+            )
 
     def test_full_assignment_rejects_invalid_receipts(self):
         protocol = {"skill_sha256": "frozen"}

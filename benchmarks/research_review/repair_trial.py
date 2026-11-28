@@ -125,8 +125,18 @@ def assignment(out, task, model, protocol):
                 scores[arm] = {"outcome": "unverified_reward"}
                 continue
         scores[arm] = report.public_row(row, draft, None)
-        if arm == "draft" and type(scores[arm].get("correct")) is bool:
-            draft = row
+        if type(scores[arm].get("correct")) is bool:
+            if arm == "draft":
+                draft = row
+            identity_hash = (
+                study.draft_identity(row) if arm == "draft" else row["parent"]
+            )
+            scores[arm]["draft_sha256"] = identity_hash
+            scores[arm]["model_identity"] = (
+                "provider_reported"
+                if session.get("reported_model")
+                else "requested_only"
+            )
     return scores
 
 
@@ -222,6 +232,13 @@ def summarize(archive, protocol):
     for row in rows:
         arms = row["arms"]
         if all(type(arms[a].get("correct")) is bool for a in ARMS):
+            draft_hash = arms["draft"].get("draft_sha256")
+            if not re.fullmatch(r"[0-9a-f]{64}", draft_hash or "") or any(
+                arms[a].get("draft_sha256") != draft_hash for a in ARMS[1:]
+            ):
+                raise ValueError(
+                    f"Inconsistent public draft fingerprints for {row['task']}/{row['model']}"
+                )
             matched.append(
                 (row["task"], row["model"], *(arms[a]["correct"] for a in ARMS))
             )
