@@ -46,8 +46,12 @@ def _docker_arch():
 
 
 def platform(task):
-    # These upstream tests execute native seccomp and chroot helpers inside the verifier.
-    if task["id"] in ("masked-spherical-remap", "tess-transit-vetting"):
+    # Remap/TESS use native jails. The timed Lean verifier supports both architectures.
+    if task["id"] in (
+        "masked-spherical-remap",
+        "tess-transit-vetting",
+        "finite-free-stam",
+    ):
         return "linux/" + _docker_arch()
     return "linux/amd64"
 

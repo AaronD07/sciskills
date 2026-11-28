@@ -612,7 +612,25 @@
     {
       "task": "si-fracture-fbc",
       "phase": "holdout",
-      "status": "pending"
+      "status": "unqualified_resource_relocation",
+      "environment_image": "sha256:cd5b65553399724848f0283247c4e376381e0b8f23ceeea9bfbb5af39720d73d",
+      "tests_image": "sha256:22e73daf8c04ebe5572170cb80f362748a39a59d5d116e7bc3e8a6188fb0024b",
+      "participant_context": "desktop-linux",
+      "participant_engine": "ed3a56ac-c89e-4e27-ba03-65f25cf2237a",
+      "verifier_context": "colima-sciskills-review",
+      "verifier_engine": "e199399b-cdc6-4ffc-9418-306ddfe816cb",
+      "timestamp": 1795823274,
+      "platform": "linux/amd64",
+      "negative": {
+        "status": "graded",
+        "reward": 0.0,
+        "checks": {
+          "failed": 9
+        },
+        "pytest_outcomes": {
+          "failed": 9
+        }
+      }
     },
     {
       "task": "stacking-disorder-diffraction",
