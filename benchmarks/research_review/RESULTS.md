@@ -69,4 +69,17 @@ Terra's solver for stacking disorder in annealed ice timed out on the hidden neu
 
 The skill-assisted reviewer spent about seven minutes on the review and reported a trajectory RMSE of 0.0029 on its own synthetic packet in about ten seconds. It retained the draft's Python solver, C++ source and compiled library byte-for-byte. Ordinary review retained those same three files and added a Python bytecode cache. Neither review made the submitted solver fast enough to measure hidden trajectory accuracy. [Verify the submitted solver files](repair-study.md#verify-the-ice-diffraction-solver)
 
+#### Review time and tool use on the first five comparisons
+
+With the same time allowance in each arm, the skill-assisted reviews used 24 minutes 36 seconds in total. Ordinary reviews used 5 minutes 42 seconds. The skill took longer in every pair. Both arms passed the same one task. The counts below cover review sessions only. To verify them from the saved graded rows, read `session.elapsed_seconds` and count the entries in `session.calls`.
+
+| Task and model | Ordinary seconds | Skill seconds | Ordinary tool calls | Skill tool calls |
+| --- | ---: | ---: | ---: | ---: |
+| Powder diffraction, Terra | 66.43 | 111.84 | 7 | 11 |
+| Nanoindentation, Sonnet | 89.54 | 706.46 | 12 | 21 |
+| Nanoindentation, Terra | 72.16 | 114.84 | 10 | 8 |
+| Structural vibration, Terra | 45.23 | 115.52 | 7 | 10 |
+| Ice diffraction, Terra | 68.80 | 427.69 | 5 | 8 |
+| **Total** | **342.16** | **1476.35** | **41** | **58** |
+
 [Anonymized task results](results/archive.json) · [Complete counts and paired comparisons](results/results.md) · [Protocol and reproduction](README.md)
