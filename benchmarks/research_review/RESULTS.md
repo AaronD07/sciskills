@@ -17,7 +17,9 @@ We checked every distinct missing-input statement against its source packet with
 
 ## Frontier science
 
-Terra passed 3 of 12 original Terminal-Bench-Science development tasks. Its three successes were symbolic regression, constitutive-law discovery and inverse lithography. Before a model began a task, we checked that the untouched submission failed and the published solution earned full credit on our hardware. The table records what happened to specific scientific quantities.
+Terra and Sonnet each passed 3 of 12 original Terminal-Bench-Science development tasks. Both passed constitutive-law discovery and inverse lithography. Terra also passed symbolic regression, and Sonnet also passed the adaptive-mesh solver. Both failed the same eight other tasks. Before a model began a task, we checked that the untouched submission failed and the published solution earned full credit on our hardware.
+
+Both models met the prespecified threshold for testing the skills. Each got stuck at a locally stable but inferior solution on two distinct development tasks. For Terra these were spin glass and black-box optimization. For Sonnet they were spin glass and traffic inversion. We froze the two review skills and opened the separate 16-task holdout.
 
 | Development draft | Observed result |
 | --- | --- |

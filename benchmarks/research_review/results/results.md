@@ -96,7 +96,7 @@ Each attempt appears once, including exclusions whose replacement has yet to ret
 
 | Model | Arm | Recorded reason | Distinct recorded attempts | Same attempt as current row | Different current row | No current row |
 |---|---|---|---:|---:|---:|---:|
-| sonnet | draft | cli_error | 5 | 0 | 4 | 1 |
+| sonnet | draft | cli_error | 5 | 0 | 5 | 0 |
 | sonnet | draft | participant_host_oom | 3 | 0 | 3 | 0 |
 | sonnet | draft | tool_unavailable | 1 | 0 | 1 | 0 |
 | terra | draft | cli_error | 4 | 1 | 3 | 0 |
@@ -127,7 +127,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | primary | terra | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | draft | 3/11 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
@@ -145,6 +145,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 * terra, `traffic-flux-inversion` — upstream reward 0 (4 failed, 3 passed).
 * sonnet, `masked-spherical-remap` — upstream reward 0 (4 failed, 18 passed).
 * sonnet, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
+* sonnet, `noisy-blackbox-optimization` — upstream reward 0 (1 failed, 25 passed).
 * sonnet, `rv-astrometry-fitting` — upstream reward 0 (1 failed, 1 passed).
 * sonnet, `sparse-network-assimilation` — upstream reward 0 (4 failed, 3 passed).
 * sonnet, `spin-glass-groundstate` — upstream reward 0 (1 failed, 3 passed).
@@ -169,6 +170,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `hysteretic-aquifer-control` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | failed | — |
 | `inverse-waveguide-shape` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
 | `inverse-waveguide-shape` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `inverse-waveguide-shape` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `linked-cell-suppression` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `nanoindentation-property-extraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | ready | — |
 | `nanoindentation-property-extraction` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
@@ -176,14 +178,61 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `ode-law-discovery` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `ode-law-discovery` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `rolling-shutter-oma` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `rolling-shutter-oma` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `si-fracture-fbc` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `si-fracture-fbc` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `small-area-equivalence` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `stacking-disorder-diffraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `stacking-disorder-diffraction` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `supraglacial-lake-classification` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `supraglacial-lake-classification` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `xrd-multiphase-qpa` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
+| `xrd-multiphase-qpa` | context-51198e05a6744097, engine-6c0b6205f0916cf9 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 
-Holdouts have been frozen. Review interventions have yet to be sealed.
+| Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| primary | terra | draft | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | ordinary | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | general | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | terra | specialist | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | ordinary | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | general | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | specialist | 0/0 | 0 | 16 | 0 | 0 | 0 | 0 | 0 |
+| transfer | luna | draft | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | luna | ordinary | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | luna | general | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | luna | specialist | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | opus | draft | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | opus | ordinary | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | opus | general | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| transfer | opus | specialist | 0/0 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+
+¹ Invalid submissions are included in the scored denominator.
+² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
+
+| Model | Paired comparison | Matched tasks | Correct before → after | Repaired | Regressed |
+|---|---|---:|---:|---:|---:|
+| terra | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
+| terra | draft → general | 0 | 0 → 0 | 0 | 0 |
+| terra | draft → specialist | 0 | 0 → 0 | 0 | 0 |
+| terra | ordinary → general | 0 | 0 → 0 | 0 | 0 |
+| terra | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
+| sonnet | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
+| sonnet | draft → general | 0 | 0 → 0 | 0 | 0 |
+| sonnet | draft → specialist | 0 | 0 → 0 | 0 | 0 |
+| sonnet | ordinary → general | 0 | 0 → 0 | 0 | 0 |
+| sonnet | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
+| luna | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
+| luna | draft → general | 0 | 0 → 0 | 0 | 0 |
+| luna | draft → specialist | 0 | 0 → 0 | 0 | 0 |
+| luna | ordinary → general | 0 | 0 → 0 | 0 | 0 |
+| luna | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
+| opus | draft → ordinary | 0 | 0 → 0 | 0 | 0 |
+| opus | draft → general | 0 | 0 → 0 | 0 | 0 |
+| opus | draft → specialist | 0 | 0 → 0 | 0 | 0 |
+| opus | ordinary → general | 0 | 0 → 0 | 0 | 0 |
+| opus | ordinary → specialist | 0 | 0 → 0 | 0 | 0 |
 
 ## Swe dev
 
