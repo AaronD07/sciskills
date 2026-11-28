@@ -1,0 +1,26 @@
+{
+  "name": "core",
+  "description": "Checks every scientific project needs: known answers, units and invalid values, matching the paper, and adversarial review.",
+  "skills": [
+    {
+      "name": "sciskills-start-here",
+      "route": null
+    },
+    {
+      "name": "known-answers-first",
+      "route": "Writing tests, or about to trust a new or changed numerical method"
+    },
+    {
+      "name": "check-the-numbers",
+      "route": "Handling measurements, unit conversions, missing values, NaN or aggregates"
+    },
+    {
+      "name": "paper-to-code-consistency",
+      "route": "Implementing or checking a method from a paper or written protocol"
+    },
+    {
+      "name": "adversarial-review",
+      "route": "Asking for a review of an analysis, a code change or AI-written code; results look too good"
+    }
+  ]
+}

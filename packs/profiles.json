@@ -1,0 +1,10 @@
+{
+  "minimal": {
+    "description": "The router and the core checks only.",
+    "packs": ["core"]
+  },
+  "general": {
+    "description": "Core checks plus reproducible environments; a reasonable default for any field.",
+    "packs": ["core", "compute-env"]
+  }
+}

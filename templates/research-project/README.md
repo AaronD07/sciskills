@@ -11,4 +11,4 @@
    - Claude Code reads `CLAUDE.md`. Create a `CLAUDE.md` containing the single line `@AGENTS.md` so both stay in sync.
 4. Update it when the project changes: a new instrument, a new unit, a new dataset.
 
-The file supports careful work; it does not check anything by itself. Pair it with the skills in `skills/` and real tests.
+The file supports careful work; it does not check anything by itself. Pair it with SciSkills (see the main README for installing) and real tests.

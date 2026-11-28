@@ -5,6 +5,7 @@ import importlib.util
 import io
 import json
 import math
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -95,9 +96,10 @@ def prepare(case, dest, skill=None):
         raise ValueError("destination exists; choose a fresh directory")
     source = None
     if skill:
-        source = ROOT.parent / "skills" / skill / "SKILL.md"
-        if Path(skill).name != skill or not source.is_file():
+        matches = sorted((ROOT.parent / "packs").glob(f"*/skills/{skill}/SKILL.md")) if re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill) else []
+        if len(matches) != 1:
             raise ValueError("unknown skill")
+        source = matches[0]
     shutil.copytree(ROOT / "tasks" / case, dest, ignore=shutil.ignore_patterns("__pycache__"))
     if source:
         shutil.copyfile(source, dest / "SKILL.md")

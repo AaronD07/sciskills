@@ -1,12 +1,15 @@
-"""Check every skills/<name>/SKILL.md for structure the repository relies on.
+"""Check packs, profiles and every packs/<pack>/skills/<name>/SKILL.md.
 
 Standard library only. Errors exit 1; warnings are printed but do not fail.
 """
 import argparse
 import re
 from pathlib import Path
+import sys
 
-ROUTER = "sciskills-start-here"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import packs as P  # noqa: E402
+
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 MAX_NAME = 64
 MAX_DESCRIPTION = 1024
@@ -14,7 +17,7 @@ MAX_LINES = 500
 # Headings a skill must contain (case-insensitive substring of any "##" heading).
 REQUIRED_SECTIONS = ("workflow", "guardrails", "completion")
 # Backticked repository paths are checked when they start with one of these.
-REPO_PREFIXES = ("skills/", "examples/", "benchmarks/", "scripts/", "docs/", "templates/", "tests/")
+REPO_PREFIXES = ("packs/", "examples/", "benchmarks/", "scripts/", "docs/", "templates/", "tests/")
 BACKTICK_RE = re.compile(r"`([^`\s]+)`")
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
 
@@ -95,26 +98,48 @@ def lint_skill(skill_dir, repo_root):
 
 
 def lint_repo(repo_root):
+    """Return (number of skills, errors, warnings)."""
     repo_root = Path(repo_root).resolve()
-    skills_root = repo_root / "skills"
-    if not skills_root.is_dir():
-        raise ValueError("no skills/ directory")
-    skill_dirs = sorted(p for p in skills_root.iterdir() if p.is_dir() and not p.name.startswith("."))
-    errors, warnings = [], []
-    for skill_dir in skill_dirs:
-        e, w = lint_skill(skill_dir, repo_root)
-        errors += e
-        warnings += w
-    # The router must route to every skill, so new skills cannot be forgotten.
-    router = skills_root / ROUTER / "SKILL.md"
-    if router.is_file():
-        text = router.read_text(encoding="utf-8")
-        for skill_dir in skill_dirs:
-            if skill_dir.name != ROUTER and f"`{skill_dir.name}`" not in text:
-                errors.append(f"skills/{ROUTER}/SKILL.md: does not route to `{skill_dir.name}`")
+    try:
+        packs = P.load_packs(repo_root)
+        profiles = P.load_profiles(repo_root)
+    except ValueError as exc:
+        return 0, [str(exc)], []
+    errors, warnings, seen = [], [], {}
+    for name, pack in packs.items():
+        listed = [entry["name"] for entry in pack["skills"]]
+        skills_root = pack["dir"] / "skills"
+        on_disk = sorted(p.name for p in skills_root.iterdir() if p.is_dir() and not p.name.startswith(".")) if skills_root.is_dir() else []
+        for skill in sorted(set(on_disk) - set(listed)):
+            errors.append(f"packs/{name}/skills/{skill}: not listed in packs/{name}/pack.json")
+        for skill in listed:
+            if skill in seen:
+                errors.append(f"packs/{name}/pack.json: skill '{skill}' is also in pack '{seen[skill]}'")
+            seen[skill] = name
+            if skill not in on_disk:
+                errors.append(f"packs/{name}/pack.json: listed skill '{skill}' has no directory")
+                continue
+            e, w = lint_skill(skills_root / skill, repo_root)
+            errors += e
+            warnings += w
+    for profile, data in profiles.items():
+        for pack in data["packs"]:
+            if pack not in packs:
+                errors.append(f"packs/profiles.json: profile '{profile}' uses unknown pack '{pack}'")
+    # The committed router must route to every pack's skills, so none is forgotten.
+    router = P.skill_path(packs[P.ROUTER_PACK], P.ROUTER) / "SKILL.md"
+    if P.ROUTER not in seen or not router.is_file():
+        errors.append(f"packs/{P.ROUTER_PACK}/skills/{P.ROUTER}/SKILL.md: router skill is missing")
     else:
-        errors.append(f"skills/{ROUTER}/SKILL.md: router skill is missing")
-    return len(skill_dirs), errors, warnings
+        text = router.read_text(encoding="utf-8")
+        try:
+            expected = P.with_routes(text, P.render_routes(packs, P.resolve(packs, profiles, everything=True)))
+        except ValueError as exc:
+            errors.append(str(exc))
+        else:
+            if expected != text:
+                errors.append("router routing table is out of date; run: python3 scripts/install.py sync-router")
+    return len(seen), errors, warnings
 
 
 def main():

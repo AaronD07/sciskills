@@ -1,0 +1,14 @@
+{
+  "name": "compute-env",
+  "description": "Reproducible environments and computing limits: pinned dependencies, seeds and memory budgets.",
+  "skills": [
+    {
+      "name": "pin-the-environment",
+      "route": "Starting, sharing or publishing a Python project; getting different results on different machines"
+    },
+    {
+      "name": "memory-budget",
+      "route": "Running out of RAM or GPU memory, or scaling to much larger data"
+    }
+  ]
+}

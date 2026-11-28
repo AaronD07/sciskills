@@ -1,9 +1,9 @@
 ---
-name: oom-testing
-description: Estimate and measure scientific workload memory use, then test bounded failure and scaling behavior. Use when a workload may exhaust RAM or GPU memory, when scaling to larger datasets, or when sizing chunked or batched computations. This is out-of-memory testing, not order-of-magnitude sanity checking.
+name: memory-budget
+description: Estimate and measure scientific workload memory use, then test bounded failure and scaling behavior. Use when a workload may exhaust RAM or GPU memory, when scaling to larger datasets, or when sizing chunked or batched computations. This is about running out of memory, not order-of-magnitude sanity checks.
 ---
 
-# OOM testing
+# Memory budget
 
 Use when evaluating memory limits, larger datasets or workloads that may exhaust RAM or accelerator memory.
 

@@ -14,7 +14,7 @@ Record the exact Python version from the first command. Running the experiment t
 
 ## Ask an agent
 
-> Follow `skills/pin-the-environment/SKILL.md` for this example. Identify what is already reproducible, what metadata is missing, and what would change if we introduced NumPy. Do not invent a lockfile or modify dependencies without asking.
+> Follow the `pin-the-environment` skill for this example. Identify what is already reproducible, what metadata is missing, and what would change if we introduced NumPy. Do not invent a lockfile or modify dependencies without asking.
 
 ## Expected limitation
 
