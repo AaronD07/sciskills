@@ -41,6 +41,7 @@ Diffraction and nanoindentation both deliver `/workspace/output/results.csv`. On
 | Completed comparison | Draft SHA-256 | Ordinary review SHA-256 | Skill review SHA-256 |
 | --- | --- | --- | --- |
 | Terra, X-ray diffraction | `724c31633e2350f6cad9af031ebc56692d9057992dcda79fb6ab0f57d9e868ab` | Same as draft | Same as draft |
+| Sonnet, X-ray diffraction | `5982a994885ac5027418c52619a4ce57cf36dd8a360f72c0998dff3dcd9f927b` | Same as draft | Same as draft |
 | Sonnet, nanoindentation | `a57b593ed3f8ca999e34182b474251f46466abeb200718a94903a3e2c044ad90` | Same as draft | `928695dec218da1209f6b8224bff2fab62f6ece5c81c86d8e222dc6834b784a5` |
 | Terra, nanoindentation | `1ad558163aad76312939f56caaef0eb63db361f367a176ba3e94e3a75ca96268` | Same as draft | `34089ce05fee828a962d0c2b807ef919996b93da94c5fe39c9945e83691e702a` |
 
