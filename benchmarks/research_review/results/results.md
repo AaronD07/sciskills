@@ -96,7 +96,7 @@ Each attempt appears once, including exclusions whose replacement has yet to ret
 
 | Model | Arm | Recorded reason | Distinct recorded attempts | Same attempt as current row | Different current row | No current row |
 |---|---|---|---:|---:|---:|---:|
-| sonnet | draft | cli_error | 5 | 0 | 1 | 4 |
+| sonnet | draft | cli_error | 5 | 0 | 3 | 2 |
 | sonnet | draft | participant_host_oom | 3 | 0 | 2 | 1 |
 | sonnet | draft | tool_unavailable | 1 | 0 | 0 | 1 |
 | terra | draft | cli_error | 4 | 1 | 3 | 0 |
@@ -127,7 +127,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | Cohort | Model | Arm | Correct / scored | Invalid¹ | Missing | Incomplete | Ungraded | Infrastructure | Lineage errors | Task deadline² |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | primary | terra | draft | 3/12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| primary | sonnet | draft | 1/8 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| primary | sonnet | draft | 2/10 | 0 | 2 | 0 | 0 | 0 | 0 | 0 |
 
 ¹ Invalid submissions are included in the scored denominator.
 ² The agent reached its task budget after using a tool. Its saved work was submitted for grading.
@@ -146,6 +146,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 * sonnet, `masked-spherical-remap` — upstream reward 0 (4 failed, 18 passed).
 * sonnet, `mendota-ice-phenology` — upstream reward 0 (1 failed, 3 passed).
 * sonnet, `rv-astrometry-fitting` — upstream reward 0 (1 failed, 1 passed).
+* sonnet, `sparse-network-assimilation` — upstream reward 0 (4 failed, 3 passed).
 * sonnet, `spin-glass-groundstate` — upstream reward 0 (1 failed, 3 passed).
 * sonnet, `symbolic-regression` — upstream reward 0 (1 failed, 1 passed).
 * sonnet, `tess-transit-vetting` — upstream reward 0 (4 failed, 1 passed).
@@ -153,13 +154,13 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 
 ## Frontier holdout
 
-Upstream empty and reference submission control counts are 11 ready, 5 failed and 0 without a receipt.
+Upstream empty and reference submission control counts are 13 ready, 3 failed and 0 without a receipt.
 
 Control names and engine identifiers are pseudonymous. Each frontier holdout score requires a recorded participant context and engine with successful negative and positive controls. Development scores can include older submissions lacking engine metadata.
 
 | Task | Participant | Verifier | Reference controls | Recorded holdout use |
 |---|---|---|---|---|
-| `certified-sparse-regression` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
+| `certified-sparse-regression` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-4c440bab141d4ac9, engine-34c77fdae07677b6 | ready | — |
 | `certified-sparse-regression` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
 | `finite-free-stam` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `frustrated-heisenberg-nqs` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
@@ -176,7 +177,7 @@ Control names and engine identifiers are pseudonymous. Each frontier holdout sco
 | `rolling-shutter-oma` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `si-fracture-fbc` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `si-fracture-fbc` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | failed | — |
-| `small-area-equivalence` | context-0fa668a872909fb9 | context-0fa668a872909fb9 | failed | — |
+| `small-area-equivalence` | context-0fa668a872909fb9, engine-05e968bc8029b197 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `stacking-disorder-diffraction` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `supraglacial-lake-classification` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
 | `xrd-multiphase-qpa` | context-3e0d78d2dbaf1355, engine-bbea3e0d1e140611 | context-0fa668a872909fb9, engine-05e968bc8029b197 | ready | — |
