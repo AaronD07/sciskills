@@ -33,7 +33,7 @@ def validate_protocol(out):
     return protocol, skill, {c["id"]: c for c in groups["holdout"]}
 
 
-def assignment(out, task, model, protocol, *, components=None):
+def assignment(out, task, model, protocol, *, components=None, validated_rows=None):
     """Only scores from the original engine, parent draft and frozen skill enter a pair."""
     folder = out / "frontier"
     placement = folder / "execution-contexts" / (task + ".json")
@@ -128,6 +128,8 @@ def assignment(out, task, model, protocol, *, components=None):
         if type(scores[arm].get("correct")) is bool:
             if arm == "draft":
                 draft = row
+            if validated_rows is not None:
+                validated_rows[arm] = row
             if components is not None:
                 components[arm] = row["score"].get("private_component_status", {})
             identity_hash = (
