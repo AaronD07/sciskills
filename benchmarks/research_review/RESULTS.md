@@ -83,20 +83,7 @@ Terra's first draft on certified sparse regression submitted a ten-variable solu
 
 #### Review time and tool use on the first nine comparisons
 
-With the same time allowance in each arm, the skill-assisted reviews used 46 minutes in total. Ordinary reviews used 16 minutes 57 seconds. The skill took longer in every pair. Both arms passed the same two tasks. The counts below cover review sessions only. To verify them from the saved graded rows, read `session.elapsed_seconds` and count the entries in `session.calls`.
-
-| Task and model | Ordinary seconds | Skill seconds | Ordinary tool calls | Skill tool calls |
-| --- | ---: | ---: | ---: | ---: |
-| Powder diffraction, Terra | 66.43 | 111.84 | 7 | 11 |
-| Nanoindentation, Sonnet | 89.54 | 706.46 | 12 | 21 |
-| Nanoindentation, Terra | 72.16 | 114.84 | 10 | 8 |
-| Structural vibration, Terra | 45.23 | 115.52 | 7 | 10 |
-| Ice diffraction, Terra | 68.80 | 427.69 | 5 | 8 |
-| Powder diffraction, Sonnet | 91.13 | 222.03 | 8 | 19 |
-| Ice diffraction, Sonnet | 215.25 | 573.39 | 8 | 10 |
-| Finite free Stam inequality, Terra | 69.82 | 158.49 | 5 | 9 |
-| Certified sparse regression, Terra | 298.21 | 329.36 | 9 | 18 |
-| **Total** | **1016.57** | **2759.62** | **71** | **114** |
+With the same time allowance in each arm, the skill-assisted reviews used 46 minutes in total. Ordinary reviews used 16 minutes 57 seconds. The skill took longer in every pair. The skill-assisted reviewers made 114 shell calls and the ordinary reviewers made 71. Both arms passed the same two tasks. The public archive reproduces the paired times and tool counts offline. [Review time by task and model](results/repair-results.md#review-time-and-tool-use)
 
 #### Reference runs for the aquifer and spin-system tasks
 

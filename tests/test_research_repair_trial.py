@@ -54,6 +54,53 @@ class RepairTrialTests(unittest.TestCase):
         )
         self.assertIsNone(repair_trial.matched_components({}))
 
+    def test_effort_totals_require_both_reviews_and_a_scored_first_draft(self):
+        rows = []
+        for task in ("complete", "missing_time", "missing_grade", "zero", "invalid"):
+            rows.append(
+                {
+                    "task": task,
+                    "model": "terra",
+                    "arms": {a: {"correct": False} for a in repair_trial.ARMS},
+                    "review_effort": {
+                        a: {"elapsed_seconds": 2.25, "tool_calls": 1}
+                        for a in ("ordinary", "repair")
+                    },
+                }
+            )
+        rows[0]["review_effort"]["repair"].update(elapsed_seconds=4.50, tool_calls=3)
+        del rows[1]["review_effort"]["repair"]["elapsed_seconds"]
+        del rows[2]["arms"]["draft"]["correct"]
+        for arm in ("ordinary", "repair"):
+            rows[3]["review_effort"][arm].update(elapsed_seconds=0, tool_calls=0)
+        rows[4]["review_effort"]["ordinary"]["tool_calls"] = True
+        table = "\n".join(repair_trial.review_effort_table(rows, 4))
+        self.assertIn("2 of 4 complete comparisons", table)
+        self.assertIn("| **Total** | 2.25 | 4.50 | 1 | 3 |", table)
+        self.assertIn("zero (terra)", table)
+        self.assertNotIn("missing_", table)
+        self.assertNotIn("invalid (terra)", table)
+        self.assertEqual(repair_trial.review_effort_table(rows[1:3], 1), [])
+
+    def test_effort_excludes_malformed_and_reconstructed_session_receipts(self):
+        session = {"elapsed_seconds": 2, "calls": []}
+        self.assertEqual(
+            repair_trial.session_effort({"session": session})["tool_calls"], 0
+        )
+        self.assertIsNone(
+            repair_trial.session_effort(
+                {"session": session, "recovery": {"method": "replay"}}
+            )
+        )
+        for call in (
+            None,
+            {"code": "private"},
+            {"code": "x", "status": True, "output": ""},
+        ):
+            self.assertIsNone(
+                repair_trial.session_effort({"session": {**session, "calls": [call]}})
+            )
+
     def test_two_models_on_one_task_count_once_and_regressions_reduce_net(self):
         protocol = study.read(repair_trial.PROTOCOL)
         archive = {
@@ -248,7 +295,18 @@ class RepairTrialTests(unittest.TestCase):
                 **draft,
                 "parent_scheme": "participant-v1",
                 "parent": study.draft_identity(draft),
-                "session": {**draft["session"], "review_context_sha256": history},
+                "session": {
+                    **draft["session"],
+                    "review_context_sha256": history,
+                    "elapsed_seconds": 60.25,
+                    "calls": [
+                        {
+                            "code": "private code",
+                            "output": "private output",
+                            "status": 0,
+                        }
+                    ],
+                },
                 "score": {"status": "graded", "correct": True, "reward": 1},
             }
             for arm in ("ordinary", "repair"):
@@ -267,6 +325,13 @@ class RepairTrialTests(unittest.TestCase):
             with patch.object(study, "read", wraps=study.read) as read:
                 triplet = repair_trial.observation(root, task, "terra", protocol)
                 self.assertIsNone(triplet["component_transitions"])
+                for arm in ("ordinary", "repair"):
+                    self.assertEqual(triplet["review_effort"][arm]["tool_calls"], 1)
+                    self.assertEqual(
+                        triplet["review_effort"][arm]["elapsed_seconds"], 60.25
+                    )
+                self.assertNotIn("private code", str(triplet))
+                self.assertNotIn("private output", str(triplet))
                 for arm in repair_trial.ARMS:
                     self.assertEqual(
                         sum(
@@ -275,6 +340,7 @@ class RepairTrialTests(unittest.TestCase):
                         ),
                         1,
                     )
+            self.assertEqual(triplet["arms"], result())
             original = study.read(path(root, "repair"))
             for changes, expected in [
                 ({"participant_engine": "different"}, "unverified_engine"),

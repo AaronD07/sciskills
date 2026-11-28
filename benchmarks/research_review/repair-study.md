@@ -24,6 +24,8 @@ The [results table](results/repair-results.md) shows each arm's upstream reward 
 
 For complete comparisons with the same uniquely named upstream checks, the evaluator also counts which draft defects each review repaired and which passing checks each review broke. A skipped check remains unscored. Missing names, ambiguous matches and different check sets are reported as unavailable. Only transition counts leave the evaluator. This also detects opposing changes when the total number of passing checks stays the same.
 
+For complete comparisons with both original session records, the archive stores elapsed seconds and logged shell requests under `review_effort`, alongside the official grades. Wall time includes staging the draft history, cleanup and any snapshot taken at the deadline. Verifier time is separate. Each logged shell request counts once, including failed requests. A request interrupted before the tool writes its receipt has no entry. A reconstructed session or malformed call record excludes the pair from the effort totals. On the machine that holds the private grades, compare `elapsed_seconds` with `session.elapsed_seconds` and `tool_calls` with the length of `session.calls`. The public archive excludes commands and their output.
+
 ## Placement of unopened tasks
 
 On 28 November, six tasks had a saved machine reservation but no first-draft attempt, model session or submitted grade. They were certified sparse regression, finite free Stam, HBV calibration, ODE law discovery, silicon fracture and small-area equivalence. Their reserved machine was fully allocated to an earlier experiment. To use available local machines, we adopted this scheduling rule before starting an alternative reference run for any of the six.

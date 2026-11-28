@@ -244,12 +244,36 @@ def matched_components(statuses):
     return counts
 
 
+def session_effort(row):
+    """Export session wall time and the number of structurally valid shell receipts."""
+    session = row["session"]
+    seconds = session.get("elapsed_seconds")
+    calls = session.get("calls")
+    if row.get("recovery") or not report.number(seconds) or seconds < 0:
+        return None
+    if not isinstance(calls, list) or not all(
+        isinstance(call, dict)
+        and isinstance(call.get("code"), str)
+        and isinstance(call.get("output"), str)
+        and type(call.get("status")) is int
+        for call in calls
+    ):
+        return None
+    return {"elapsed_seconds": seconds, "tool_calls": len(calls)}
+
+
 def observation(out, task, model, protocol):
     statuses = {}
-    arms = assignment(out, task, model, protocol, components=statuses)
+    rows = {}
+    arms = assignment(
+        out, task, model, protocol, components=statuses, validated_rows=rows
+    )
     row = {"task": task, "model": model, "arms": arms}
     if all(type(arms[a].get("correct")) is bool for a in ARMS):
         row["component_transitions"] = matched_components(statuses)
+        effort = {arm: session_effort(rows[arm]) for arm in ("ordinary", "repair")}
+        if all(effort.values()):
+            row["review_effort"] = effort
     return row
 
 
@@ -319,6 +343,48 @@ def summarize(archive, protocol):
         if finished
         else "pending",
     }
+
+
+def review_effort_table(observations, matched):
+    """Report both review costs only when a complete comparison has both receipts."""
+    pairs = []
+    for row in observations:
+        arms = row["arms"]
+        if not all(type(arms[a].get("correct")) is bool for a in ARMS):
+            continue
+        effort = row.get("review_effort")
+        if not isinstance(effort, dict):
+            continue
+        ordinary, skill = effort.get("ordinary"), effort.get("repair")
+        if all(
+            isinstance(a, dict)
+            and report.number(a.get("elapsed_seconds"))
+            and a["elapsed_seconds"] >= 0
+            and type(a.get("tool_calls")) is int
+            and a["tool_calls"] >= 0
+            for a in (ordinary, skill)
+        ):
+            pairs.append((row, ordinary, skill))
+    if not pairs:
+        return []
+    lines = [
+        "",
+        "## Review time and tool use",
+        "",
+        f"Both review sessions have recorded wall time and shell requests for {len(pairs)} of {matched} complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.",
+        "",
+        "| Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for row, ordinary, skill in pairs:
+        lines.append(
+            f"| {row['task']} ({row['model']}) | {ordinary['elapsed_seconds']:.2f} | {skill['elapsed_seconds']:.2f} | {ordinary['tool_calls']} | {skill['tool_calls']} |"
+        )
+    fields = [
+        f"{sum(pair[i]['elapsed_seconds'] for pair in pairs):.2f}" for i in (1, 2)
+    ] + [str(sum(pair[i]["tool_calls"] for pair in pairs)) for i in (1, 2)]
+    lines.append("| **Total** | " + " | ".join(fields) + " |")
+    return lines
 
 
 def render(archive):
@@ -421,6 +487,7 @@ def render(archive):
                 + " | ".join([row["task"] + " (" + row["model"] + ")", *counts])
                 + " |"
             )
+    lines.extend(review_effort_table(archive["observations"], result["matched"]))
     lines.extend(["", "[Protocol and interpretation](../repair-study.md)", ""])
     return "\n".join(lines)
 

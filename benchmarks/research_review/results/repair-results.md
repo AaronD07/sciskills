@@ -60,4 +60,21 @@ Each change below compares the same upstream check across all three arms. A fix 
 | xrd-multiphase-qpa (terra) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | xrd-multiphase-qpa (sonnet) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
+## Review time and tool use
+
+Both review sessions have recorded wall time and shell requests for 9 of 9 complete comparisons. Wall time includes staging and cleanup. Each logged shell request counts once, including requests that returned an error.
+
+| Task and model | Ordinary seconds | Skill seconds | Ordinary shell requests | Skill shell requests |
+| --- | ---: | ---: | ---: | ---: |
+| certified-sparse-regression (terra) | 298.21 | 329.36 | 9 | 18 |
+| finite-free-stam (terra) | 69.82 | 158.49 | 5 | 9 |
+| nanoindentation-property-extraction (terra) | 72.16 | 114.84 | 10 | 8 |
+| nanoindentation-property-extraction (sonnet) | 89.54 | 706.46 | 12 | 21 |
+| rolling-shutter-oma (terra) | 45.23 | 115.52 | 7 | 10 |
+| stacking-disorder-diffraction (terra) | 68.80 | 427.69 | 5 | 8 |
+| stacking-disorder-diffraction (sonnet) | 215.25 | 573.39 | 8 | 10 |
+| xrd-multiphase-qpa (terra) | 66.43 | 111.84 | 7 | 11 |
+| xrd-multiphase-qpa (sonnet) | 91.13 | 222.03 | 8 | 19 |
+| **Total** | 1016.57 | 2759.62 | 71 | 114 |
+
 [Protocol and interpretation](../repair-study.md)
