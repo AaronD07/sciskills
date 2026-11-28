@@ -1,6 +1,6 @@
 ---
 name: paper-to-code-consistency
-description: Compare a scientific implementation against supplied equations and methodological specifications.
+description: Compare a scientific implementation against supplied equations and methodological specifications. Use when implementing a method from a paper or protocol, or auditing whether code matches published equations, conventions (log base, normalization, indexing, sign, units) and parameter defaults.
 ---
 
 # Paper to code consistency

@@ -6,10 +6,13 @@ Scientists can use AI to build research tools quickly; plausible output can stil
 
 ## Use a skill
 
-Ask your coding agent to follow the relevant `SKILL.md` while working in your research project. Loading conventions vary across tools; explicit file references work without claiming a universal plugin installation.
+Ask your coding agent to follow the relevant `SKILL.md` while working in your research project. Loading conventions vary across tools; explicit file references work without claiming a universal plugin installation. If you are unsure which skill applies, start with [SciSkills: start here](skills/sciskills-start-here/SKILL.md), which triages the task and routes to the others.
+
+For your own project, copy the [research project template](templates/research-project/) `AGENTS.md` and fill in units, conventions, data rules and checks, so the agent does not have to guess them.
 
 | Skill | What it checks | Exercise |
 | --- | --- | --- |
+| [Start here](skills/sciskills-start-here/SKILL.md) | Triage: which checks this task needs | Any task |
 | [Pin the environment](skills/pin-the-environment/SKILL.md) | Interpreter, dependencies and randomness | [Seeded simulation](examples/pin-the-environment/) |
 | [Known answers first](skills/known-answers-first/SKILL.md) | Independent expected results | Decay analysis |
 | [Check the numbers](skills/check-the-numbers/SKILL.md) | Units, missing data and finite values | Assay summary |
@@ -27,15 +30,19 @@ Python 3.10+; all shipped code uses the standard library, so no third-party depe
 python3 -m unittest discover -s tests -v
 python3 -m unittest discover -s examples/pin-the-environment -p 'test_*.py' -v
 python3 scripts/check_repo.py .
+python3 scripts/lint_skills.py .
 ```
 
-The checker reports evidence of README files, tests, dependency locks, runtime metadata and explicit seed calls. It does not run tests or grade scientific correctness. Empty categories may be appropriate for a particular project.
+CI runs the same commands on Python 3.10 and 3.12 (`.github/workflows/ci.yml`).
+
+The checker reports evidence of README files, tests, dependency locks, runtime metadata and explicit seed calls. It does not run tests or grade scientific correctness. Empty categories may be appropriate for a particular project. The skill linter checks each `SKILL.md` for frontmatter, a "Use when" trigger in the description, required sections, valid repository paths and links, and that the start-here router lists every skill.
 
 ## What is complete
 
-- Six actionable skills, with exercises or worked examples.
+- Six actionable skills, with exercises or worked examples, plus a start-here router skill.
+- A fill-in `AGENTS.md` template for research projects.
 - Three synthetic repair tasks and a scorer with 24 independent checks.
-- Regression tests for the evaluator and a read-only repository checker.
+- Regression tests for the evaluator, a read-only repository checker, a skill linter and CI.
 
 The harness has been checked against planted bugs and reference repairs. **Effectiveness with real agents has not yet been measured.** Cross-tool comparisons, a gallery of observed failures, a user study and a separate website remain future work. The README is the current project entry point.
 

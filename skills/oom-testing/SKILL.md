@@ -1,6 +1,6 @@
 ---
 name: oom-testing
-description: Estimate and measure scientific workload memory use, then test bounded failure and scaling behavior.
+description: Estimate and measure scientific workload memory use, then test bounded failure and scaling behavior. Use when a workload may exhaust RAM or GPU memory, when scaling to larger datasets, or when sizing chunked or batched computations. This is out-of-memory testing, not order-of-magnitude sanity checking.
 ---
 
 # OOM testing

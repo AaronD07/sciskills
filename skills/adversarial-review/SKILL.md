@@ -1,6 +1,6 @@
 ---
 name: adversarial-review
-description: Review scientific code by challenging its assumptions and seeking concrete counterexamples.
+description: Review scientific code by challenging its assumptions and seeking concrete counterexamples. Use when auditing an AI-generated analysis, reviewing a scientific code change or pull request, or when results look too good to be true (possible data leakage, wrong denominators, silently dropped records).
 ---
 
 # Adversarial review

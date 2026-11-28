@@ -1,6 +1,6 @@
 ---
 name: pin-the-environment
-description: Make a scientific Python project more reproducible by recording its interpreter, locking dependencies, documenting setup, and controlling stochastic seeds where appropriate.
+description: Make a scientific Python project more reproducible by recording its interpreter, locking dependencies, documenting setup, and controlling stochastic seeds where appropriate. Use when starting or sharing a Python research project, preparing results for publication, onboarding collaborators, or debugging results that differ between machines.
 ---
 
 # Pin the environment

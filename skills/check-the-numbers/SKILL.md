@@ -1,6 +1,6 @@
 ---
 name: check-the-numbers
-description: Audit scientific calculations for unit errors, invalid values and violated domain constraints.
+description: Audit scientific calculations for unit errors, invalid values and violated domain constraints. Use when code ingests measurements, converts units, aggregates data that has missing values, or outputs physical quantities whose units, ranges, NaN/infinity handling or denominators could be wrong.
 ---
 
 # Check the numbers

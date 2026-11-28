@@ -1,6 +1,6 @@
 ---
 name: known-answers-first
-description: Test scientific code against independently known results before trusting realistic outputs.
+description: Test scientific code against independently known results before trusting realistic outputs. Use when writing tests for numerical or scientific code, before accepting a new implementation, or when changing an analysis method; anchor tests to hand calculations, analytic solutions or conservation laws, never to the code's own output.
 ---
 
 # Known answers first
