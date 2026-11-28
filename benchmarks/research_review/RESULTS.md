@@ -88,4 +88,8 @@ With the same time allowance in each arm, the skill-assisted reviews used 37 min
 | Ice diffraction, Sonnet | 215.25 | 573.39 | 8 | 10 |
 | **Total** | **648.54** | **2271.77** | **57** | **87** |
 
+#### Reference runs for the aquifer and spin-system tasks
+
+On 28 November, the original reference solvers for `hysteretic-aquifer-control` and `frustrated-heisenberg-nqs` each reached the published eight-hour limit on the shared review machine. The untouched environment had failed the negative control on both tasks as expected. A reference solver must also finish and pass its grader before a participant can start. Both controls were restarted on separate dedicated machines with the original image digests and the same eight-hour limit. The four Terra and Sonnet assignments on these tasks still have no grades. [Task-level scores](results/repair-results.md)
+
 [Anonymized task results](results/archive.json) · [Complete counts and paired comparisons](results/results.md) · [Protocol and reproduction](README.md)
